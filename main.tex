@@ -1,4 +1,3 @@
-jul% Acá se define el tamaño de letra principal:
 %
 \documentclass[11pt]{article}
 \usepackage{subfig}
@@ -31,50 +30,27 @@ jul% Acá se define el tamaño de letra principal:
 \usepackage{comment}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+
 \usepackage{hyperref}
-\usepackage[hidelinks]{hyperref}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
-\numberwithin{equation}{section}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
 \numberwithin{figure}{section}
 \numberwithin{table}{section}
-
-\usepackage{fancyhdr} %Cabecera y pie de página     
-
-%
-% Para poner el texto "Figura X" en negrita:
-% (Si no tenés el paquete 'caption2', probá con 'caption').
-%
-\usepackage[hang,bf]{caption}
-% Para poder usar subfiguras: (al estilo Figura 2.3(b) )
-%
-% Para poder agregar notas al pie en tablas:
-%
-%\usepackage{threeparttable}
-
-\DeclareMathOperator{\E}{\mathbb{E}}
-
-%------------------------------ graphicx ----------------------------------
-
+\usepackage{fancyhdr}
+\usepackage[]{caption} % Add the caption package with the hang and bf options
 \usepackage[pdftex]{graphicx}
 \pdfcompresslevel=9
-
-%
-% Todas las imágenes están en el directorio tp-img:
-%
 \newcommand{\imgdir}{includes}
 \graphicspath{{\imgdir/}}
-
 \renewcommand{\baselinestretch}{1.1}   %Interlineado
 
 %------------------------- Inicio del documento ---------------------------
-
 \begin{document}
 
-%
-% Hago que en la cabecera de página se muestre a la derecha la sección,
-% y en el pie, en número de página a la derecha:
-%
 \pagestyle{fancy}
 \renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ \ #1}}
 \lhead{}
@@ -101,6 +77,7 @@ jul% Acá se define el tamaño de letra principal:
 \end{center}
 
 \vspace{2cm}
+
 
 \begin{center}
 \Large{\textsc{ Multi-Image Super Resolution and Domain Adaptation Techniques applied to Thermal Remote Sensing}} \\
@@ -136,7 +113,6 @@ June 30, 2023
 
 \input{sections/introduction.tex}
 \input{sections/super_resolution.tex}
-\input{sections/domain_adaptation.tex}
 \input{sections/methodology.tex}
 \input{sections/experiment_setup.tex}
 \input{sections/results.tex}
@@ -148,7 +124,6 @@ June 30, 2023
 \pagestyle{empty}
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
-
 
 
 \end{document}
