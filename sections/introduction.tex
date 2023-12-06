@@ -1,0 +1,40 @@
+\section{Introduction} \ref{sec:intro}
+
+This thesis delves into the intricate realm of MISR and Domain Adaptation techniques, tailored for the domain of thermal remote sensing, with an emphasis on the challenges and innovations within the unpaired dataset context. Thermal imagery, with its unique sensitivity to temperature variations, offers an invaluable perspective for phenomena such as wildfire tracking and climate change studies. However, the native resolution of such thermal images often falls short of the detail necessary for fine-grained analysis, propelling the need for advanced SR methods.
+
+    \subsection{Storyline}
+
+    \begin{itemize}
+        \item Forest fires are dynamic events that change quickly over time. They could be monitored using remote sensing LWIR -> LST
+        \item Spatio-temporal trade off: Big missions have high resolution but bad revisit frequency. This is where forest plays a role. But can we improve the resolution using post-processing techniques?
+        \item Super resolution is an ill-posed problem, supervised deep learning techniques are generally used in the current literature.
+        \item MISR leverages on subpixel differences present in several images taken from the same scene, potentially giving more information to generate an SR image. The potential increase in performance comes with the cost a data-processing overhead.
+        \item One of the biggest challenges in super resolution is to create proper datasets for model training. Usually the degradation model used to generate HR-LR pairs is very simplistic compared to real cases. This problem is called domain gap.
+        
+        \item To bridge the gap, techniques like domain adaptation using gans could be used to estimate the degradation process and generate more realistic datasets, that will translate in better production-ready models.
+        \end{itemize}
+
+    \textbf{This thesis covers three main questions:}
+
+    \begin{itemize}
+        \item How does the performance of Multi-Image Super Resolution (MISR) compare to Single-Image Super Resolution (SISR), considering the pre-processing burden associated with MISR?
+
+        \item How do traditional baseline degradation models, such as gaussian blurring, compare against a probabilistic model that aligns the distribution of a source domain (e.g., ECOSTRESS) to our  target domain (FOREST-2)?
+
+        \item What impact do the different degradation models have during the inference stage, when the SR models are used in real data.
+    \end{itemize}
+         
+          
+        
+
+
+
+    
+
+    \newpage
+
+    \subsection{Wildfire monitoring using thermal remote sensing}
+
+    
+
+    \subsubsection{Spatio-temporal trade-off}

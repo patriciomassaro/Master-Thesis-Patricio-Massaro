@@ -1,0 +1,156 @@
+jul% Acá se define el tamaño de letra principal:
+%
+\documentclass[11pt]{article}
+\usepackage{subfig}
+\usepackage{amsfonts} 
+
+%
+% Título y autor(es):
+%
+\title{Practical}
+\author{Massaro\\ Soraruf}
+
+%------------------------- Carga de paquetes ---------------------------
+
+% Definición del tamaño de página y los márgenes:
+%
+\usepackage[a4paper,headheight=16pt,scale={0.7,0.8},hoffset=0.5cm]{geometry}
+
+%
+% Vamos a escribir en castellano:
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+%\usepackage{helvet}
+%\renewcommand\familydefault{\sfdefault}
+\usepackage{amsmath,amssymb}
+\usepackage{accents}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\usepackage{fancyhdr} %Cabecera y pie de página     
+
+%
+% Para poner el texto "Figura X" en negrita:
+% (Si no tenés el paquete 'caption2', probá con 'caption').
+%
+\usepackage[hang,bf]{caption}
+% Para poder usar subfiguras: (al estilo Figura 2.3(b) )
+%
+% Para poder agregar notas al pie en tablas:
+%
+%\usepackage{threeparttable}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+%------------------------------ graphicx ----------------------------------
+
+\usepackage[pdftex]{graphicx}
+\pdfcompresslevel=9
+
+%
+% Todas las imágenes están en el directorio tp-img:
+%
+\newcommand{\imgdir}{includes}
+\graphicspath{{\imgdir/}}
+
+\renewcommand{\baselinestretch}{1.1}   %Interlineado
+
+%------------------------- Inicio del documento ---------------------------
+
+\begin{document}
+
+%
+% Hago que en la cabecera de página se muestre a la derecha la sección,
+% y en el pie, en número de página a la derecha:
+%
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ \ #1}}
+\lhead{}
+\chead{}
+\rhead{\rightmark}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+
+%
+% Carátula:
+%
+\begin{titlepage}
+
+\thispagestyle{empty}
+
+\begin{center}
+\includegraphics[scale=0.5]{Includes/0-siegel.eps}\\
+\large{\textsc{Ludwig-Maximilians-Universität München}}\\
+\large{MSc Data Science }\\
+{\textsc{Master Thesis}} \\ 
+\vspace{0.5cm}
+\small{Summer Semester 23 }
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+\Large{\textsc{ Multi-Image Super Resolution and Domain Adaptation Techniques applied to Thermal Remote Sensing}} \\
+June 30, 2023
+\end{center}
+
+\vspace{2cm}
+
+\begin{tabbing}
+	Student:\hspace{-1cm}\=\+\hspace{1cm}\=\hspace{6cm}\=\\
+		Massaro, Patricio	\>\> \\
+			\>\footnotesize{$<$p.massaro@campus.lmu.de$>$}\\
+		\\
+\end{tabbing}
+
+\vfill
+
+\hrule
+\vspace{0.2cm}
+\noindent\small{Master Thesis\hfill }
+\end{titlepage}
+
+\input{sections/Acknowledgement.tex}
+
+\tableofcontents
+\newpage
+
+%
+% Inicio del TP:
+%
+\setcounter{page}{1}
+
+
+\input{sections/introduction.tex}
+\input{sections/super_resolution.tex}
+\input{sections/domain_adaptation.tex}
+\input{sections/methodology.tex}
+\input{sections/experiment_setup.tex}
+\input{sections/results.tex}
+\input{sections/conclusions.tex}
+
+
+\newpage
+
+\pagestyle{empty}
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+
+
+\end{document}
+
+

@@ -1,0 +1,160 @@
+\section{Experiment Setup}
+
+    \subsection{Obtaining a high resolution dataset}
+    
+    
+        Super-resolution is inherently a supervised learning task that needs the availability of high-resolution (HR) data. In scenarios where HR data from sources like FOREST is unavailable, an alternative is to generate synthetic images that replicate the characteristics of a superior resolution FOREST dataset.
+
+        \subsubsection{The ECOSTRESS mission}
+    
+        The NASA's ECOsystem Spaceborne Thermal Radiometer Experiment on Space Station (ECOSTRESS) mission is designed to provide new insights the effects of the Earth's climate dynamics \cite{ECOSTRESS2023}, with focus on the following scientific objectives:
+
+        \begin{enumerate}
+            \item Identify the critical thresholds of water use and water stress in key climate-sensitive biomes, typically by observing the transition zones between biomes.
+            \item Identify when plants stop taking up water over the course of a day.
+            \item Improve the accuracy of drought estimates based on agricultural water use in the continental United States. 
+        \end{enumerate}
+
+        ECOSTRESS employs thermal infrared radiometers, specifically Prototype HyspIRI Thermal Infrared Radiometer \cite{PhyTIR2023} to measure the radiation emitted from the Earth's surface. It provides a spatial resolution of 69 meters with a temperature sensitivity of a few tenths of a degree \cite{ECOSTRESS2023}.  The swath size is 400x400 km. The detector separates the energy from five different wavelengths using filters attached to the detector, producing five separate image layers for each scene. The pixels represent the intensity of thermal infrared radiation emitted by the Earth's surface at each wavelength. The mission has a 4-day diurnal repeat cycle.
+    
+        In the spatial domain, ECOSTRESS constitutes an excellent candidate for generating synthetic HR images, as it's resolution constitutes approximately a x3 increase compared to FOREST. In the spectral domain, it is important to confirm overlap between the missions bands. Given the narrower ECOSTRESS bands compared FOREST's, the strategy will be averaging the radiances to align the spectral properties. Fig. \ref{fig:5-wavelength-comparison} shows this spectral band comparison. In the case of the LWIR1 FOREST band, the overlap is significant with the first three ECOSTRESS bands. Althouth the overlap is less pronounced in the LWIR2 band, the radiation spectrum of black-bodies at prevalent surface temperatures suggest the feasibility of constructing a synthetic LWIR2 from the last two ECOSTRESS bands. While FOREST's temporal resolution exceeds that of ECOSTRESS, allowing for the monitoring of new processes, this aspect is not the primary focus of the current study.
+    
+
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth]{Includes/5-wavelength-comparison.png}
+            \caption{Wavelengths of the sensors in Ecostress and Forest satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.}
+            \label{fig:5-wavelength-comparison}
+        \end{figure}
+
+        \subsubsection{Donwloading ECOSTRESS Scenes}
+            ECOSTRESS imagery is available via NASA's Application for Extracting and Exploring Analysis Ready Samples (AppEEARS) \cite{AppEEARS2023}. This tool allows the request of area samples via vector poligons. Using the product's API \cite{AppEEARSAPI2023}, Level 1 Mapped Radiance scenes of size 200x200 km  with center on the locations provided in Fig. \ref{fig:5-wavelength-comparison} were programmatically requested. Due to satellite hardware anomalies, certain spectral bands experienced acquisition gaps, needing a careful selection of date ranges to ensure the availability of all five bands \cite{ECO1BMAPRAD2023}.
+    
+           \begin{table}[h!]
+                \centering
+                \begin{tabular}{|l|l|}
+                \hline
+                Area     & 200 x 200 km                                                                              \\ \hline
+                Products & \begin{tabular}[c]{@{}l@{}}Mapped Radiance (5 bands)\\ Quality (5 Bands)\end{tabular}     \\ \hline
+                Dates    & \begin{tabular}[c]{@{}l@{}}2018/08/20 - 2019/03/04\\ 2023/05/01 - 2023/08/15\end{tabular} \\ \hline
+                \end{tabular}
+                \caption{Requests configuration}
+                \label{tab:5-scenes-characteristics}
+            \end{table}
+    
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[width=\linewidth]{Includes/5-ecostress-map-location.png}
+                \caption{Location of the samples taken from ecostress.}
+                \label{fig:5-ecostress-map-location}
+            \end{figure}
+
+    \subsubsection{Selecting the best scenes}
+
+    The AppEEARS platform returns multiple scenes that correspond to the specified area sample within the requested timeframe. This includes 5 mapped radiance measurements alongside their corresponding Quality Assurance (QA) bands. Additionally, a CSV file is provided, detailing quality statistics  for each scene. The interface returns any scene that overlaps with the requested area. For that reason, some GeoTIFFs may be significantly smaller than others, with variances up to 90\%. Moreover, an important number of these GeoTIFFs may contain a high percentage of bad quality pixels, rendering them unsuitable for model training. Furthermore, as highlighted in the ECOSTRESS frequently asked questions \cite{ecostress_faq}, the accuracy of radiance measurements is highly dependent on clear sky conditions; cloudy scenes typically yield negligible radiance emissions.
+
+    The dataset includes several GeoTIFFs for each scene. Downloading the entirety of this dataset is impractical due to its huge size.  From the 50 scenes, each one is potentially replicated over 20 times over the 10 months request window. Such a dataset, given its magnitude, cannot be used for model training with the available hardware resources. Therefore, a procedure is developed to identify and select the most appropriate scene for each month, based on a predefined set of criteria:
+
+    \begin{enumerate}
+        \item Scenes should have a low proportion of bad quality pixels.
+        \item Scenes should have a considerable size so that many crops can be taken from it.
+        \item As clouds imply low radiance values, clear sky scenes will have high radiance values.
+    \end{enumerate}
+
+
+    The procedure to get the best scene for each month is detailed below: 
+
+    \begin{algorithm}
+    \caption{Process applied to the scenes returned from one area request.}
+    \begin{algorithmic}[1]
+    
+    \State \textbf{QA statistics:}
+    \State Get the average proportion of good pixels $p_{gp}$ for the 5 radiances of the scene.
+    \State Discard scenes where $p_{gp} < 60 $ .
+    \State For each month, get the 3 scenes with the greatest $p_{gp}$.
+    
+    \State \textbf{Scene Statistics:}
+    \State Get the biggest scene of each month.
+    \State Calculate the proportion between the size each scene and the biggest of the month.
+    \State Discard images which size proportion is smaller than 0.2.
+    \State Calculate the median of the radiance values of the scene.
+    \State \textbf{Selecting the scene of the month:}
+    \State Merge the QA statistics and the Scene statistics.
+    \State Select the scene that has the greatest median radiance value.
+    \end{algorithmic}
+    \end{algorithm}
+
+    Applying this procedure, a dataset comprised of 5031 scenes taken from 50 area requests is reduced to 379 scenes.
+
+    \subsubsection{Data Processing}
+
+    In order to be able to use the data in a super-resolution algorithm, a set of processing steps must be performed on it.
+
+    The diagram in Fig. \ref{fig:5-data_processing_flow_chart} displays the processing pipeline. The input are the 5 Mapped radiance and their respective quality bands.
+
+    Mapped radiances 1,2 and 3 are averaged to form the LWIR1 synthetic FOREST, mapped radiances 4 and 5 are averaged to form the LWIR2 synthetic FOREST. If any of the bands are missing, the corresponding LWIR synthetic forest is discarded. 
+
+    The fill values in the mapped radiances and the data quality classes are used to create a binary mask for each spectral band. If a pixel is considered problematic, it is marked as a 1 in the binary mask. The QA band for a synthetic FOREST LWIR band is built using an OR operation on the corresponding ECOSTRESS spectral involved in it's construction. After being constructed, both the synthetic LWIR and the corresponding QA band are reprojected to the best utm epsg code, based on the latitude and longitude of the scene.
+
+        \begin{table}[h!]
+            \centering
+            \caption{Fill Value and Data Quality Classes}
+            \label{tab:quality_classes}
+            \begin{tabular}{cl}
+                \toprule
+                \textbf{Value} & \textbf{Description}                \\
+                \midrule
+                \multicolumn{2}{c}{Fill Value Classes}                \\
+                -9997          & Pixel not seen                       \\
+                -9998          & Missing data due to striping (not filled in) \\
+                -9999          & Missing/bad data                     \\
+                \midrule
+                \multicolumn{2}{c}{Data Quality Classes}              \\
+                0              & Good                                 \\
+                1              & Missing stripe data, filled in       \\
+                2              & Missing stripe data, not filled in   \\
+                3              & Missing/bad data                     \\
+                4              & Not seen                             \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    The synthetic LWIR are not suitable for the super-resolution task yet. They are too big to be kept in memory, and not all their values are of good quality. For that reason, for each scene, a number of random crops of size 264x264 pixels are taken. The random crop processor pipeline is displayed in Fig. \ref{fig:5-random_crop_processor}. It is an iterative process where at each stage, crops that do not comply with the quality considerations ( all pixels are of good quality and no stripe noise was detected) are discarded until the target number of crops per scene is achieved. Additionally, the Affine Transformation is translated so that the images can be georeferenced.
+
+    
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth]{Includes/5-data_processing_flow_chart.pdf}
+            \caption{Data processing workflow}
+            \label{fig:5-data_processing_flow_chart}
+        \end{figure}
+
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[width=\linewidth]{Includes/5-random_crop_processor.pdf}
+            \caption{Random crop processor}
+            \label{fig:5-random_crop_processor}
+        \end{figure}
+
+    
+        
+    \subsubsection{Obtaining FOREST-2 data}
+
+
+    
+    \subsection{Datasets}
+
+        For a better understanding of how the proposed architecture works, several datasets combinations are used.
+
+        \subsubsection{Training: Ecostress-DegradedEcostress}
+
+            This dataset is built by taking the HR ECOSTRESS crops and applying the basic degradation model proposed in \ref{subsec:}
+
+        \subsubsection{Training: Ecostress-Forest ( Unpaired)}
+
+        \subsubsection{Testing: Ecostress-DegradedEcostress ( Different model than training)}
+
+        \subsubsection{Testing: Ecostress-Forest ( Paired)}
+
+
+\clearpage
