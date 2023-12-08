@@ -20,7 +20,7 @@
         In the spatial domain, ECOSTRESS constitutes an excellent candidate for generating synthetic HR images, as it's resolution constitutes approximately a x3 increase compared to FOREST. In the spectral domain, it is important to confirm overlap between the missions bands. Given the narrower ECOSTRESS bands compared FOREST's, the strategy will be averaging the radiances to align the spectral properties. Fig. \ref{fig:5-wavelength-comparison} shows this spectral band comparison. In the case of the LWIR1 FOREST band, the overlap is significant with the first three ECOSTRESS bands. Althouth the overlap is less pronounced in the LWIR2 band, the radiation spectrum of black-bodies at prevalent surface temperatures suggest the feasibility of constructing a synthetic LWIR2 from the last two ECOSTRESS bands. While FOREST's temporal resolution exceeds that of ECOSTRESS, allowing for the monitoring of new processes, this aspect is not the primary focus of the current study.
     
 
-        \begin{figure}[ht!]
+        \begin{figure}[h!]
             \centering
             \includegraphics[width=\linewidth]{Includes/5-wavelength-comparison.png}
             \caption{Wavelengths of the sensors in Ecostress and Forest satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.}
@@ -30,7 +30,7 @@
         \subsubsection{Donwloading ECOSTRESS Scenes}
             ECOSTRESS imagery is available via NASA's Application for Extracting and Exploring Analysis Ready Samples (AppEEARS) \cite{AppEEARS2023}. This tool allows the request of area samples via vector poligons. Using the product's API \cite{AppEEARSAPI2023}, Level 1 Mapped Radiance scenes of size 200x200 km  with center on the locations provided in Fig. \ref{fig:5-wavelength-comparison} were programmatically requested. Due to satellite hardware anomalies, certain spectral bands experienced acquisition gaps, needing a careful selection of date ranges to ensure the availability of all five bands \cite{ECO1BMAPRAD2023}.
     
-           \begin{table}[ht!]
+           \begin{table}[h!]
                 \centering
                 \begin{tabular}{|l|l|}
                 \hline
@@ -42,7 +42,7 @@
                 \label{tab:5-scenes-characteristics}
             \end{table}
     
-            \begin{figure}[ht!]
+            \begin{figure}[h!]
                 \centering
                 \includegraphics[width=\linewidth]{Includes/5-ecostress-map-location.png}
                 \caption{Location of the samples taken from ecostress.}
@@ -96,7 +96,7 @@
 
     The fill values in the mapped radiances and the data quality classes are used to create a binary mask for each spectral band. If a pixel is considered problematic, it is marked as a 1 in the binary mask. The QA band for a synthetic FOREST LWIR band is built using an OR operation on the corresponding ECOSTRESS spectral involved in it's construction. After being constructed, both the synthetic LWIR and the corresponding QA band are reprojected to the best utm epsg code, based on the latitude and longitude of the scene.
 
-        \begin{table}[ht!]
+        \begin{table}[h!]
             \centering
             \caption{Fill Value and Data Quality Classes}
             \label{tab:quality_classes}

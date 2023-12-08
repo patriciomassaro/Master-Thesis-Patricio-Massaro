@@ -2,7 +2,7 @@
 
     Super resolution refers to an image processing process of recovering a corresponding high-resolution image from a low-resolution version of it, with applications that range from natural images \cite{zeyde2010single}, \cite{martin2001database} to satellite \cite{valsesia2021permutation} and medical imaging \cite{bashir2021comprehensive}. SR remains a challenging task in computer vision because it is considered an ill-posed problem: several HR images can generate exactly the same LR image. 
 
-       \begin{figure}[ht!]
+       \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.2]{Includes/2-SR-ill-posed.jpg}
             \caption{Example of super resolution as an ill posed problem. A blurry picture of Barack Obama can be generated from an HR image of another person.}
@@ -39,7 +39,7 @@
 
         In 2019, the European Space Agency (ESA) organized an SR challenge  \cite{martens2019superresolution} based on real-world scenes acquired by the PROBA-V satellite, each of which contains an HR image (100m GSD) coupled with at least nine LR images that are not perfectly co-registered and they may be taken months apart. This challenge, with a not synthetically generated HR-LR image pairs, fostered a new generation of model architectures that are able to fuse the multiple LR images to create better reconstructions.
 
-        \begin{figure}[ht!]
+        \begin{figure}[h!]
             \centering
             \includegraphics[scale=1.5]{Includes/2-MISR.jpeg}
             \caption{Multi-image super resolution algorithms combine multiple low-resolution image acquisitions into a high-resolution image. Source: \cite{MISR2007}}
@@ -70,7 +70,7 @@
         Blind SR for unknown degradation is proposed to bridge the domain gap present in the synthetic datasets generated using bicubic downsampling.
     
 
-        \begin{figure}[ht!]
+        \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.45]{Includes/2-DomainGap.png}
             \caption{Domain interpretation of differences between non-blind and blind SR. Source: \cite{liu2021blind}}

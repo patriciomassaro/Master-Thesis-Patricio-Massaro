@@ -2,77 +2,86 @@
     
     \subsection{Baseline Degradation model} \label{subsec:baseline_degradation_model}
 
-    Early super-resolution methods commonly generated high-resolution (HR) to low-resolution (LR) samples using predefined degradation techniques, with bicubic downsampling being the most used setting \cite{zhang2018residual}. This kind of synthetic data, while easy to obtain, often results in a domain gap problem, where the data used for training and assessing the model do not come from the same distribution as real data. This gap usually to performance drops when the models implemented in production environments. A possible solution is to synthesize samples with a stochastic degradation model, which includes a set of multiple blurring kernels and several random noises configurations. The larger degradation space grant these models better generalization capabilities and experts be part of the kernel definition process, based on prior knowledge of the degradation process. Unfortunately, the variety of predefined degradation's is still limited and still fail in most applications.
+        Early super-resolution methods commonly generated high-resolution (HR) to low-resolution (LR) samples using predefined degradation techniques, with bicubic downsampling being the most used setting \cite{zhang2018residual}. This kind of synthetic data, while easy to obtain, often results in a domain gap problem, where the data used for training and assessing the model do not come from the same distribution as real data. This gap usually to performance drops when the models implemented in production environments. A possible solution is to synthesize samples with a stochastic degradation model, which includes a set of multiple blurring kernels and several random noises configurations. The larger degradation space grant these models better generalization capabilities and experts be part of the kernel definition process, based on prior knowledge of the degradation process. Unfortunately, the variety of predefined degradation's is still limited and still fail in most applications.
 
-    A degradation model like this one will be used as a baseline for this work.
-     
-
-    \subsubsection{Blurring Kernel}
-
-      \begin{figure}[ht!]
-            \centering
-            \includegraphics[width=\linewidth]{Includes/4-degradation_kernels.pdf}
-            \caption{Example of kernels used in an stochastic degradation model. (a),(b) and (c) are generated using a symmetric variance on the x and y axis. (d) (e) and (f) are generated using an asymmetric variances, resulting in much more anisotropic kernels.}
-            \label{fig:4-degradation_kernels}
-        \end{figure}
-
-      \begin{figure}[ht!]
-            \centering
-            \includegraphics[width=\linewidth]{Includes/4-degradation-kernel-examples.pdf}
-            \caption{Effects of different blurring kernels on the HR-LR generation. The upper row contains images generated using blurring kernels with symmetric distributions. The lower rows contains images generated using asymmetric distributions for the variances, resulting in highly anisotropic kernels.}
-            \label{fig:4-degradation_kernels}
-        \end{figure}
+        A degradation model like this one will be used as a baseline for this work.
         
-    \subsubsection{Radiometric error correction}
 
-     As reported by the ECOSTRESS instrument sheet,\cite{ECOSTRESS2023INSTRUMENT} its nominal radiometric accuracy at 300K is 0.5K. FOREST-2 target radiometric accuracy is 1K. This difference in accuracy should be taken into account. To align these accuracies, we first calculate the additional error required using the following equation:
+        \subsubsection{Blurring Kernel}
 
-    \begin{equation}
-        e_{\text{forest}} = \sqrt{e_{\text{eco}}^2 + e_{\text{extra}}^2} 
-        \label{eq:4-radiometric-error-correction}
-    \end{equation}
-    
-    where $e_{\text{eco}}$ is the ECOSTRESS error, and $ e_{\text{extra}}$ is the additional error required for FOREST-2.
-    
-    Using the above equation, we find that an additional radiometric error of approximately 0.8660K is needed. The next step involves converting this extra error into a radiance value. This requires calculating the derivative of the Planck equation at 300K, which is done numerically as follows:
-    
-    \begin{equation}
-        \frac{\partial B}{\partial T} = \frac{B(\lambda, T + \delta T) - B(\lambda, T)}{\delta T}
-        \label{eq:4-planck-derivative}
-    \end{equation}  
-    
-    By multiplying the results of equations \ref{eq:4-radiometric-error-correction} and \ref{eq:4-planck-derivative}, we can obtain the radiance error for both FOREST LWIR bands. The additional radiance errors for LWIR1 and LWIR2 bands are found to be \(1.5472 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\) and \(1.1444 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\), respectively.
+        \begin{figure}[h!]
+                \centering
+                \includegraphics[width=\linewidth]{Includes/4-degradation_kernels.pdf}
+                \caption{Example of kernels used in an stochastic degradation model. (a),(b) and (c) are generated using a symmetric variance on the x and y axis. (d) (e) and (f) are generated using an asymmetric variances, resulting in much more anisotropic kernels.}
+                \label{fig:4-degradation_kernels}
+            \end{figure}
 
-    The difference in radiances will be split into two components. On one side, the cold Bias represents a systematic error in the measurement, this error acknowledges discrepancies that can be attributed to sensor calibration and atmospheric conditions. On the other side, the random noise accounts for unpredictable fluctuations in the measurement process. It could be due to a variety of sources like electronic noise in the sensor, random atmospheric disturbances, or other stochastic factors. As the extent of each component is not known and to give more variability to this basic degradation model, a random factor $\phi \in [0,1] $ is introduced so that:
+        \begin{figure}[h!]
+                \centering
+                \includegraphics[width=\linewidth]{Includes/4-degradation-kernel-examples.pdf}
+                \caption{Effects of different blurring kernels on the HR-LR generation. The upper row contains images generated using blurring kernels with symmetric distributions. The lower rows contains images generated using asymmetric distributions for the variances, resulting in highly anisotropic kernels.}
+                \label{fig:4-degradation_kernels}
+            \end{figure}
+            
+        \subsubsection{Radiometric error correction}
 
-    \begin{equation}
-    \begin{aligned}
-        \varepsilon_{\text{final}} &= (1 - \phi) \times \varepsilon_{\text{radiance}} + \phi \times \eta \times \varepsilon_{\text{radiance}} \\
-        \eta & \sim \mathcal{N} (0,1)
-    \end{aligned}
-    \end{equation}    
+        As reported by the ECOSTRESS instrument sheet,\cite{ECOSTRESS2023INSTRUMENT} its nominal radiometric accuracy at 300K is 0.5K. FOREST-2 target radiometric accuracy is 1K. This difference in accuracy should be taken into account. To align these accuracies, we first calculate the additional error required using the following equation:
 
-    The effects of the error correction is shown in Fig. \ref{fig:4-radiometric_noise_example}. As the target radiometric error increases with respect to ECOSTRESS scenes, the loss of information is more noticeable.
+        \begin{equation}
+            e_{\text{forest}} = \sqrt{e_{\text{eco}}^2 + e_{\text{extra}}^2} 
+            \label{eq:4-radiometric-error-correction}
+        \end{equation}
+        
+        where $e_{\text{eco}}$ is the ECOSTRESS error, and $ e_{\text{extra}}$ is the additional error required for FOREST-2.
+        
+        Using the above equation, we find that an additional radiometric error of approximately 0.8660K is needed. The next step involves converting this extra error into a radiance value. This requires calculating the derivative of the Planck equation at 300K, which is done numerically as follows:
+        
+        \begin{equation}
+            \frac{\partial B}{\partial T} = \frac{B(\lambda, T + \delta T) - B(\lambda, T)}{\delta T}
+            \label{eq:4-planck-derivative}
+        \end{equation}  
+        
+        By multiplying the results of equations \ref{eq:4-radiometric-error-correction} and \ref{eq:4-planck-derivative}, we can obtain the radiance error for both FOREST LWIR bands. The additional radiance errors for LWIR1 and LWIR2 bands are found to be \(1.5472 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\) and \(1.1444 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\), respectively.
+
+        The difference in radiances will be split into two components. On one side, the cold Bias represents a systematic error in the measurement, this error acknowledges discrepancies that can be attributed to sensor calibration and atmospheric conditions. On the other side, the random noise accounts for unpredictable fluctuations in the measurement process. It could be due to a variety of sources like electronic noise in the sensor, random atmospheric disturbances, or other stochastic factors. As the extent of each component is not known and to give more variability to this basic degradation model, a random factor $\phi \in [0,1] $ is introduced so that:
+
+        \begin{equation}
+        \begin{aligned}
+            \varepsilon_{\text{final}} &= (1 - \phi) \times \varepsilon_{\text{radiance}} + \phi \times \eta \times \varepsilon_{\text{radiance}} \\
+            \eta & \sim \mathcal{N} (0,1)
+        \end{aligned}
+        \end{equation}    
+
+        The effects of the error correction is shown in Fig. \ref{fig:4-radiometric_noise_example}. As the target radiometric error increases with respect to ECOSTRESS scenes, the loss of information is more noticeable.
 
 
-    \begin{figure}[ht!]
-        \centering
-        \includegraphics[scale=0.55]{Includes/4-radiometric_noise_example.pdf}
-        \caption{Effects of different radiometric error corrections on the HR-LR generation.}
-        \label{fig:4-radiometric_noise_example}
-    \end{figure}
+        \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.55]{Includes/4-radiometric_noise_example.pdf}
+            \caption{Effects of different radiometric error corrections on the HR-LR generation.}
+            \label{fig:4-radiometric_noise_example}
+        \end{figure}
         
     \subsection{Models Architecture}
     
         \subsubsection{SRResNet}
 
-        Introduced in 2017 \cite{ledig2017photorealistic}, SRResnet leverages on residual networks \cite{he2015deep} that employ skip connections to solve the super resolution task. The architecture is detailed in Fig. \textbf{CITE}. Specifically, 16 residual blocks consisting two convolutional layers, followed by batch-normalization layers and ParametricReLU activation functions. The convolutional layers have 3x3 kernels and 64 feature maps. To increase the resolution of the input image, two trained sub-pixel convolution layers are used.
+            Introduced in 2017 \cite{ledig2017photorealistic}, SRResnet leverages on residual networks \cite{he2015deep} that employ skip connections to solve the super resolution task. The architecture is detailed in Fig. \textbf{CITE}. Specifically, 16 residual blocks consisting two convolutional layers, followed by batch-normalization layers and ParametricReLU activation functions. The convolutional layers have 3x3 kernels and 64 feature maps. To increase the resolution of the input image, two trained sub-pixel convolution layers are used.
 
-        As this work focuses on having super resolved images with high physical consistency and not on the perceptual superiority of the images, improvements introduced in the publications like the Generative Adversarial Network (SRGAN)  and the perceptual loss for gradient calculation are not used.
-    
+            As this work focuses on having super resolved images with high physical consistency and not on the perceptual superiority of the images, improvements introduced in the publications like the Generative Adversarial Network (SRGAN)  and the perceptual loss for gradient calculation are not used.
+        
 
         \subsubsection{RAMS}
         \subsubsection{Probabilistic Degradation Model}
+
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[scale=0.55]{Includes/3-GAN-degradation-model.png}
+                \caption{In Degradation-learning-based methods like this one, 
+                         adversarial training is used to encourage the degradation model to produce images in the same domain with the target domain (test images).
+                         Source \cite{luo2022learning}.}
+                \label{fig:3-GAN-degradation-model}
+            \end{figure}
 
             \paragraph{Kernel Model}
             \paragraph{Noise Model}
@@ -121,7 +130,7 @@
             However, NIQE provides an objective measure of image quality that aligns with the naturalness of human visual perception, and is not able to quantify the physical consistency of a generated image.
         \paragraph{BRISQUE}
 
-        \subsubsection{Frequency Domain Analysis}
+        \subsubsection{Frequency Domain Analysis} \label{subsubsec:frequency_domain_analysis}
         
         The Fourier transform is widely used to analyze the frequency content in signals.  It can be applied to multidimensional signals such as images, where the spatial variations of pixel-intensities have a unique representation in the frequency domain. Super-resolution objective is to reconstruct missing high frequency components from a downscaled image. The expectation of a good SR algorithm is to amplify the high frequency components compared to a baseline like bicubic interpolation, while keeping noise at bay. The Fourier components provide global information about the image, as opposed to local information represented by pixel values in the spatial domain \cite{fuoli2021fourier}. 
 
@@ -146,7 +155,7 @@
 
         Through FFT we acquire a depiction of the frequency-based amplification or attenuation attributable to the SR techniques. Analyzing these profiles displays the ability of SR models for detail enhancement. However, it is important to note that this method does not account for any noise or artifacts generated by the SR, and should be used in combination to other supervised metrics.
 
-        \begin{figure}[ht!]
+        \begin{figure}[h!]
             \centering
             \includegraphics[width=\linewidth]{Includes/4-frequency-analysis.pdf}
             \caption{Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency.  }

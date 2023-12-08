@@ -1,87 +1,142 @@
-\section{Results}\label{sec:results}
+\section{Results and discussion}\label{sec:results}
 
-    \subsection{Multi-image versus single-image super resolution}
+To serve as a baseline, a pipeline was trained using synthetic FOREST as the source domain and their artificially degraded version as the target domain. 
+To obtain such data, the degradation model described in \ref{subsec:baseline_degradation_model} was applied, blurring and adding noise to the synthetic FOREST images.
+This degradation model is stochastic, but with unknown parameters. The objective is to observe how the pipeline is able to mimic the degradation model used in the target domain.On the other side, the main pipeline was trained using synthetic FOREST as the source domain and real FOREST as the target domain. 
+In this case, the degradation model is unknown and the objective is to observe how the pipeline is able to estimate it, generating LR versions of the synthetic FOREST images that come from the same distribution as the real FOREST images.
 
-    \subsection{Domain gap effects}
+    \subsection{Source domain}
 
-    \subsection{Domain adaptation}
+        This subsection will show the results from the experiments performed on the source domain.
+        The process consists of degrading the synthetic HR FOREST images using the generator trained using adversarial learning and then super resolving it using the corresponding SR model used in the pipeline.
+        This is the equivalent of the black arrows flow describes in fig. \ref{fig:3-GAN-degradation-model}. 
 
-        \subsubsection{Source Domain (ECOSTRESS)}
+        As in this case the ground truth is known, the performance of the SR model can be evaluated using metrics like PSNR and SSIM. 
+        Unfortunately, as the target and the source domain are not paired, the effects of the degradation model have to be evaluated using alternative methods.
 
-        \begin{figure}[ht!]
+        Fig. \ref{fig:5-source_domain_sample} shows the results of both pipelines when applied to one sample from the source domain. 
+        For comparison, a simple gaussian blurring + downscaling is also shown. 
+        The main differences can be seen on the degraded LR images. While the baseline pipeline produces images very similar to gaussian blurring + downscaling, 
+        the adapted pipeline produces much more blurry images with more noise, suggesting that FOREST-2 produces less resolution than what was initially expected. 
+        However, both super resolved images yield better performance than just using bicubic interpolation, and they are very similar between them.
+        This suggests that the super resolution model is able to recover the details lost during stronger degradation processes, but there seems to be a limit to the amount of detail that can be recovered. 
+        Even though the starting point is different ( baseline LR is less blurry than adapted LR), the final result is very similar.
+
+        The estimated kernel and noise for both pipelines is also shown in fig. \ref{fig:5-source_domain_sample}. 
+        While the baseline kernel is very simple and the noise is more or less uniform across the image, the adapted kernel is more complex and the noise seems to be strongly correlated with the image intensity.
+        It is important not to overinterpret this result, as the kernel and noise are estimated using overparametrized models, and multiple combinations of kernel and noise may produce similar results. 
+        However, it is interesting to see that the adapted pipeline is able to estimate a more complex degradation model, which is closer to the real degradation model used in the target domain.
+
+        \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.28]{Includes/6-source_prediction-sample.pdf}
-            \caption{Applying different degradation models on an HR sample. In the Baseline SISR, the target domain used for training the generator is composed of ECOSTRESS images with the baseline degradation model applied.  }
-            \label{fig:6-source_domain_sample}
+            \includegraphics[width=\textwidth]{Includes/5-source_prediction-sample.pdf}
+            \caption{Applying different degradation models on an HR sample. 
+                    In the Baseline SISR, the target domain used for training the generator is composed of sysnthetic HR FOREST-2 images degraded using the model detailed in \ref{subsec:baseline_degradation_model}.
+                    In the adapted SISR, the target domain used for training the generator is composed of real FOREST-2 images.}
+            \label{fig:5-source_domain_sample}
+        \end{figure}
+        \pagebreak
+
+        \subsubsection{Effects of the degradation model}
+
+        Fig. \ref{fig:5-source-domain-comparison} shows the performance obtained by super resolving the degraded synthetic FOREST images for the whole validation dataset.
+        In the upper row (a), the corresponding model is used to obtain the super resolved images. 
+        The performance, both in PSNR and SSIM are very similar for both pipelines. 
+        In the lower row (b), a simple bicubic interpolation is used to super resolve the degraded images. 
+        In this case, the baseline LR version yields better results than the adapted LR version, both in PSNR and SSIM.
+        This suggests that the learned degradation model from FOREST-2 images loses more information than the baseline, resulting in a lower ground sampling distance than what is expected.
+        Interestingly, the SR model is able to recover a big portion of the information, as the performance after using the SR models is very similar. 
+        This shows the relevance of the domain gap in super resolution, the SR model is able to apply the inverse of the degradation function in most cases, and the problem relies on that in the most common experiments, the wrong degradation model is shown to the model. 
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Includes/5-source-domain-comparison.png}
+            \caption{Performance obtained by super resolving the degraded synthetic FOREST images. 
+                        In (a), the correspondingly trained SISR model is applied. 
+                        In (b), a simple bicubic interpolation is used to super resolve the degraded images. }
+            \label{fig:5-source-domain-comparison}
         \end{figure}
 
-
-        \begin{figure}[h!]
+        An alternative way to evaluate the lost frequency components due to the degradation model is by analyzing the frequency domain of the LR images.
+        An example of the analysis of the whole validation dataset is shown in Fig. \ref{fig:5-lr-images-fft-comparison}. 
+        In (a) the log magnitude of the FFT is across different spatial frequency values for the different degraded images is displayed. 
+        The spatial frequency is obtained from the radial distance to the center of the FFT, as shown in \ref{subsubsec:frequency_domain_analysis}.
+        In (b), the amplification with respect to a simple gaussian blurring + downscaling is shown. 
+        While the baseline does not lose much information with respect to gaussian blurring + downscaling, the adapted pipeline consistently diminishes high frequency components starting at 0.1 cycles per pixel. 
+        It is important to note that 0.1 cycles per pixel at a 210m GSD corresponds to a cycle frequency of 21m.
+        These results are consistent with the observations noted in Fig. \ref{fig:5-source-domain-comparison}, where the adapted pipeline yields worse LR images.
+    
+        \begin{figure}[H]
             \centering
-            \includegraphics[width=\linewidth]{Includes/5-source-domain-sr-comparison.pdf}
-            \caption{Performance obtained by using different generators to degrade the source domain and then applying the trained super resolution model .}
-            \label{fig:5-source-domain-sr-comparison}
+            \includegraphics[scale=0.5]{Includes/5-source-lr-amplification-statistics.pdf}
+            \caption{Frequency domain analysis of the LR images obtained by applying different degradation models on the HR sample displayed in Fig. \ref{fig:5-source_domain_sample}.
+                     In (a), the log of the magnitude of the FFT for the LR images is shown,
+                     while in (b), the amplification with respect to a  simple gaussian blurring + downscaling is shown.}
+            \label{fig:5-lr-images-fft-comparison}
         \end{figure}
 
+    \pagebreak
 
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=\linewidth]{Includes/5-source-domain-bicubic-upsampling-comparison.pdf}
-            \caption{Performance obtained by using different generators to degrade the source domain and then applying bicubic upsampling.}
-            \label{fig:5-source-domain-bicubic-upsampling-comparison}
-        \end{figure}
-
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[scale=0.5]{Includes/6-lr-images-fft-comparison.pdf}
-            \caption{Sample }
-            \label{fig:6-source_domain_fft_comparison}
-        \end{figure}
         
-    
-        \subsubsection{Target domain (FOREST)}
-            \begin{figure}[ht!]
-                \centering
-                \includegraphics[scale=0.3]{Includes/6-target_prediction_sample.pdf}
-                \caption{Sample of adapted SISR}
-                \label{fig:6-target_prediction_sample}
-            \end{figure}
-
-
-            \begin{figure}[ht!]
-                \centering
-                \includegraphics[scale=0.3]{Includes/6-target-fft-sample.pdf}
-                \caption{Super Resolved Forest-2 Scene using bicubic upsampling, the baseline blind SISR and the adapted approach.}
-                \label{fig:6-target-fft-sample}
-            \end{figure}
-
-
-            \begin{figure}[ht!]
-                \centering
-                \includegraphics[scale=0.5]{Includes/6-target-fft-analysis.pdf}
-                \caption{Frequency domain analysis of the super resolved images using different target domains vs. bicubic upsampling on the sample displayed on Fig. \ref{fig:6-target-fft-sample}}
-                \label{fig:6-target-fft-analysis}
-            \end{figure}
-
-
-            
-
-
             
     
-            \begin{figure}[ht!]
-                \centering
-                \includegraphics[scale=0.28]{Includes/6-target-gradient-analysis-image.pdf}
-                \caption{Sample of adapted SISR}
-                \label{fig:6-target-gradient-analysis-image}
-            \end{figure}
+    \subsection{Target domain}
 
-            \begin{figure}[ht!]
-                \centering
-                \includegraphics[scale=0.6]{Includes/6-target-gradient-analysis-histogram.pdf}
-                \caption{Histogram of the gradient magnitude $|G|$ for the sample displayed in Fig. \ref{fig:6-target-gradient-analysis-image}}
-                \label{fig:6-target-gradient-analysis-histogram}
-            \end{figure}
+        This subsection will show the results from the experiments performed on the target domain, this is the equivalent of the red arrows flow describes in fig. \ref{fig:3-GAN-degradation-model}.
+        In this case, the GAN trained for the degradation model is discarded and only the super resolution model is used.
+        The input images are real FOREST-2 images, and the output images are super resolved versions of them. 
+        Due to the unpaired nature of the dataset, the performance of the SR model can not be evaluated using metrics like PSNR and SSIM. 
+        Other alternatives will be presented, and a qualitative analysis will be performed. 
+        Additionally, a quantitative analysis will be discussed using a very small sample of paired data obtained by synchronizing the overpass of FOREST-2 with the route of ECOSTRESS.
+
+
+        In Fig. \ref{fig:5-target_prediction_sample}, the super resolutions models were used with a 264x264 pixels crop of a real FOREST-2 image.
+    
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.28]{Includes/5-target_prediction_sample.pdf}
+            \caption{Sample of adapted SISR}
+            \label{fig:5-target_prediction_sample}
+        \end{figure}
+
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.28]{Includes/6-target-fft-sample.pdf}
+            \caption{Super Resolved Forest-2 Scene using bicubic upsampling, the baseline blind SISR and the adapted approach.}
+            \label{fig:6-target-fft-sample}
+        \end{figure}
+
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.5]{Includes/5-target-amplification-statistics.pdf}
+            \caption{}
+            \label{fig:6-target-amplification-statistics}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.28]{Includes/6-target-gradient-analysis-image.pdf}
+            \caption{Sample of adapted SISR}
+            \label{fig:6-target-gradient-analysis-image}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{Includes/6-target-gradient-analysis-histogram.pdf}
+            \caption{Histogram of the gradient magnitude $|G|$ for the sample displayed in Fig. \ref{fig:6-target-gradient-analysis-image}}
+            \label{fig:6-target-gradient-analysis-histogram}
+        \end{figure}
+
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.4]{Includes/5-gradient-histogram-validation-dataset.pdf}
+            \caption{}
+            \label{fig:5-gradient-histogram-validation-dataset}
+        \end{figure}
         
         
 % \breakpage

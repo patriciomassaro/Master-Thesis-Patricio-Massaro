@@ -23,17 +23,17 @@
 \contentsline {subsubsection}{\numberline {3.2.1}SRResNet}{9}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}RAMS}{9}{subsubsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.3}Probabilistic Degradation Model}{9}{subsubsection.3.2.3}%
-\contentsline {paragraph}{Kernel Model}{9}{section*.9}%
-\contentsline {paragraph}{Noise Model}{9}{section*.10}%
-\contentsline {paragraph}{Discriminator}{9}{section*.11}%
+\contentsline {paragraph}{Kernel Model}{9}{section*.10}%
+\contentsline {paragraph}{Noise Model}{9}{section*.11}%
+\contentsline {paragraph}{Discriminator}{9}{section*.12}%
 \contentsline {subsection}{\numberline {3.3}Performance Metrics}{9}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Referenced image quality metrics}{9}{subsubsection.3.3.1}%
-\contentsline {paragraph}{Adjusting measures to a multi-image framework}{9}{section*.12}%
+\contentsline {paragraph}{Adjusting measures to a multi-image framework}{9}{section*.13}%
 \contentsline {subsubsection}{\numberline {3.3.2}No-reference Image quality metrics}{10}{subsubsection.3.3.2}%
-\contentsline {paragraph}{Naturalness Image Quality Evaluator (NIQE)}{10}{section*.13}%
-\contentsline {paragraph}{BRISQUE}{10}{section*.14}%
-\contentsline {subsubsection}{\numberline {3.3.3}Frequency Domain Analysis}{10}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Gradient Distribution analysis}{11}{subsubsection.3.3.4}%
+\contentsline {paragraph}{Naturalness Image Quality Evaluator (NIQE)}{10}{section*.14}%
+\contentsline {paragraph}{BRISQUE}{10}{section*.15}%
+\contentsline {subsubsection}{\numberline {3.3.3}Frequency Domain Analysis}{11}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Gradient Distribution analysis}{12}{subsubsection.3.3.4}%
 \contentsline {section}{\numberline {4}Experiment Setup}{14}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Obtaining a high resolution dataset}{14}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}The ECOSTRESS mission}{14}{subsubsection.4.1.1}%
@@ -46,9 +46,7 @@
 \contentsline {subsubsection}{\numberline {4.2.2}Testing: Ecostress-DegradedEcostress ( Different degradations)}{19}{subsubsection.4.2.2}%
 \contentsline {subsubsection}{\numberline {4.2.3}Training: Ecostress-Forest (Unpaired)}{19}{subsubsection.4.2.3}%
 \contentsline {subsubsection}{\numberline {4.2.4}Testing: Ecostress-Forest ( Paired)}{19}{subsubsection.4.2.4}%
-\contentsline {section}{\numberline {5}Results}{20}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Multi-image versus single-image super resolution}{20}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Domain gap effects}{20}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Domain adaptation}{20}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Source Domain (ECOSTRESS)}{20}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Target domain (FOREST)}{20}{subsubsection.5.3.2}%
+\contentsline {section}{\numberline {5}Results and discussion}{20}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Source domain}{20}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Effects of the degradation model}{22}{subsubsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.2}Target domain}{24}{subsection.5.2}%

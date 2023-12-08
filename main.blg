@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: unsrt.bst
 Database file #1: bibliography.bib
-You've used 21 entries,
+You've used 22 entries,
             1791 wiz_defined-function locations,
-            556 strings with 7350 characters,
-and the built_in function-call counts, 3226 in all, are:
-= -- 206
-> -- 231
+            560 strings with 7510 characters,
+and the built_in function-call counts, 3401 in all, are:
+= -- 215
+> -- 248
 < -- 0
-+ -- 86
-- -- 65
-* -- 132
-:= -- 503
-add.period$ -- 51
-call.type$ -- 21
-change.case$ -- 21
++ -- 92
+- -- 70
+* -- 142
+:= -- 532
+add.period$ -- 53
+call.type$ -- 22
+change.case$ -- 22
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 105
-empty$ -- 379
-format.name$ -- 65
-if$ -- 734
+cite$ -- 22
+duplicate$ -- 110
+empty$ -- 397
+format.name$ -- 70
+if$ -- 772
 int.to.chr$ -- 0
-int.to.str$ -- 21
+int.to.str$ -- 22
 missing$ -- 0
-newline$ -- 96
-num.names$ -- 17
-pop$ -- 146
+newline$ -- 100
+num.names$ -- 18
+pop$ -- 153
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 77
+skip$ -- 81
 stack$ -- 0
 substring$ -- 0
-swap$ -- 21
+swap$ -- 22
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 17
-width$ -- 23
-write$ -- 187
+while$ -- 18
+width$ -- 24
+write$ -- 195
