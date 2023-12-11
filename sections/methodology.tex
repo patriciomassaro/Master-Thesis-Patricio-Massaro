@@ -12,7 +12,7 @@
         \begin{figure}[h!]
                 \centering
                 \includegraphics[width=\linewidth]{Includes/4-degradation_kernels.pdf}
-                \caption{Example of kernels used in an stochastic degradation model. (a),(b) and (c) are generated using a symmetric variance on the x and y axis. (d) (e) and (f) are generated using an asymmetric variances, resulting in much more anisotropic kernels.}
+                \caption{Example of kernels used in a stochastic degradation model. (a),(b) and (c) are generated using a symmetric variance on the x and y axis. (d) (e) and (f) are generated using an asymmetric variances, resulting in much more anisotropic kernels.}
                 \label{fig:4-degradation_kernels}
             \end{figure}
 
@@ -76,35 +76,106 @@
 
             \begin{figure}[h!]
                 \centering
-                \includegraphics[scale=0.55]{Includes/3-GAN-degradation-model.png}
-                \caption{In Degradation-learning-based methods like this one, 
-                         adversarial training is used to encourage the degradation model to produce images in the same domain with the target domain (test images).
-                         Source \cite{luo2022learning}.}
-                \label{fig:3-GAN-degradation-model}
+                \includegraphics[scale=0.38]{Includes/3-probabilistic-degradation-model.png}
+                \caption{SADASDSA}
+                \label{fig:3-probabilistic-degradation-model}
             \end{figure}
+
 
             \paragraph{Kernel Model}
             \paragraph{Noise Model}
             \paragraph{Discriminator}
 
 
-    \subsection{Performance Metrics}
+    \subsection{Referenced image quality metrics}
 
-        \subsubsection{Referenced image quality metrics}
+    When the ground truth high resolution image is available, the performance of a super-resolution algorithm can be evaluated using a variety of metrics. 
+    These metrics can be divided into two categories: pixel-based and perceptual-based.
+    Pixel-based metrics are based on the pixel-wise comparison between the generated image and the ground truth. 
+    Perceptual-based metrics, on the other hand, are based on the perceptual similarity between the generated image and the ground truth. 
+    These metrics are build using a pre-trained deep neural network, which is usually trained on a large dataset of images.
+    The following sections will describe the most commonly used metrics in the literature.
 
+        \subsubsection{$L_2$ and $L_1$ Loss}
+
+            The $L_1$ and $L_2$ losses are the most commonly used pixel-based metrics in the literature. 
+            Additionally, they are usually used as the loss function that drives the network gradients during training.
+            In a general form, the $L_1$ and $L_2$ losses are defined as follows:
+
+            \begin{equation}
+                \mathcal{L}_{L_k} = \frac{1}{N} \sum_{i=1}^{N} |y_i - \hat{y}_i|^k
+            \end{equation}
+
+            Where $y_i$ and $\hat{y}_i$ are the ground truth and the super resolved image, respectively, and $k$ is the exponent of the loss function. 
+            The $L_2$ loss weights high-value differences higher than low-value differences due to the exponent of 2. 
+            This generates overly smooth for low values and a lot of variability in high values. 
+            For that reason, it is more common to see the $L_1$ loss being used in the literature.
+
+        \subsubsection{Peak Signal-to-Noise Ratio (PSNR)}
+
+         
+            Peak Signal-to-Noise Ratio (PSNR) measures the quality of a reconstructed or super-resolved image in comparison to the original high-resolution image. It quantifies the amount of error or noise introduced during the image reconstruction process.
+            
+            PSNR is calculated by first computing the Mean Squared Error (MSE) or $\mathcal{L}_2$ loss between the original and reconstructed images, and then taking the logarithmic ratio of the maximum possible pixel value squared. The PSNR value is usually expressed in decibels (dB).
+            
+            The formula for PSNR is:
+            
+            \begin{equation}
+            PSNR = 10 \cdot \log_{10} \left( \frac{I_{MAX}^{2}}{\mathcal{L}_2} \right)
+            \end{equation}
+            
+            where $I_{MAX}$ is the maximum possible pixel value of the image, and $\mathcal{L}_2$ is the mean squared error between the original and the reconstructed image.
+            
+            A higher PSNR value indicates better quality of the super-resolved image, as it signifies a lower level of noise or error. However, it's worth noting that it may not always align with human perceptual evaluations of image quality, as it focuses on physical consistency.
+
+        \subsubsection{Structural Similarity Index (SSIM)}
+
+            
+        Structural Similarity Index Measure (SSIM) takes into consideration changes in structural information, luminance, and contrast. By doing that, it manages to reflect better the perceived changes in noise level and contrast.
+        The SSIM index is calculated by dividing the image into windows of a certain size, and then comparing corresponding windows in the reference and target images. The SSIM index for a pair of windows, say $x$ and $y$, is given by:
         
+        \begin{equation}
+            SSIM(x, y) = \frac{(2\mu_x\mu_y + c_1)(2\sigma_{xy} + c_2)}{(\mu_x^2 + \mu_y^2 + c_1)(\sigma_x^2 + \sigma_y^2 + c_2)}
+        \end{equation}
         
+        where $\mu_x$ and $\mu_y$ are the average pixel values, $\sigma_x^2$ and $\sigma_y^2$ are the variances, $\sigma_{xy}$ is the covariance of $x$ and $y$, and $c_1, c_2$ are small constants to avoid division by zero.
+        The final SSIM score for the images is calculated by averaging the SSIM indices of all windows. An SSIM score of 1 indicates a perfect structural match between the two images, whereas a score of 0 indicates no structural similarities.
+
+        \subsubsection{Learned perceptual image patch similarity (LPIPS)}
+
+        LPIPS is a perceptual metric that leverages deep learning to compute perceptual differences between images. Specifically, it uses the activations of a pre-trained convolutional neural network (in this case, VGG \cite{VGGnet} ) to extract perceptual features from the images. 
+        Then, it calculates the Euclidean distance between these feature vectors to measure the perceptual difference.
+        This measure has gained popularity in SR tasks due to its high correlation with human judgments of visual similarity.
+        
+        The LPIPS score is given by:
+        
+        \begin{equation}
+        LPIPS(I, I') = \sqrt{\sum_{i=1}^{N} w_i\|f_i(I)-f_i(I')\|^2}
+        \end{equation}
+        
+        where $I$ and $I'$ are the images being compared, $f_i(I)$ denotes the $i$-th layer activation when image $I$ is input to the pre-trained network, $N$ is the number of layers considered, and $w_i$ is the learned weight for the $i$-th layer.
+        
+        A lower LPIPS score indicates a lower distance between the feature vectors, and thus a greater perceptual similarity between the two images. 
+        Due to the fact that in this work we are interested in the physical consistency of the super-resolved images, 
+        this metric will be shown but will not drive any decision during the training process.
+        
+
+        \subsubsection{Adjusting measures to a multi-image framework}
     
-            \paragraph{Adjusting measures to a multi-image framework}
-    
-            In order to calculate the losses and performance metrics, the generated test images (SR) are compared against the ground truth high resolution images (HR). Additional changes should be introduced in a MISR environment \cite{martens2019superresolution}. First, minor shifts on the contents of the pixels are expected and they should have some tolerance to small pixel-translations in the high-resolution space by evaluating on a sliding cropped image. That means, looking for a displacement of SR by at most d pixels in each direction that minimizes the error. An example of how this is applied in a loss that needs to be minimized can be found in Eq. \ref{eq:4_adjusted_metrics}
+            In order to calculate the losses and performance metrics, the generated test images (SR) are compared against the ground truth high resolution images (HR).
+            Additional changes should be introduced in a MISR environment \cite{martens2019superresolution}.
+            First, minor shifts on the contents of the pixels are expected and the metrics should have some tolerance to small pixel-translations in the high-resolution space by evaluating on a sliding cropped image. 
+            That means, looking for a displacement of SR by at most d pixels in each direction that minimizes the error. 
+            An example of how this is applied in a loss that needs to be minimized can be found in Eq. \ref{eq:4_adjusted_metrics}
     
             \begin{equation}
                \mathcal{L}^* ( I^{HR}, I^{LR}, d) = \min_{u,v \in [0,2d]} \mathcal{L} ( I^{HR}_{u,v}, I^{SR}_{u,v})
             \label{eq:4_adjusted_metrics}
             \end{equation}
     
-            Additionally, commonly used metrics punish biases as much as noise in the reconstruction. For example, if $I^{SR} = I^{HR} + \epsilon$, where $\epsilon$ is a constant bias, a perfect reconstruction of $I^{SR}$ is possible if $\epsilon$ is known. A quality metric should award  a high score in super-resolutions with this characteristics in comparison to the introduction of noise and information loss. Metrics like L2/L1 losses and PSNR do the exact opposite and should have a bias compensation like the following: 
+            Additionally, commonly used metrics punish biases as much as noise in the reconstruction.
+            For example, if $I^{SR} = I^{HR} + \epsilon$, where $\epsilon$ is a constant bias, a perfect reconstruction of $I^{SR}$ is possible if $\epsilon$ is known. 
+            A quality metric should award a high score in super-resolutions with this characteristics in comparison to the introduction of noise and information loss. Metrics like L2/L1 losses and PSNR do the exact opposite and should have a bias compensation like the following: 
     
             \begin{equation}
                 \begin{aligned}
@@ -116,35 +187,58 @@
             \noindent where $W$ and $H$ represent the width and height of the image, respectively.
     
 
+    \subsection{Non-referenced Image quality metrics}
+
+    No-Reference Image Quality Assessment (NR-IQA) aims to develop methods to measure image quality in alignment with human perception without the need for a high-quality reference image. 
+    Most of them are based on two steps: feature extraction and quality prediction using a regression module. 
+    They rely on the assumption that natural images share certain statistical information and that any distorsion may alter these statistics \cite{niqe}.
+    The results from any image an arbitrary image is compared to a default model trained on a large dataset of natural scenes. 
+    The difference  between them is used to predict the quality of the image.
+    In the last years, researchers relied on deep learning to perform the two steps in a single model. 
+    The workflow of these models is shown in Fig. \ref{fig:4-nr-iqa-workflow}.
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[scale=0.25]{Includes/3-NR-IQA.pdf}
+        \caption{Workflow of a NR-IQA model.}
+        \label{fig:4-nr-iqa-workflow}
+    \end{figure}
+
+
         
 
-        \subsubsection{No-reference Image quality metrics}
-
-        As a result, NIQE has found widespread use across various domains of image processing, including restoration, compression, and enhancement, where it serves as a standard for the performance of algorithms, particularly in the realm of image super-resolution.
-
-        \paragraph{Naturalness Image Quality Evaluator (NIQE)}\mbox{} \\
+        \subsubsection{Naturalness Image Quality Evaluator (NIQE)}
 
         
-            The Naturalness Image Quality Evaluator (NIQE) \cite{niqe} is a no-reference image quality assessment metric that quantifies the perceptual quality of images based on their naturalness. Unlike traditional metrics that require a reference image for comparison, NIQE operates on the principle that pristine natural images exhibit specific statistical properties that can be quantified to establish a benchmark for quality assessment. NIQE employs a model based on a multivariate Gaussian distribution, characterized by a mean vector and covariance matrix, to represent the statistical attributes of a natural image's visual patterns. To assess the quality of an image, NIQE extracts a corresponding set of features and evaluates their deviation from this statistical model using the Mahalanobis distance. This distance measures the divergence of the image's features from those typical of high-quality natural images. A lower value suggests that the image closely resembles the statistical properties of natural images, indicating higher perceived quality.
+            The Naturalness Image Quality Evaluator (NIQE) \cite{niqe} is a no-reference image quality assessment metric that quantifies the perceptual quality of images based on their naturalness.
+            NIQE operates on the principle that pristine natural images exhibit specific statistical properties that can be quantified to establish a benchmark for quality assessment. 
+            NIQE employs a model based on a multivariate Gaussian distribution, characterized by a mean vector and covariance matrix, to represent the statistical attributes of a natural image's visual patterns.
+            To assess the quality of an image, NIQE extracts a corresponding set of features and evaluates their deviation from this statistical model using the Mahalanobis distance.
+            This distance measures the divergence of the image's features from those typical of high-quality natural images.
+            A lower value suggests that the image closely resembles the statistical properties of natural images, indicating higher perceived quality.
             
             However, NIQE provides an objective measure of image quality that aligns with the naturalness of human visual perception, and is not able to quantify the physical consistency of a generated image.
-        \paragraph{BRISQUE}
+        \subsubsection{Blind/Referenceless Image Spatial Quality Evaluator (BRISQUE)}
 
         \subsubsection{Frequency Domain Analysis} \label{subsubsec:frequency_domain_analysis}
         
-        The Fourier transform is widely used to analyze the frequency content in signals.  It can be applied to multidimensional signals such as images, where the spatial variations of pixel-intensities have a unique representation in the frequency domain. Super-resolution objective is to reconstruct missing high frequency components from a downscaled image. The expectation of a good SR algorithm is to amplify the high frequency components compared to a baseline like bicubic interpolation, while keeping noise at bay. The Fourier components provide global information about the image, as opposed to local information represented by pixel values in the spatial domain \cite{fuoli2021fourier}. 
-
+        The Fourier transform is widely used to analyze the frequency content in signals.
+        It can be applied to multidimensional signals such as images, where the spatial variations of pixel-intensities have a unique representation in the frequency domain. 
+        Super-resolutions objective is to reconstruct missing high frequency components from a downscaled image.
+        The expectation of a good SR algorithm is to amplify the high frequency components compared to a baseline like bicubic interpolation, while keeping noise at bay.
+        The Fourier components provide global information about the image, as opposed to local information represented by pixel values in the spatial domain \cite{fuoli2021fourier}. 
+        Using the Fast Fourier Transform (FFT), we convert the pixel intensity values of super-resolved images into a spectrum where each point represents a specific frequency contained in the spatial domain.
+        The FFT is shifted so that the zero-frequency component is at the center of the spectrum. 
+        The resulting magnitude, after applying a logarithmic transformation, reveals the energy distribution across various frequencies.
+        This is visualized in grayscale, where the intensity corresponds to the amplitude of the frequency components.
         
-        Utilizing the Fast Fourier Transform (FFT), we convert the pixel intensity values of super-resolved images into a spectrum where each point represents a specific frequency contained in the spatial domain. The FFT is shifted so that the zero-frequency component is at the center of the spectrum. The resulting magnitude, after applying a logarithmic transformation, reveals the energy distribution across various frequencies. This is visualized in grayscale, where the intensity corresponds to the amplitude of the frequency components.
+        A radial profile of the FFT magnitude provides insights into how different spatial frequencies contribute to the image content in the vertical and horizontal direction.
+        The radial profile is a function of the average intensity of frequencies at a given radius from the center of the Fourier transform.
+        The average of the FFT magnitude is calculated for concentric circles of increasing radii, capturing a statistic of the frequency components in every direction.
+        This metric serves as a benchmark for evaluating the performance of SR techniques against traditional interpolation methods such as bicubic interpolation.
         
-        A radial profile of the FFT magnitude provides insights into how different spatial frequencies contribute to the image content in the vertical and horizontal direction. The radial profile is a function of the average intensity of frequencies at a given radius from the center of the Fourier transform.
-        
-        The average of the FFT magnitude is calculated for concentric circles of increasing radii, capturing a statistic of the frequency components for every direction. This metric serves as a benchmark for evaluating the performance of SR techniques against traditional interpolation methods such as bicubic interpolation.
-
         Spatial frequency within an image context refers to the periodicity of the intensity variation over spatial dimensions, typically quantified in cycles per pixel. The central region of the frequency domain, after the shift operation, denotes the zero frequency. In contrast, the extremities of the domain delineate the highest frequencies, constrained by the image's discrete sampling rate.
-
         To quantitatively interpret these spatial frequencies, a radial-to-frequency mapping is necessary. This mapping accounts for the Nyquist frequency, which is delineated as half the sampling rate of the discrete imaging grid and acts as a threshold to prevent frequency aliasing.
-
         The conversion from a given radius in the FFT output to the corresponding spatial frequency is formalized as:
 
         \begin{equation}
@@ -153,9 +247,11 @@
 
         where \( f(r) \) signifies the spatial frequency associated with radius \( r \), \( N \) represents the FFT image dimension, assuming a square configuration, and \( f_{\text{Nyquist}} \) the Nyquist frequency, which is 0.5 cycles per pixel in this case.
 
-        Through FFT we acquire a depiction of the frequency-based amplification or attenuation attributable to the SR techniques. Analyzing these profiles displays the ability of SR models for detail enhancement. However, it is important to note that this method does not account for any noise or artifacts generated by the SR, and should be used in combination to other supervised metrics.
+        Through FFT we acquire a depiction of the frequency-based amplification or attenuation attributable to the SR techniques. 
+        Analyzing these profiles displays the ability of SR models for detail enhancement. 
+        However, it is important to note that this method does not account for any noise or artifacts generated by the SR, and should be used in combination to other supervised metrics.
 
-        \begin{figure}[h!]
+        \begin{figure}[H]
             \centering
             \includegraphics[width=\linewidth]{Includes/4-frequency-analysis.pdf}
             \caption{Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency.  }
@@ -165,7 +261,11 @@
         \subsubsection{Gradient Distribution analysis}
 
 
-        An alternative way of analyzing super-resolution results is by looking at the gradients of the images. HR images are sharper and thus each pixel has higher gradients magnitude with respect to both directions than their LR counterparts. A super-resolution algorithm should increase the sharpness of the edges, resulting in a gradient distribution that aligns more closely with that of the genuine HR image. An approximation of the gradients can be estimated by doing 2d convolutions between an image and the so called Sobel kernels displayed in Eq. \ref{eq:4-sobel-operators} \cite{Sobel1990AnI3}. These kernels are designed to respond maximally to edges running vertically and horizontally relative to the pixel grid.
+        An alternative way of analyzing super-resolution results is by looking at the gradients of the images. 
+        HR images are sharper and thus each pixel, on average, has higher gradients magnitude with respect to both directions than their LR counterparts.
+        A super-resolution algorithm should increase the sharpness of the edges, resulting in a gradient distribution that aligns more closely with that of the genuine HR image.
+        An approximation of the gradients can be estimated by doing 2d convolutions between an image and the so called Sobel kernels displayed in Eq. \ref{eq:4-sobel-operators} \cite{Sobel1990AnI3}.
+        These kernels are designed to respond maximally to edges running vertically and horizontally relative to the pixel grid.
         
         \begin{equation}
             \begin{array}{ccc}
@@ -192,9 +292,12 @@
              \label{eq:4-gradient_magnitude}
          \end{equation}
 
-         The gradient magnitude histograms of the results of different super-resolution algorithms will be assessed, there by quantifying the enhancement in edge sharpness.  This histogram provide insights into the frequency and intensity of the edges within an image. A better SR model should demonstrate a histogram with higher frequencies of larger gradient magnitudes, indicating sharper edges. It is important to note that this analysis is unsupervised and disregards the effect of noise and artifacts introduced during the super-resolution process and should be considered in combination with other supervised metrics like PSNR.
+         The gradient magnitude histograms of the results of different super-resolution algorithms will be assessed, there by quantifying the enhancement in edge sharpness.
+         This histogram provide insights into the frequency and intensity of the edges within an image.
+         A better SR model should demonstrate a histogram with higher frequencies of larger gradient magnitudes, indicating sharper edges.
+         However, it is important to note that this analysis is unsupervised and disregards the effect of noise and artifacts introduced during the super-resolution process and should be considered in combination with other supervised metrics like PSNR.
 
-         \begin{figure}
+         \begin{figure}[H]
              \centering
              \includegraphics[width=\textwidth]{Includes/4-gradient-analysis.pdf}
              \caption{Steps to obtain a gradient magnitude density. Using the sobel operators, $G_x$ and $G_y$ are obtained from an image. The magnitude $|G|$ of each pixel is calculated using Eq. \ref{eq:4-gradient_magnitude}. The density can be estimated afterwards, using 100 bins in this case.}

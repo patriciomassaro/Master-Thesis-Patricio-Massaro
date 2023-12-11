@@ -98,7 +98,7 @@
 
         \begin{table}[h!]
             \centering
-            \caption{Fill Value and Data Quality Classes}
+            
             \label{tab:quality_classes}
             \begin{tabular}{cl}
                 \toprule
@@ -117,6 +117,7 @@
                 4              & Not seen                             \\
                 \bottomrule
             \end{tabular}
+            \caption{Fill Value and Data Quality Classes}
         \end{table}
 
     The synthetic LWIR are not suitable for the super-resolution task yet. They are too big to be kept in memory, and not all their values are of good quality. For that reason, for each scene, a number of random crops of size 264x264 pixels are taken. The random crop processor pipeline is displayed in Fig. \ref{fig:5-random_crop_processor}. It is an iterative process where at each stage, crops that do not comply with the quality considerations ( all pixels are of good quality and no stripe noise was detected) are discarded until the target number of crops per scene is achieved. Additionally, the Affine Transformation is translated so that the images can be georeferenced.
@@ -157,10 +158,6 @@
             The 264x264 crops are reduced to 88x88. The training set is used to train the SR Resnet model, while the validation set is used to monitor the training process and avoid overfitting. 
             Even though in this case the HR and LR version of the same scene is available, the training dataset is unpaired by shuffling the samples.
             The validation set is not shuffled, and thus can be used to calculate supervised metrics like PSNR and SSIM.
-
-        \subsubsection{Testing: Ecostress-DegradedEcostress ( Different degradations)}
-            The dataset, $\mathcal{D}_{\text{eco}-\text{eco}}^{\text{anisotropic}}$ is built by taking the 264x264 HR synthetic FOREST crops and applying the baseline degradation model proposed in \ref{subsec:baseline_degradation_model}, resulting in 88x88 LR versions. 
-            However, the validation set is generated using a highly anisotropic degradation model, resulting in a forced domain gap between training and validation.
         
         \subsubsection{Training: Ecostress-Forest (Unpaired)}
             The dataset $\mathcal{D}_{\text{eco}-\text{forest}}$ is composed of the 264x264 HR synthetic FOREST crops as the source domain and  88x88 LR FOREST crops as the target domain. 

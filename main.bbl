@@ -35,9 +35,27 @@ Christian Mollière, Julia Gottfriedsen, Martin Langer, Patricio Massaro,
 \newblock Multi-spectral super-resolution of thermal infrared data products for
   urban heat applications, 2023.
 
+\bibitem{lugmayr2020ntire}
+Andreas Lugmayr, Martin Danelljan, Radu Timofte, Namhyuk Ahn, Dongwoon Bai, Jie
+  Cai, Yun Cao, Junyang Chen, Kaihua Cheng, SeYoung Chun, Wei Deng, Mostafa
+  El-Khamy, Chiu~Man Ho, Xiaozhong Ji, Amin Kheradmand, Gwantae Kim, Hanseok
+  Ko, Kanghyu Lee, Jungwon Lee, Hao Li, Ziluan Liu, Zhi-Song Liu, Shuai Liu,
+  Yunhua Lu, Zibo Meng, Pablo~Navarrete Michelini, Christian Micheloni, Kalpesh
+  Prajapati, Haoyu Ren, Yong~Hyeok Seo, Wan-Chi Siu, Kyung-Ah Sohn, Ying Tai,
+  Rao~Muhammad Umer, Shuangquan Wang, Huibing Wang, Timothy~Haoning Wu, Haoning
+  Wu, Biao Yang, Fuzhi Yang, Jaejun Yoo, Tongtong Zhao, Yuanbo Zhou, Haijie
+  Zhuo, Ziyao Zong, and Xueyi Zou.
+\newblock Ntire 2020 challenge on real-world image super-resolution: Methods
+  and results, 2020.
+
 \bibitem{liu2021blind}
 Anran Liu, Yihao Liu, Jinjin Gu, Yu~Qiao, and Chao Dong.
 \newblock Blind image super-resolution: A survey and beyond, 2021.
+
+\bibitem{luo2022learning}
+Zhengxiong Luo, Yan Huang, Shang Li, Liang Wang, and Tieniu Tan.
+\newblock Learning the degradation distribution for blind image
+  super-resolution, 2022.
 
 \bibitem{zhang2018residual}
 Yulun Zhang, Yapeng Tian, Yu~Kong, Bineng Zhong, and Yun Fu.
@@ -61,10 +79,10 @@ Christian Ledig, Lucas Theis, Ferenc Huszar, Jose Caballero, Andrew Cunningham,
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 \newblock Deep residual learning for image recognition, 2015.
 
-\bibitem{luo2022learning}
-Zhengxiong Luo, Yan Huang, Shang Li, Liang Wang, and Tieniu Tan.
-\newblock Learning the degradation distribution for blind image
-  super-resolution, 2022.
+\bibitem{VGGnet}
+Karen Simonyan and Andrew Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition.
+\newblock {\em CoRR}, abs/1409.1556, 2014.
 
 \bibitem{niqe}
 Anish Mittal, Rajiv Soundararajan, and Alan~C. Bovik.

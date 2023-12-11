@@ -41,12 +41,13 @@ In this case, the degradation model is unknown and the objective is to observe h
 
         Fig. \ref{fig:5-source-domain-comparison} shows the performance obtained by super resolving the degraded synthetic FOREST images for the whole validation dataset.
         In the upper row (a), the corresponding model is used to obtain the super resolved images. 
-        The performance, both in PSNR and SSIM are very similar for both pipelines. 
+        The performance, both in PSNR and SSIM, are very similar for both pipelines. The LPIPS shows a consistent behavior too.
         In the lower row (b), a simple bicubic interpolation is used to super resolve the degraded images. 
         In this case, the baseline LR version yields better results than the adapted LR version, both in PSNR and SSIM.
         This suggests that the learned degradation model from FOREST-2 images loses more information than the baseline, resulting in a lower ground sampling distance than what is expected.
         Interestingly, the SR model is able to recover a big portion of the information, as the performance after using the SR models is very similar. 
         This shows the relevance of the domain gap in super resolution, the SR model is able to apply the inverse of the degradation function in most cases, and the problem relies on that in the most common experiments, the wrong degradation model is shown to the model. 
+        Moreover, the LPIPS for the adapted LR version is better than the baseline LR version. FADSPOFKDASOFADOJSFJOADOJFAD
 
         \begin{figure}[H]
             \centering
@@ -91,12 +92,14 @@ In this case, the degradation model is unknown and the objective is to observe h
 
 
         In Fig. \ref{fig:5-target_prediction_sample}, the super resolutions models were used with a 264x264 pixels crop of a real FOREST-2 image.
+
     
 
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.28]{Includes/5-target_prediction_sample.pdf}
-            \caption{Sample of adapted SISR}
+            \caption{Super Resolved Forest-2 Scene using different SR models.
+                     In the upper row, the image is displayed. A detailed zoom is displayed below}
             \label{fig:5-target_prediction_sample}
         \end{figure}
 
@@ -104,7 +107,8 @@ In this case, the degradation model is unknown and the objective is to observe h
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.28]{Includes/6-target-fft-sample.pdf}
-            \caption{Super Resolved Forest-2 Scene using bicubic upsampling, the baseline blind SISR and the adapted approach.}
+            \caption{Super Resolved Forest-2 Scene using different SR models. 
+                     In the upper row, the image is displayed. The log magnitude of the FFT is displayed below.}
             \label{fig:6-target-fft-sample}
         \end{figure}
 
@@ -112,32 +116,111 @@ In this case, the degradation model is unknown and the objective is to observe h
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.5]{Includes/5-target-amplification-statistics.pdf}
-            \caption{}
-            \label{fig:6-target-amplification-statistics}
+            \caption{Frequency domain analysis of the SR images obtained by applying different SR models to the real FOREST-2 validation dataset.
+            In (a), the log of the magnitude of the FFT for the SR images is shown,
+            while in (b), the amplification with respect to a  simple bicubic upsampling is displayed.}
+            \label{fig:5-target-amplification-statistics}
         \end{figure}
 
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.28]{Includes/6-target-gradient-analysis-image.pdf}
-            \caption{Sample of adapted SISR}
+            \caption{Gradient analysis of the super resolved images using different SR models for scenes coming from the real FOREST-2 validation dataset.
+                     In the upper row, the image is displayed. The gradients in the x and y direction ($G_x$ and $G_y$ respectiely) are displayed below.
+                     the gradient magnitude $|G|$ is displayed in the bottom row.}
             \label{fig:6-target-gradient-analysis-image}
         \end{figure}
 
         \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.6]{Includes/6-target-gradient-analysis-histogram.pdf}
-            \caption{Histogram of the gradient magnitude $|G|$ for the sample displayed in Fig. \ref{fig:6-target-gradient-analysis-image}}
-            \label{fig:6-target-gradient-analysis-histogram}
+            \includegraphics[scale=0.4]{Includes/5-gradient-histogram-validation-dataset.pdf}
+            \caption{Histogram of the gradient magnitude $|G|$ for the whole validation real FOREST-2 dataset.}
+            \label{fig:5-gradient-histogram-validation-dataset}
         \end{figure}
+
+    \subsection{Effects of the domain gap}
+
+        The combination of the probabilistic degradation model and the SR model were proven helpful to bridge the domain gap between the source and the target domain.
+        However, it is important to understand what happens when the target domain used in training does not match the conditions that will occur in the real world.
+        Two situations are identified, the first one is when the target domain used in training is more complex than what will be used in production, and the second one is when the target domain used in training is simpler than what will be used in production.
+        The latter was largely adressed in this work, when the HR-LR pairs are generated using a baseline degradation model, which is overly optimistic. 
+        Another example of it would be that images taken from FOREST-2 in several years may not have the same distribution as current images, as the instruments may have degraded over time.
+        However, the first one was not addressed, and is the focus of this subsection.
+        
+        To simulate this situation, the model trained using real FOREST-2 images was used to super resolve synthetic FOREST images degraded using the baseline degradation model.
+        The results are shown in Figs. \ref{fig:5-target-prediction-with-domain-gap} and \ref{fig:5-target-prediction-with-domain-gap-fft}.
+        The performance of the adapted model is catastrophic, producing several artifacts and yielding a PSNR difference of approximately 10dB, which represent a 10x difference in terms of MSE.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.28]{Includes/5-target-prediction-with-domain-gap.pdf}
+            \caption{Effects of using a model trained with on different domain than at inference time. 
+                     When using an Synthetic FOREST image degraded with the baseline degradation model as an input, the model trained using real FOREST-2 data as the target domain generates several artifacts and underperforms severly in terms of PSNR. }
+            \label{fig:5-target-prediction-with-domain-gap}
+        \end{figure}
+
+        The performance results in terms of different metrics are shown in Fig. \ref{fig:5-target-prediction-with-domain-gap-dataset}. 
+        In the conditions described above, the adapted super resolution model underperforms severly considered metric.
 
 
         \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.4]{Includes/5-gradient-histogram-validation-dataset.pdf}
-            \caption{}
-            \label{fig:5-gradient-histogram-validation-dataset}
+            \includegraphics[scale=0.38]{Includes/5-target-prediction-with-domain-gap-dataset.pdf}
+            \caption{Performance obtained by super resolving the degraded synthetic FOREST images using different super resolution models.}
+            \label{fig:5-target-prediction-with-domain-gap-dataset}
         \end{figure}
+
+
+        In the frequency domain, the results  are shown in Fig. \ref{fig:5-target-prediction-with-domain-gap-fft}.  
+        The adapted model adds amplification in the higher range of spatial frequency, related with noise and artifacts. The frequencies related to the proper signal are also amplified, suggesting an improvement in the resolution.
+        This suggests that while the adapted model highlights edges and details, it also severly amplifies the noise and artifacts, resulting in a worse performance in terms of PSNR.
+        It is important to note that the amplification curve does not show a considerable difference with respect to the one in Fig. \ref{fig:5-target-amplification-statistics},
+        highlighting the fact that the frequency analysis is not suitable by itself to evaluate the performance of the SR model.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.4]{Includes/5-target-prediction-with-domain-gap-fft.pdf}
+            \caption{Effects of using a model trained with on different domain than at inference time. 
+                     (a) shows the log magnitude of the radial average of the FFT for the SR images using different algorithms.
+                     (b) shows the amplification with respect to bicubic interpolation
+                     }
+            \label{fig:5-target-prediction-with-domain-gap-fft}
+        \end{figure}
+
         
+        
+    This demonstrates that while this approach is very good to bridge a domain gap, it is not robust at all to domain shifts. 
+    This limitation is in sync with what is found in the literature, where GAN approaches are not able to generalize to arbitrary domains DASDASD.
+
+
+    As in the target domain the ground truth is not known due to the lack of a paired dataset, the performance of the SR model can not be evaluated using metrics like PSNR and SSIM.
+    The result of the image quality assessment metrics were done by super resolving images coming from real FOREST-2 and also from the degraded synthetic FOREST-2 images and calculating their NIQE and BRISQUE scores.
+    The results are shown in Fig. \ref{fig:5-target-iqa-results}.
+    For both metrics, a large gap is observed between the adapted model and the rest, when the input images come from real FOREST-2 images. 
+    Suggesting that the adapted model is able to produce more natural images than the rest.
+    This behaviour does not exactly replicates when the input images come from synthetic FOREST-2 images, where the adapted model is not able to produce more natural images than the rest.
+    Moreover, for the adapted model, both metrics tend to get worse when the input images come from synthetic FOREST-2 images. The contrary happens for the rest of the models.
+    This suggests that the adapted model is able to produce more natural images than the rest, but only when the input images come from the same distribution as the target domain used in training.
+    However, it is important to note that: 
+
+    \begin{enumerate}
+        \item The images used for training the NIQE and BRISQUE models are not remote sensing images, and therefore, the results may not be representative. This could be circumvented by training a NIQE/BRISQUE model using remote sensing images only.
+        \item NIQE and BRISQUE are objective measures of image quality, not of physical consistency or image fidelity.
+    \end{enumerate}
+
+    While the comparison of results may help to understand the behaviour of the models, it is important to note that the results are not representative of the real world performance of the models. 
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.28]{Includes/5-target-iqa-results.pdf}
+            \caption{Image quality assessment metrics for the different SR models using different datasets as input. 
+                    In both metrics, the lower the score, the better the image quality.}
+            \label{fig:5-target-iqa-results}
+        \end{figure}
+
+
+        
+
         
 % \breakpage
     

@@ -1,5 +1,7 @@
 \section{Super resolution} \label{sec:SR}
 
+    Single image Super-Resolution (SR) is the task of increasing the resolution of a given image as well as sharpening its content by predicting the high-frequency component and the missing information
+
     Super resolution refers to an image processing process of recovering a corresponding high-resolution image from a low-resolution version of it, with applications that range from natural images \cite{zeyde2010single}, \cite{martin2001database} to satellite \cite{valsesia2021permutation} and medical imaging \cite{bashir2021comprehensive}. SR remains a challenging task in computer vision because it is considered an ill-posed problem: several HR images can generate exactly the same LR image. 
 
        \begin{figure}[h!]
@@ -56,27 +58,59 @@
 
         \subsubsection{Importance of interframe correlation}
         \subsubsection{RAMS}
-    \subsection{Data requirements}
-        \subsubsection{Super Resolution as a supervised problem}      
+    \subsection{The domain gap problem} \label{subsec:domaingap}
+ 
+        SR is a supervised problem, the super resolved image is compared to the HR ground truth and the pixel-by-pixel differences drive the gradients of the neural network to minimize the loss, in a fully supervised manner. 
+        Additionally, deep learning based SR methods are known to consume large quantities of training data.
+        Most of the research in the field of SR is conducted by artificially producing HR-LR pairs by downscaling the HR images with known kernels, such as bicubic.
+        However, this is rarely the case when using "non-ideal", real world images.
+        In spite of their success on synthetic datasets, the poor generalization capacity of the trained SR networks limits their application in real scenarios, leading to blurry images and strange artifacts in the SR results \cite{lugmayr2020ntire}.
 
-        SR is a supervised problem, the super resolved image is compared to the HR ground truth and the differences between them drives the gradients of the neural network to minimize the loss.
-        \subsubsection{Applying a basic degradation model}
 
-        
-        \subsubsection{The domain gap problem}
 
-    \subsection{Blind image Super Resolution}
-    
-        Blind SR for unknown degradation is proposed to bridge the domain gap present in the synthetic datasets generated using bicubic downsampling.
-    
+        The domain gap problem is the difference between the training data and the real-world data. The training data is usually generated synthetically, using bicubic downsampling, which is a very simple degradation model. However, real-world degradations are usually too complex to be modelled with an explicit combination of multiple degradation types, as shown in Fig.3(c). Therefore, implicit modelling attempts to circumvent the explicit modelling function. Instead, it defines the degradation process f implicitly through data distribution, and all the existing approaches with implicit modelling require an external dataset for training. Typically, these methods utilize data distribution learning with Generative Adversarial Network (GAN) [16] to grasp the implicit degradation model possessed within training dataset, like CinCGAN [8].
+        Great attempts have been made in the last several years on the generation of real pairs of LR-HR images, but the process remains costly.
+        Additionally, SR networks trained on the collected datasets are not able to generalize to images captured in other conditions.
 
         \begin{figure}[h!]
+            \centering
+            \includegraphics[scale=0.4]{Includes/2-domain-gap.pdf}
+            \caption{Effects of different degradation models on one HR image. Source: \cite{liu2021blind}}
+            \label{fig:2-domain-gap}
+        \end{figure}
+
+            
+
+
+
+
+    \subsection{Blind image Super Resolution}
+
+        The problem of SR with an unknown degradation process is known as blind SR. 
+        Growing attention has been paid to blind SR in recent years, towards filling the domain gap presented in \ref{subsec:domaingap}.
+        A schematic diagram of the problem is shown in Fig. \ref{fig:2-DomainGap}. 
+        Non-blind SR assume that the degradation process is known, and maps the bicubic downsampled LR image to the natural HR image space.
+        However, an arbitrary LR input image, as a scene captured by a satellite, is usually degraded by an unknown process, which is difficult to be modelled explicitly.
+        The arbitrary LR input is not in the same domain as the bicubic downsamopled LR image, and thus the non-blind SR methods are not successful, moving to a different place in the HR space than the natural images.
+        Blind SR methods, on the other hand, aim to learn the degradation process from the training data, and map the arbitrary LR input image to the natural HR image space.
+
+        \begin{figure}[H]
             \centering
             \includegraphics[scale=0.45]{Includes/2-DomainGap.png}
             \caption{Domain interpretation of differences between non-blind and blind SR. Source: \cite{liu2021blind}}
             \label{fig:2-DomainGap}
         \end{figure}
 
-        Nevertheless, real-world degradations are usually too complex to be modelled with an explicit combination of multiple degradation types, as shown in Fig.3(c). Therefore, implicit modelling attempts to circumvent the explicit modelling function. Instead, it defines the degradation process f implicitly through data distribution, and all the existing approaches with implicit modelling require an external dataset for training. Typically, these methods utilize data distribution learning with Generative Adversarial Network (GAN) [16] to grasp the implicit degradation model possessed within training dataset, like CinCGAN [8].
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.65]{Includes/3-GAN-degradation-model.png}
+            \caption{In Degradation-learning-based methods, 
+                     adversarial training is used to encourage the degradation model to produce images in the same domain with the target domain (test images).
+                     Source \cite{luo2022learning}.}
+            \label{fig:3-GAN-degradation-model}
+        \end{figure}
+
+        
 
 \clearpage

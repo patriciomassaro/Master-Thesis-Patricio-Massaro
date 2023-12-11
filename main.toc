@@ -4,49 +4,49 @@
 \contentsline {subsection}{\numberline {1.2}Wildfire monitoring using thermal remote sensing}{2}{subsection.1.2}%
 \contentsline {subsubsection}{\numberline {1.2.1}Spatio-temporal trade-off}{2}{subsubsection.1.2.1}%
 \contentsline {section}{\numberline {2}Super resolution}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}single-Image Super Resolution}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}single-Image Super Resolution}{3}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}SR Resnet}{3}{subsubsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.2}Multi-Image Super Resolution}{3}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Multi-spectral super resolution}{4}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.1}Multi-spectral super resolution}{3}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Importance of interframe correlation}{4}{subsubsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.3}RAMS}{4}{subsubsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.3}Data requirements}{4}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Super Resolution as a supervised problem}{4}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Applying a basic degradation model}{4}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}The domain gap problem}{4}{subsubsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.4}Blind image Super Resolution}{4}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Methodology}{6}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Baseline Degradation model}{6}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Blurring Kernel}{6}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Radiometric error correction}{7}{subsubsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.2}Models Architecture}{9}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}SRResNet}{9}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}RAMS}{9}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Probabilistic Degradation Model}{9}{subsubsection.3.2.3}%
-\contentsline {paragraph}{Kernel Model}{9}{section*.10}%
-\contentsline {paragraph}{Noise Model}{9}{section*.11}%
-\contentsline {paragraph}{Discriminator}{9}{section*.12}%
-\contentsline {subsection}{\numberline {3.3}Performance Metrics}{9}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Referenced image quality metrics}{9}{subsubsection.3.3.1}%
-\contentsline {paragraph}{Adjusting measures to a multi-image framework}{9}{section*.13}%
-\contentsline {subsubsection}{\numberline {3.3.2}No-reference Image quality metrics}{10}{subsubsection.3.3.2}%
-\contentsline {paragraph}{Naturalness Image Quality Evaluator (NIQE)}{10}{section*.14}%
-\contentsline {paragraph}{BRISQUE}{10}{section*.15}%
-\contentsline {subsubsection}{\numberline {3.3.3}Frequency Domain Analysis}{11}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Gradient Distribution analysis}{12}{subsubsection.3.3.4}%
-\contentsline {section}{\numberline {4}Experiment Setup}{14}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Obtaining a high resolution dataset}{14}{subsection.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.1}The ECOSTRESS mission}{14}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}Donwloading ECOSTRESS Scenes}{14}{subsubsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.3}Selecting the best scenes}{15}{subsubsection.4.1.3}%
-\contentsline {subsubsection}{\numberline {4.1.4}Data Processing}{17}{subsubsection.4.1.4}%
-\contentsline {subsubsection}{\numberline {4.1.5}Obtaining FOREST-2 data}{17}{subsubsection.4.1.5}%
-\contentsline {subsection}{\numberline {4.2}Datasets}{17}{subsection.4.2}%
-\contentsline {subsubsection}{\numberline {4.2.1}Training: Ecostress-DegradedEcostress}{18}{subsubsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2}Testing: Ecostress-DegradedEcostress ( Different degradations)}{19}{subsubsection.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.3}Training: Ecostress-Forest (Unpaired)}{19}{subsubsection.4.2.3}%
-\contentsline {subsubsection}{\numberline {4.2.4}Testing: Ecostress-Forest ( Paired)}{19}{subsubsection.4.2.4}%
-\contentsline {section}{\numberline {5}Results and discussion}{20}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Source domain}{20}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Effects of the degradation model}{22}{subsubsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.2}Target domain}{24}{subsection.5.2}%
+\contentsline {subsection}{\numberline {2.3}The domain gap problem}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Blind image Super Resolution}{5}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Methodology}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Baseline Degradation model}{7}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Blurring Kernel}{7}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Radiometric error correction}{8}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}Models Architecture}{10}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}SRResNet}{10}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}RAMS}{10}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Probabilistic Degradation Model}{10}{subsubsection.3.2.3}%
+\contentsline {paragraph}{Kernel Model}{10}{section*.12}%
+\contentsline {paragraph}{Noise Model}{10}{section*.13}%
+\contentsline {paragraph}{Discriminator}{10}{section*.14}%
+\contentsline {subsection}{\numberline {3.3}Referenced image quality metrics}{10}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}$L_2$ and $L_1$ Loss}{11}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Peak Signal-to-Noise Ratio (PSNR)}{11}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Structural Similarity Index (SSIM)}{11}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Learned perceptual image patch similarity (LPIPS)}{12}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Adjusting measures to a multi-image framework}{12}{subsubsection.3.3.5}%
+\contentsline {subsection}{\numberline {3.4}Non-referenced Image quality metrics}{13}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Naturalness Image Quality Evaluator (NIQE)}{13}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Blind/Referenceless Image Spatial Quality Evaluator (BRISQUE)}{14}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Frequency Domain Analysis}{14}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Gradient Distribution analysis}{15}{subsubsection.3.4.4}%
+\contentsline {section}{\numberline {4}Experiment Setup}{17}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Obtaining a high resolution dataset}{17}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}The ECOSTRESS mission}{17}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Donwloading ECOSTRESS Scenes}{17}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Selecting the best scenes}{18}{subsubsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.4}Data Processing}{20}{subsubsection.4.1.4}%
+\contentsline {subsubsection}{\numberline {4.1.5}Obtaining FOREST-2 data}{20}{subsubsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.2}Datasets}{20}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Training: Ecostress-DegradedEcostress}{21}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Training: Ecostress-Forest (Unpaired)}{22}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Testing: Ecostress-Forest ( Paired)}{22}{subsubsection.4.2.3}%
+\contentsline {section}{\numberline {5}Results and discussion}{23}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Source domain}{23}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Effects of the degradation model}{25}{subsubsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.2}Target domain}{27}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Effects of the domain gap}{31}{subsection.5.3}%
