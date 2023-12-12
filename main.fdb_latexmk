@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1702306361 "main.aux" "main.bbl" "main" 1702306362 0
+["bibtex main"] 1702371333 "main.aux" "main.bbl" "main" 1702371335 0
   "./bibliography.bib" 1702281505 11712 da28a94654bdf729a941d9ae0a5cfa00 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1702306362 26712 fbfa7e8a2c439946cafe05c5a2067485 "pdflatex"
+  "main.aux" 1702371334 26819 36d78f2e68b1ae16c32681083f03f9e2 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1702306361 "/Users/pmassaro/Repos/Orora/Master-Thesis-Patricio-Massaro/main.tex" "main.pdf" "main" 1702306362 0
+["pdflatex"] 1702371333 "/Users/pmassaro/Repos/Orora/Master-Thesis-Patricio-Massaro/main.tex" "main.pdf" "main" 1702371335 0
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -160,21 +160,20 @@
   "Includes/5-target-prediction-with-domain-gap-dataset.pdf" 1702305052 141423 3490362e920db8165ab2db55c9e837e9 ""
   "Includes/5-target-prediction-with-domain-gap-fft.pdf" 1702303983 41574 04aaeef4f9d270dcb3130e3fc21c6c02 ""
   "Includes/5-target-prediction-with-domain-gap.pdf" 1702229536 1874236 ff0a90e7f8842dfcfcb58a66418ec72b ""
-  "Includes/5-target_prediction_sample.pdf" 1701861022 1206346 f2cc11c8b94be8fb84329986a179c28a ""
+  "Includes/5-target_prediction_sample.pdf" 1702368847 4750927 366af66c3e7998e96a37a6a6c9ef0f14 ""
   "Includes/5-wavelength-comparison.png" 1701861022 300262 af5b9052213f340381235b785cc112b7 ""
-  "Includes/6-target-fft-sample.pdf" 1701861022 4694238 933af32d32afd204668f677e5388fae9 ""
   "Includes/6-target-gradient-analysis-image.pdf" 1701861022 4953170 9c27e6f5601cba6931bd377b4d87153e ""
-  "main.aux" 1702306362 26712 fbfa7e8a2c439946cafe05c5a2067485 "pdflatex"
-  "main.bbl" 1702306361 5122 13ce9cb69a7341e4ba61c2b7f8c49ff3 "bibtex main"
-  "main.out" 1702306362 9458 4fdc1251ada0b3bcd923917e0cb0f536 "pdflatex"
+  "main.aux" 1702371334 26819 36d78f2e68b1ae16c32681083f03f9e2 "pdflatex"
+  "main.bbl" 1702371333 5122 13ce9cb69a7341e4ba61c2b7f8c49ff3 "bibtex main"
+  "main.out" 1702371334 9895 88cee908250886eb3996e5ef2c5fc42d "pdflatex"
   "main.tex" 1701871277 2548 40af6d42b4cbcd5e1e36be6f4a8115db ""
-  "main.toc" 1702306362 4864 2f6bb888315285c3ee13185cca457a04 "pdflatex"
+  "main.toc" 1702371334 5049 881d0f214a67ef73977d8e1971a07b47 "pdflatex"
   "sections/Acknowledgement.tex" 1701861022 36 4676beb5183715b4038845298a06fd33 ""
-  "sections/conclusions.tex" 1701861022 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "sections/experiment_setup.tex" 1702232579 13658 5c80d5ac60bcfb73a696cfd7639b1ea9 ""
+  "sections/conclusions.tex" 1702370429 21 2fe9f7a2418f450ef61dac6020c12d40 ""
+  "sections/experiment_setup.tex" 1702371331 13719 a7a4ffd047616c9f40673dff520212ad ""
   "sections/introduction.tex" 1701863746 2708 e61372f81d3a1e88e157b3303dbf4c96 ""
   "sections/methodology.tex" 1702285094 24209 7177f15e4e27da4f4e4f086bc0d22937 ""
-  "sections/results.tex" 1702306359 17972 16103b064c80ea585e7fde9a51c1f474 ""
+  "sections/results.tex" 1702370572 22813 04431a369872892d90ab21c55b9d7a4d ""
   "sections/super_resolution.tex" 1702232657 11259 6db1dbe2ba0b6dd099bcc2f3ee0b0f7f ""
   (generated)
   "main.aux"

@@ -1,8 +1,10 @@
 \section{Results and discussion}\label{sec:results}
 
-To serve as a baseline, a pipeline was trained using synthetic FOREST as the source domain and their artificially degraded version as the target domain. 
+To serve as a baseline, a pipeline was trained using synthetic FOREST as the source domain and their artificially degraded version as the target domain ($\mathcal{D}_{\text{SF}-\text{SF}}$). 
 To obtain such data, the degradation model described in \ref{subsec:baseline_degradation_model} was applied, blurring and adding noise to the synthetic FOREST images.
-This degradation model is stochastic, but with unknown parameters. The objective is to observe how the pipeline is able to mimic the degradation model used in the target domain.On the other side, the main pipeline was trained using synthetic FOREST as the source domain and real FOREST as the target domain. 
+This degradation model is stochastic, but with known parameters. The objective is to observe how the pipeline is able to mimic the degradation model used in the target domain.
+
+On the other side, the so called adapted pipeline was trained using synthetic FOREST as the source domain and real FOREST as the target domain ($\mathcal{D}_{\text{SF}-\text{RF}}$). 
 In this case, the degradation model is unknown and the objective is to observe how the pipeline is able to estimate it, generating LR versions of the synthetic FOREST images that come from the same distribution as the real FOREST images.
 
     \subsection{Source domain}
@@ -63,8 +65,8 @@ In this case, the degradation model is unknown and the objective is to observe h
         In (a) the log magnitude of the FFT is across different spatial frequency values for the different degraded images is displayed. 
         The spatial frequency is obtained from the radial distance to the center of the FFT, as shown in \ref{subsubsec:frequency_domain_analysis}.
         In (b), the amplification with respect to a simple gaussian blurring + downscaling is shown. 
-        While the baseline does not lose much information with respect to gaussian blurring + downscaling, the adapted pipeline consistently diminishes high frequency components starting at 0.1 cycles per pixel. 
-        It is important to note that 0.1 cycles per pixel at a 210m GSD corresponds to a cycle frequency of 21m.
+        While the baseline does not lose much information with respect to gaussian blurring + downscaling, the adapted pipeline consistently diminishes high frequency components starting at 0.1 cycles per pixel, with a stable effect of -6dB from 0.3 to 0.7 cycles per pixel. 
+        It is important to note that 0.1 cycles per pixel at a 210m GSD corresponds to a cycle frequency of 2100m, 0.3 cycles per pixel corresponds to 700m and 0.7 cycles per pixel to 300m.
         These results are consistent with the observations noted in Fig. \ref{fig:5-source-domain-comparison}, where the adapted pipeline yields worse LR images.
     
         \begin{figure}[H]
@@ -92,26 +94,39 @@ In this case, the degradation model is unknown and the objective is to observe h
 
 
         In Fig. \ref{fig:5-target_prediction_sample}, the super resolutions models were used with a 264x264 pixels crop of a real FOREST-2 image.
+        The results show that the baseline model, trained with a target domain consisting degraded versions of the synthetic FOREST-2 images ($\mathcal{D}_{\text{SF}-\text{SF}}$), has very similar results as bicubic upsampling.
+        On the other side, the adapted model, trained using real FOREST images as the target domain ($\mathcal{D}_{\text{SF}-\text{RF}}$), is able to recover more details, producing sharper images.
+        In the frequency domain, the effects of super resolution are clear, as the high frequency components are amplified compared to bicubic upsampling. 
+        In this case, the adapted model amplifies frequencies close to the center of the FFT.
+        
+        
 
-    
 
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.28]{Includes/5-target_prediction_sample.pdf}
             \caption{Super Resolved Forest-2 Scene using different SR models.
-                     In the upper row, the image is displayed. A detailed zoom is displayed below}
+                     In the upper row, the image is displayed. A detailed zoom is displayed below. The bottom row shows the log magnitude of the FFT for the images.
+                     The original image is displayed in the left, while the super resolved images are displayed afterwards.
+                    }
             \label{fig:5-target_prediction_sample}
         \end{figure}
 
+        The results of Fig. \ref{fig:5-target_prediction_sample} with the theory and the results obtained in the source domain.
+        The super resolutions task is to estimate the inverse function of the degradation process. 
+        When the model is trained using an optimistic degradation process, the model is snot able to recover details from images generated by a more complex degradation process, like the real FOREST-2 images.
+        The lack of details in the baseline-SISR images is not because the model is not able to recover them, but because a more optimistic degradation model was used in training. 
+        This is an important result to drive the attention to the importance of the degradation model used in training, instead of focusing on more complex super resolution architectures.
 
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.28]{Includes/6-target-fft-sample.pdf}
-            \caption{Super Resolved Forest-2 Scene using different SR models. 
-                     In the upper row, the image is displayed. The log magnitude of the FFT is displayed below.}
-            \label{fig:6-target-fft-sample}
-        \end{figure}
-
+        Fig. \ref{fig:5-target-amplification-statistics} shows a more detailed analysis of the frequency domain of the SR images obtained by applying different SR models to the real FOREST-2 validation dataset.
+        The upper row shows the log magnitude of the FFT for the SR images of the whole validation dataset, adding ±1 standar deviations to take their variances into account. 
+        Up until 0.3 cycles per pixel, the adapted model amplifies the frequencies more than the baseline model, with a similar behaviour afterwards.
+        As higher frequencies are related to noise and artifacts, this suggests that the adapted model is able to recover more details than the baseline model, while minimizing undesired components.
+        The amplification plot of the SR models against bicubic upsampling shows the same behaviour in a more clear way. Between 0.1 and 0.25 cycles per pixel, the amplification peaks  between 6 and 8 dB on average with respect to bicubic, while the baseline model is between 0 and 2 dB.
+        Such amplification, at a pixel size of 70m, corresponds to cycle frequencies between  300 $\frac{1}{m}$ and 700 $\frac{1}{m}$, which is consistent with the loss of components observed in \ref{fig:5-lr-images-fft-comparison}.
+        The variability of the amplification allows to conclude that this amplification is consistently higher than the baseline-SISR for all the validation dataset.
+        On the other side, while the amplification is very similar in frequencies related to noise, the adapted model seems to step up a little bit compared to the baseline.  
+        This suggests that the adapted model is able to recover details from real FOREST-2 images, amplifying frequencies of interests, at the cost of a small increase in the overall noise of the image.
 
         \begin{figure}[H]
             \centering
@@ -122,6 +137,11 @@ In this case, the degradation model is unknown and the objective is to observe h
             \label{fig:5-target-amplification-statistics}
         \end{figure}
 
+
+        In Fig. \ref{fig:6-target-gradient-analysis-image}, an example of the gradient analysis of the SR images is shown. 
+        Compared to the baseline SISR model, the adapted model shows higher gradient magnitudes, suggesting that the adapted model is able to recover more details than the baseline model. 
+        However, in the more dark sections of the gradient magnitude, some small background noise can be percieved, consistent with the results of the frequency domain analysis.
+
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.28]{Includes/6-target-gradient-analysis-image.pdf}
@@ -130,6 +150,14 @@ In this case, the degradation model is unknown and the objective is to observe h
                      the gradient magnitude $|G|$ is displayed in the bottom row.}
             \label{fig:6-target-gradient-analysis-image}
         \end{figure}
+
+        Fig \ref{fig:5-gradient-histogram-validation-dataset} shows the distribution frunction of all the gradient magnitudes, estimated through a histogram, for the whole validation dataset.
+        Both the adapted and the baseline model show a decrease in the number of pixels with low gradient magnitudes, suggesting that both models are able to recover more details than bicubic upsampling.
+        However, the adapted model shows a consistently higher number of pixels with high gradient magnitudes, implying that the adapted model is able to recover more details than the baseline model.
+        This is consistent with the observed results and the frequency domain analysis. 
+        However, it is important to note that the gradient magnitude is not a good measure of the performance of the SR model, as it does not take into account the noise and artifacts that may be present in the image.
+        It represents only a complementary way to understand the effects of the SR model.
+
 
         \begin{figure}[H]
             \centering
@@ -222,5 +250,5 @@ In this case, the degradation model is unknown and the objective is to observe h
         
 
         
-% \breakpage
+\newpage
     

@@ -153,20 +153,21 @@
         
 
 
-        \subsubsection{Training: Ecostress-DegradedEcostress}
-            The dataset, $\mathcal{D}_{\text{eco}-\text{eco}}$ is built by taking the HR synthetic FOREST crops and applying the baseline degradation model proposed in \ref{subsec:baseline_degradation_model}. 
+        \subsubsection{Training: Synthetic Forest-Degraded Synthetic Forest}
+            The dataset, $\mathcal{D}_{\text{SF}-\text{SF}}$ is built by taking the HR synthetic FOREST crops and applying the baseline degradation model proposed in \ref{subsec:baseline_degradation_model}. 
             The 264x264 crops are reduced to 88x88. The training set is used to train the SR Resnet model, while the validation set is used to monitor the training process and avoid overfitting. 
             Even though in this case the HR and LR version of the same scene is available, the training dataset is unpaired by shuffling the samples.
             The validation set is not shuffled, and thus can be used to calculate supervised metrics like PSNR and SSIM.
         
-        \subsubsection{Training: Ecostress-Forest (Unpaired)}
-            The dataset $\mathcal{D}_{\text{eco}-\text{forest}}$ is composed of the 264x264 HR synthetic FOREST crops as the source domain and  88x88 LR FOREST crops as the target domain. 
+        \subsubsection{Training: Synthetic FOREST - real FOREST (Unpaired)}
+            The dataset $\mathcal{D}_{\text{SF}-\text{RF}}$ is composed of the 264x264 HR synthetic FOREST crops as the source domain and  88x88 LR FOREST crops as the target domain. 
             Unfortunately, this dataset is not paired, as the HR and LR images are completely different scenes.
             Thus, no supervised metrics can be calculated on it. The metric used to determine the best model is the PSNR from the super resolution of the artificially degraded HR images.
         
-        \subsubsection{Testing: Ecostress-Forest ( Paired)}
+        \subsubsection{Testing: Synthetic FOREST- real FOREST ( Paired)}
             While the training dataset is the same as in the previous case, the validation dataset is composed of a limited amount paired scenes between ECOSTRESS and FOREST are available.
              This samples allow the calculation of supervised metrics like PSNR and SSIM.
 
+    \subsection{Training}
 
 \clearpage
