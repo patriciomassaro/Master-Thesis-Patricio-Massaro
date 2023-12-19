@@ -868,11 +868,18 @@ INPUT ./Includes/4-radiometric_noise_example.pdf
 INPUT Includes/4-radiometric_noise_example.pdf
 INPUT ./Includes/4-radiometric_noise_example.pdf
 INPUT ./Includes/4-radiometric_noise_example.pdf
+INPUT ./includes/3-srresnet-architecture.pdf
+INPUT ./includes/3-srresnet-architecture.pdf
+INPUT includes/3-srresnet-architecture.pdf
+INPUT ./includes/3-srresnet-architecture.pdf
+INPUT ./includes/3-srresnet-architecture.pdf
 INPUT ./Includes/3-probabilistic-degradation-model.png
 INPUT ./Includes/3-probabilistic-degradation-model.png
 INPUT Includes/3-probabilistic-degradation-model.png
 INPUT ./Includes/3-probabilistic-degradation-model.png
 INPUT ./Includes/3-probabilistic-degradation-model.png
+INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT ./Includes/3-NR-IQA.pdf
 INPUT ./Includes/3-NR-IQA.pdf
 INPUT Includes/3-NR-IQA.pdf
@@ -1030,4 +1037,5 @@ INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb

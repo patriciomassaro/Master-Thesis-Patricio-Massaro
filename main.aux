@@ -33,7 +33,8 @@
 \citation{martens2019superresolution}
 \citation{MISR2007}
 \citation{MISR2007}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}single-Image Super Resolution}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Single-Image Super Resolution}{3}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:2-degradation-equation}{{1}{3}{Single-Image Super Resolution}{equation.2.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}SR Resnet}{3}{subsubsection.2.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Multi-Image Super Resolution}{3}{subsection.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Multi-spectral super resolution}{3}{subsubsection.2.2.1}\protected@file@percent }
@@ -42,7 +43,6 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Multi-image super resolution algorithms combine multiple low-resolution image acquisitions into a high-resolution image. Source: \cite  {MISR2007}\relax }}{4}{figure.caption.4}\protected@file@percent }
 \newlabel{fig:2-MISR}{{2.2}{4}{Multi-image super resolution algorithms combine multiple low-resolution image acquisitions into a high-resolution image. Source: \cite {MISR2007}\relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Importance of interframe correlation}{4}{subsubsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}RAMS}{4}{subsubsection.2.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}The domain gap problem}{4}{subsection.2.3}\protected@file@percent }
 \newlabel{subsec:domaingap}{{2.3}{4}{The domain gap problem}{subsection.2.3}{}}
 \citation{liu2021blind}
@@ -56,8 +56,8 @@
 \citation{luo2022learning}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces Domain interpretation of differences between non-blind and blind SR. Source: \cite  {liu2021blind}\relax }}{6}{figure.caption.6}\protected@file@percent }
 \newlabel{fig:2-DomainGap}{{2.4}{6}{Domain interpretation of differences between non-blind and blind SR. Source: \cite {liu2021blind}\relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces In Degradation-learning-based methods, adversarial training is used to encourage the degradation model to produce images in the same domain with the target domain (test images). Source \cite  {luo2022learning}.\relax }}{6}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:3-GAN-degradation-model}{{2.5}{6}{In Degradation-learning-based methods, adversarial training is used to encourage the degradation model to produce images in the same domain with the target domain (test images). Source \cite {luo2022learning}.\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces In Degradation-learning-based methods, adversarial training is used to encourage the degradation model to produce images in the same domain as the test LR images. After training, the SR model is directly used to super resolve the inputs. Source \cite  {luo2022learning}.\relax }}{6}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:3-GAN-degradation-model}{{2.5}{6}{In Degradation-learning-based methods, adversarial training is used to encourage the degradation model to produce images in the same domain as the test LR images. After training, the SR model is directly used to super resolve the inputs. Source \cite {luo2022learning}.\relax }{figure.caption.7}{}}
 \citation{zhang2018residual}
 \citation{ECOSTRESS2023INSTRUMENT}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{7}{section.3}\protected@file@percent }
@@ -78,118 +78,120 @@
 \newlabel{fig:4-radiometric_noise_example}{{3.3}{9}{Effects of different radiometric error corrections on the HR-LR generation.\relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Models Architecture}{10}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}SRResNet}{10}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces  SRResNet architecture. $X_{LR}$ represents the low resolution input image, $X_{SR}$ the super resolved image, which is then compared to the ground truth $X_{HR}$.\relax }}{10}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:generator}{{3.4}{10}{SRResNet architecture. $X_{LR}$ represents the low resolution input image, $X_{SR}$ the super resolved image, which is then compared to the ground truth $X_{HR}$.\relax }{figure.caption.11}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}RAMS}{10}{subsubsection.3.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Probabilistic Degradation Model}{10}{subsubsection.3.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces SADASDSA\relax }}{10}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:3-probabilistic-degradation-model}{{3.4}{10}{SADASDSA\relax }{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {paragraph}{Kernel Model}{10}{section*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Noise Model}{10}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Discriminator}{10}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{combining with any SR model}{10}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Referenced image quality metrics}{10}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}$L_2$ and $L_1$ Loss}{11}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Peak Signal-to-Noise Ratio (PSNR)}{11}{subsubsection.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Structural Similarity Index (SSIM)}{11}{subsubsection.3.3.3}\protected@file@percent }
+\citation{zhu2020unpaired}
+\citation{plotz2017benchmarking}
+\citation{bulat2018learn}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Schematic of the probabilistic degradation module. The discriminator is left out for a more intuitive description\relax }}{12}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:3-probabilistic-degradation-model}{{3.5}{12}{Schematic of the probabilistic degradation module. The discriminator is left out for a more intuitive description\relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Referenced image quality metrics}{13}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}pixel-wise losses}{13}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Peak Signal-to-Noise Ratio (PSNR)}{13}{subsubsection.3.3.2}\protected@file@percent }
 \citation{VGGnet}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Structural Similarity Index (SSIM)}{14}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Learned perceptual image patch similarity (LPIPS)}{14}{subsubsection.3.3.4}\protected@file@percent }
 \citation{martens2019superresolution}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Learned perceptual image patch similarity (LPIPS)}{12}{subsubsection.3.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.5}Adjusting measures to a multi-image framework}{12}{subsubsection.3.3.5}\protected@file@percent }
-\newlabel{eq:4_adjusted_metrics}{{9}{12}{Adjusting measures to a multi-image framework}{equation.3.9}{}}
 \citation{niqe}
 \citation{niqe}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Non-referenced Image quality metrics}{13}{subsection.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Workflow of a NR-IQA model.\relax }}{13}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:4-nr-iqa-workflow}{{3.5}{13}{Workflow of a NR-IQA model.\relax }{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Naturalness Image Quality Evaluator (NIQE)}{13}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.5}Adjusting measures to a multi-image framework}{15}{subsubsection.3.3.5}\protected@file@percent }
+\newlabel{eq:4_adjusted_metrics}{{18}{15}{Adjusting measures to a multi-image framework}{equation.3.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Non-referenced Image quality metrics}{15}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Naturalness Image Quality Evaluator (NIQE)}{15}{subsubsection.3.4.1}\protected@file@percent }
 \citation{fuoli2021fourier}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Blind/Referenceless Image Spatial Quality Evaluator (BRISQUE)}{14}{subsubsection.3.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Frequency Domain Analysis}{14}{subsubsection.3.4.3}\protected@file@percent }
-\newlabel{subsubsec:frequency_domain_analysis}{{3.4.3}{14}{Frequency Domain Analysis}{subsubsection.3.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Workflow of a NR-IQA model.\relax }}{16}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:4-nr-iqa-workflow}{{3.6}{16}{Workflow of a NR-IQA model.\relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Blind/Referenceless Image Spatial Quality Evaluator (BRISQUE)}{16}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Frequency Domain Analysis}{16}{subsubsection.3.4.3}\protected@file@percent }
+\newlabel{subsubsec:frequency_domain_analysis}{{3.4.3}{16}{Frequency Domain Analysis}{subsubsection.3.4.3}{}}
 \citation{Sobel1990AnI3}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency. \relax }}{15}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:4-frequency-analysis}{{3.6}{15}{Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency. \relax }{figure.caption.17}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Gradient Distribution analysis}{15}{subsubsection.3.4.4}\protected@file@percent }
-\newlabel{eq:4-sobel-operators}{{12}{15}{Gradient Distribution analysis}{equation.3.12}{}}
-\newlabel{eq:4-gradient_magnitude}{{13}{15}{Gradient Distribution analysis}{equation.3.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Steps to obtain a gradient magnitude density. Using the sobel operators, $G_x$ and $G_y$ are obtained from an image. The magnitude $|G|$ of each pixel is calculated using Eq. \ref {eq:4-gradient_magnitude}. The density can be estimated afterwards, using 100 bins in this case.\relax }}{16}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:4-gradient-analysis}{{3.7}{16}{Steps to obtain a gradient magnitude density. Using the sobel operators, $G_x$ and $G_y$ are obtained from an image. The magnitude $|G|$ of each pixel is calculated using Eq. \ref {eq:4-gradient_magnitude}. The density can be estimated afterwards, using 100 bins in this case.\relax }{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency. \relax }}{17}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:4-frequency-analysis}{{3.7}{17}{Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency. \relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Gradient Distribution analysis}{18}{subsubsection.3.4.4}\protected@file@percent }
+\newlabel{eq:4-sobel-operators}{{21}{18}{Gradient Distribution analysis}{equation.3.21}{}}
+\newlabel{eq:4-gradient_magnitude}{{22}{18}{Gradient Distribution analysis}{equation.3.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Steps to obtain a gradient magnitude density. Using the sobel operators, $G_x$ and $G_y$ are obtained from an image. The magnitude $|G|$ of each pixel is calculated using Eq. \ref {eq:4-gradient_magnitude}. The density can be estimated afterwards, using 100 bins in this case.\relax }}{19}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:4-gradient-analysis}{{3.8}{19}{Steps to obtain a gradient magnitude density. Using the sobel operators, $G_x$ and $G_y$ are obtained from an image. The magnitude $|G|$ of each pixel is calculated using Eq. \ref {eq:4-gradient_magnitude}. The density can be estimated afterwards, using 100 bins in this case.\relax }{figure.caption.15}{}}
 \citation{ECOSTRESS2023}
 \citation{PhyTIR2023}
 \citation{ECOSTRESS2023}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Datasets}{17}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Obtaining a high resolution dataset}{17}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}The ECOSTRESS mission}{17}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Datasets}{20}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Obtaining a high resolution dataset}{20}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}The ECOSTRESS mission}{20}{subsubsection.4.1.1}\protected@file@percent }
 \citation{AppEEARS2023}
 \citation{AppEEARSAPI2023}
 \citation{ECO1BMAPRAD2023}
 \citation{ecostress_faq}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Wavelengths of the sensors in Ecostress and Forest satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.\relax }}{18}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:5-wavelength-comparison}{{4.1}{18}{Wavelengths of the sensors in Ecostress and Forest satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.\relax }{figure.caption.19}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Accessing ECOSTRESS Scenes}{18}{subsubsection.4.1.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Requests configuration\relax }}{18}{table.caption.20}\protected@file@percent }
-\newlabel{tab:5-scenes-characteristics}{{4.1}{18}{Requests configuration\relax }{table.caption.20}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Selecting the best scenes}{18}{subsubsection.4.1.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Location of the samples taken from ecostress.\relax }}{19}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:5-ecostress-map-location}{{4.2}{19}{Location of the samples taken from ecostress.\relax }{figure.caption.21}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Process applied to the scenes returned from one area request.\relax }}{19}{algorithm.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Data Processing}{20}{subsubsection.4.1.4}\protected@file@percent }
-\newlabel{tab:quality_classes}{{\caption@xref {tab:quality_classes}{ on input line 110}}{20}{Data Processing}{table.caption.22}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Fill Value and Data Quality Classes\relax }}{20}{table.caption.22}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Data processing workflow\relax }}{21}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:5-data_processing_flow_chart}{{4.3}{21}{Data processing workflow\relax }{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Random crop processor\relax }}{21}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:5-random_crop_processor}{{4.4}{21}{Random crop processor\relax }{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Obtaining FOREST-2 data}{22}{subsection.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Location of the FOREST-2 scenes.\relax }}{22}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:4-forest-locations}{{4.5}{22}{Location of the FOREST-2 scenes.\relax }{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Datasets}{22}{subsection.4.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces \relax }}{22}{table.caption.26}\protected@file@percent }
-\newlabel{tab:my-table}{{4.3}{22}{\relax }{table.caption.26}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Synthetic FOREST - Degraded Synthetic FOREST}{22}{subsubsection.4.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Parameters used in the degradation model employed to generate the $\mathcal  {D}_{\text  {SF}-\text  {SF}}$ dataset.\relax }}{23}{table.caption.27}\protected@file@percent }
-\newlabel{tab:degradation_model_parameters}{{4.4}{23}{Parameters used in the degradation model employed to generate the $\mathcal {D}_{\text {SF}-\text {SF}}$ dataset.\relax }{table.caption.27}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Synthetic FOREST - real FOREST (Unpaired)}{23}{subsubsection.4.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Synthetic FOREST- real FOREST ( Paired)}{23}{subsubsection.4.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Experiment Setup}{24}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Training}{24}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Results and discussion}{25}{section.6}\protected@file@percent }
-\newlabel{sec:results}{{6}{25}{Results and discussion}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Source domain}{25}{subsection.6.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Applying different degradation models on an HR sample. The 2 most upper rows show the estimated degradation kernels and noise of each pipeline, the bicubic downsampling does not estimate a kernel or noise. The degraded LR images from each model and a zoom is displayed on the two subsequent rows. In this case, the PSNR is calculated against the gaussian blurring + bicubic downsampling LR. The synthetic FOREST-2 (ground truth) and the super resolved images, with a zoom, are displayed in the last 2 rows. The PSNR for each SR method is calculated against the HR synthetic FOREST-2. \relax }}{27}{figure.caption.28}\protected@file@percent }
-\newlabel{fig:5-source_domain_sample}{{6.1}{27}{Applying different degradation models on an HR sample. The 2 most upper rows show the estimated degradation kernels and noise of each pipeline, the bicubic downsampling does not estimate a kernel or noise. The degraded LR images from each model and a zoom is displayed on the two subsequent rows. In this case, the PSNR is calculated against the gaussian blurring + bicubic downsampling LR. The synthetic FOREST-2 (ground truth) and the super resolved images, with a zoom, are displayed in the last 2 rows. The PSNR for each SR method is calculated against the HR synthetic FOREST-2. \relax }{figure.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Log mangnitude of the FFT for the LR images obtained by the pipelines and the gaussian blurring + bicubic upsampling.\relax }}{28}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:5-lr-images-fft.pdf}{{6.2}{28}{Log mangnitude of the FFT for the LR images obtained by the pipelines and the gaussian blurring + bicubic upsampling.\relax }{figure.caption.29}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces (a) Radial profile of the log magnitude across spatial frequency of the LR images obtained by the pipelines and the gaussian blurring + bicubic downsampling model. (b) Amplification in dB of each pipeline with respect to the gaussian blurring + bicubic downsampling.\relax }}{29}{figure.caption.30}\protected@file@percent }
-\newlabel{fig:5-lr-images-fft-comparison.pdf}{{6.3}{29}{(a) Radial profile of the log magnitude across spatial frequency of the LR images obtained by the pipelines and the gaussian blurring + bicubic downsampling model. (b) Amplification in dB of each pipeline with respect to the gaussian blurring + bicubic downsampling.\relax }{figure.caption.30}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Frequency domain analysis of the SR images and the ground truth displayed in \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the SR images and the ground truth is shown, while in (b), the amplification of each SR image with respect to the ground truth is shown.\relax }}{30}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:5-source-sr-fft-comparison}{{6.4}{30}{Frequency domain analysis of the SR images and the ground truth displayed in \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the SR images and the ground truth is shown, while in (b), the amplification of each SR image with respect to the ground truth is shown.\relax }{figure.caption.31}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}LR comparison}{30}{subsubsection.6.1.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Performance metrics between the LR images obtained by the pipelines vs the gaussian blurring + bicubic downsampling degradation.\relax }}{31}{figure.caption.32}\protected@file@percent }
-\newlabel{fig:5-source-domain-lr-performance-scatterplot}{{6.5}{31}{Performance metrics between the LR images obtained by the pipelines vs the gaussian blurring + bicubic downsampling degradation.\relax }{figure.caption.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Frequency domain analysis of the LR images obtained by applying different degradation models on the HR sample displayed in Fig. \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the LR images is shown, while in (b), the amplification with respect to a simple gaussian blurring + downscaling is shown. The painted area represents the ±1 standard deviation of the radial profiles and the amplification. \relax }}{32}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:5-lr-images-fft-comparison}{{6.6}{32}{Frequency domain analysis of the LR images obtained by applying different degradation models on the HR sample displayed in Fig. \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the LR images is shown, while in (b), the amplification with respect to a simple gaussian blurring + downscaling is shown. The painted area represents the ±1 standard deviation of the radial profiles and the amplification. \relax }{figure.caption.33}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Effects of the degradation model in SR}{32}{subsubsection.6.1.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Performance obtained by super resolving the degraded images coming out of the generator. In (a), the corresponding SR model of each pipeline is used. In (b), a simple bicubic upsampling is used to super resolve the degraded images. \relax }}{33}{figure.caption.34}\protected@file@percent }
-\newlabel{fig:5-source-domain-comparison}{{6.7}{33}{Performance obtained by super resolving the degraded images coming out of the generator. In (a), the corresponding SR model of each pipeline is used. In (b), a simple bicubic upsampling is used to super resolve the degraded images. \relax }{figure.caption.34}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Target domain}{33}{subsection.6.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces Super Resolved Forest-2 Scene using different SR models. In the upper row, the image is displayed. A detailed zoom is displayed below. The bottom row shows the log magnitude of the FFT for the images. The original image is displayed in the left, while the super resolved images are displayed afterwards. \relax }}{34}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:5-target_prediction_sample}{{6.8}{34}{Super Resolved Forest-2 Scene using different SR models. In the upper row, the image is displayed. A detailed zoom is displayed below. The bottom row shows the log magnitude of the FFT for the images. The original image is displayed in the left, while the super resolved images are displayed afterwards. \relax }{figure.caption.35}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces Frequency domain analysis of the SR images obtained by applying different SR models to the real FOREST-2 validation dataset. In (a), the log of the magnitude of the FFT for the SR images is shown, while in (b), the amplification with respect to a simple bicubic upsampling is displayed.\relax }}{35}{figure.caption.36}\protected@file@percent }
-\newlabel{fig:5-target-amplification-statistics}{{6.9}{35}{Frequency domain analysis of the SR images obtained by applying different SR models to the real FOREST-2 validation dataset. In (a), the log of the magnitude of the FFT for the SR images is shown, while in (b), the amplification with respect to a simple bicubic upsampling is displayed.\relax }{figure.caption.36}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.10}{\ignorespaces Gradient analysis of the super resolved images using different SR models for scenes coming from the real FOREST-2 validation dataset. In the upper row, the image is displayed. The gradients in the x and y direction ($G_x$ and $G_y$ respectiely) are displayed below. the gradient magnitude $|G|$ is displayed in the bottom row.\relax }}{36}{figure.caption.37}\protected@file@percent }
-\newlabel{fig:6-target-gradient-analysis-image}{{6.10}{36}{Gradient analysis of the super resolved images using different SR models for scenes coming from the real FOREST-2 validation dataset. In the upper row, the image is displayed. The gradients in the x and y direction ($G_x$ and $G_y$ respectiely) are displayed below. the gradient magnitude $|G|$ is displayed in the bottom row.\relax }{figure.caption.37}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.11}{\ignorespaces Histogram of the gradient magnitude $|G|$ for the whole validation real FOREST-2 dataset.\relax }}{37}{figure.caption.38}\protected@file@percent }
-\newlabel{fig:5-gradient-histogram-validation-dataset}{{6.11}{37}{Histogram of the gradient magnitude $|G|$ for the whole validation real FOREST-2 dataset.\relax }{figure.caption.38}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Effects of the domain gap}{37}{subsection.6.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.12}{\ignorespaces Effects of using a model trained with on different domain than at inference time. When using an Synthetic FOREST image degraded with the baseline degradation model as an input, the model trained using real FOREST-2 data as the target domain generates several artifacts and underperforms severly in terms of PSNR. \relax }}{38}{figure.caption.39}\protected@file@percent }
-\newlabel{fig:5-target-prediction-with-domain-gap}{{6.12}{38}{Effects of using a model trained with on different domain than at inference time. When using an Synthetic FOREST image degraded with the baseline degradation model as an input, the model trained using real FOREST-2 data as the target domain generates several artifacts and underperforms severly in terms of PSNR. \relax }{figure.caption.39}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.13}{\ignorespaces Effects of using a model trained with on different domain than at inference time. (a) shows the log magnitude of the radial average of the FFT for the SR images using different algorithms. (b) shows the amplification with respect to bicubic interpolation \relax }}{39}{figure.caption.40}\protected@file@percent }
-\newlabel{fig:5-target-prediction-with-domain-gap-fft}{{6.13}{39}{Effects of using a model trained with on different domain than at inference time. (a) shows the log magnitude of the radial average of the FFT for the SR images using different algorithms. (b) shows the amplification with respect to bicubic interpolation \relax }{figure.caption.40}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.14}{\ignorespaces Performance obtained by super resolving the degraded synthetic FOREST images using different super resolution models.\relax }}{39}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:5-target-prediction-with-domain-gap-dataset}{{6.14}{39}{Performance obtained by super resolving the degraded synthetic FOREST images using different super resolution models.\relax }{figure.caption.41}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.15}{\ignorespaces Image quality assessment metrics for the different SR models using different datasets as input. In both metrics, the lower the score, the better the image quality.\relax }}{40}{figure.caption.42}\protected@file@percent }
-\newlabel{fig:5-target-iqa-results}{{6.15}{40}{Image quality assessment metrics for the different SR models using different datasets as input. In both metrics, the lower the score, the better the image quality.\relax }{figure.caption.42}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}conclusions}{41}{section.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Wavelengths of the sensors in Ecostress and Forest satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.\relax }}{21}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:5-wavelength-comparison}{{4.1}{21}{Wavelengths of the sensors in Ecostress and Forest satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Accessing ECOSTRESS Scenes}{21}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Requests configuration\relax }}{21}{table.caption.17}\protected@file@percent }
+\newlabel{tab:5-scenes-characteristics}{{4.1}{21}{Requests configuration\relax }{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Selecting the best scenes}{21}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Location of the samples taken from ecostress.\relax }}{22}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:5-ecostress-map-location}{{4.2}{22}{Location of the samples taken from ecostress.\relax }{figure.caption.18}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Process applied to the scenes returned from one area request.\relax }}{22}{algorithm.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Data Processing}{23}{subsubsection.4.1.4}\protected@file@percent }
+\newlabel{tab:quality_classes}{{\caption@xref {tab:quality_classes}{ on input line 110}}{23}{Data Processing}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Fill Value and Data Quality Classes\relax }}{23}{table.caption.19}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Data processing workflow\relax }}{24}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:5-data_processing_flow_chart}{{4.3}{24}{Data processing workflow\relax }{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Random crop processor\relax }}{24}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:5-random_crop_processor}{{4.4}{24}{Random crop processor\relax }{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Obtaining FOREST-2 data}{25}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Location of the FOREST-2 scenes.\relax }}{25}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:4-forest-locations}{{4.5}{25}{Location of the FOREST-2 scenes.\relax }{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Datasets}{25}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces \relax }}{25}{table.caption.23}\protected@file@percent }
+\newlabel{tab:my-table}{{4.3}{25}{\relax }{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Synthetic FOREST - Degraded Synthetic FOREST}{25}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Parameters used in the degradation model employed to generate the $\mathcal  {D}_{\text  {SF}-\text  {SF}}$ dataset.\relax }}{26}{table.caption.24}\protected@file@percent }
+\newlabel{tab:degradation_model_parameters}{{4.4}{26}{Parameters used in the degradation model employed to generate the $\mathcal {D}_{\text {SF}-\text {SF}}$ dataset.\relax }{table.caption.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Synthetic FOREST - real FOREST (Unpaired)}{26}{subsubsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Synthetic FOREST- real FOREST ( Paired)}{26}{subsubsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiment Setup}{27}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Training}{27}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results and discussion}{28}{section.6}\protected@file@percent }
+\newlabel{sec:results}{{6}{28}{Results and discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Source domain}{28}{subsection.6.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Applying different degradation models on an HR sample. The 2 most upper rows show the estimated degradation kernels and noise of each pipeline, the bicubic downsampling does not estimate a kernel or noise. The degraded LR images from each model and a zoom is displayed on the two subsequent rows. In this case, the PSNR is calculated against the gaussian blurring + bicubic downsampling LR. The synthetic FOREST-2 (ground truth) and the super resolved images, with a zoom, are displayed in the last 2 rows. The PSNR for each SR method is calculated against the HR synthetic FOREST-2. \relax }}{30}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:5-source_domain_sample}{{6.1}{30}{Applying different degradation models on an HR sample. The 2 most upper rows show the estimated degradation kernels and noise of each pipeline, the bicubic downsampling does not estimate a kernel or noise. The degraded LR images from each model and a zoom is displayed on the two subsequent rows. In this case, the PSNR is calculated against the gaussian blurring + bicubic downsampling LR. The synthetic FOREST-2 (ground truth) and the super resolved images, with a zoom, are displayed in the last 2 rows. The PSNR for each SR method is calculated against the HR synthetic FOREST-2. \relax }{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Log mangnitude of the FFT for the LR images obtained by the pipelines and the gaussian blurring + bicubic upsampling.\relax }}{31}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:5-lr-images-fft.pdf}{{6.2}{31}{Log mangnitude of the FFT for the LR images obtained by the pipelines and the gaussian blurring + bicubic upsampling.\relax }{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces (a) Radial profile of the log magnitude across spatial frequency of the LR images obtained by the pipelines and the gaussian blurring + bicubic downsampling model. (b) Amplification in dB of each pipeline with respect to the gaussian blurring + bicubic downsampling.\relax }}{32}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:5-lr-images-fft-comparison.pdf}{{6.3}{32}{(a) Radial profile of the log magnitude across spatial frequency of the LR images obtained by the pipelines and the gaussian blurring + bicubic downsampling model. (b) Amplification in dB of each pipeline with respect to the gaussian blurring + bicubic downsampling.\relax }{figure.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Frequency domain analysis of the SR images and the ground truth displayed in \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the SR images and the ground truth is shown, while in (b), the amplification of each SR image with respect to the ground truth is shown.\relax }}{33}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:5-source-sr-fft-comparison}{{6.4}{33}{Frequency domain analysis of the SR images and the ground truth displayed in \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the SR images and the ground truth is shown, while in (b), the amplification of each SR image with respect to the ground truth is shown.\relax }{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}LR comparison}{33}{subsubsection.6.1.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Performance metrics between the LR images obtained by the pipelines vs the gaussian blurring + bicubic downsampling degradation.\relax }}{34}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:5-source-domain-lr-performance-scatterplot}{{6.5}{34}{Performance metrics between the LR images obtained by the pipelines vs the gaussian blurring + bicubic downsampling degradation.\relax }{figure.caption.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Frequency domain analysis of the LR images obtained by applying different degradation models on the HR sample displayed in Fig. \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the LR images is shown, while in (b), the amplification with respect to a simple gaussian blurring + downscaling is shown. The painted area represents the ±1 standard deviation of the radial profiles and the amplification. \relax }}{35}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:5-lr-images-fft-comparison}{{6.6}{35}{Frequency domain analysis of the LR images obtained by applying different degradation models on the HR sample displayed in Fig. \ref {fig:5-source_domain_sample}. In (a), the log of the magnitude of the FFT for the LR images is shown, while in (b), the amplification with respect to a simple gaussian blurring + downscaling is shown. The painted area represents the ±1 standard deviation of the radial profiles and the amplification. \relax }{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Effects of the degradation model in SR}{35}{subsubsection.6.1.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Performance obtained by super resolving the degraded images coming out of the generator. In (a), the corresponding SR model of each pipeline is used. In (b), a simple bicubic upsampling is used to super resolve the degraded images. \relax }}{36}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:5-source-domain-comparison}{{6.7}{36}{Performance obtained by super resolving the degraded images coming out of the generator. In (a), the corresponding SR model of each pipeline is used. In (b), a simple bicubic upsampling is used to super resolve the degraded images. \relax }{figure.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Target domain}{36}{subsection.6.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces Super Resolved Forest-2 Scene using different SR models. In the upper row, the image is displayed. A detailed zoom is displayed below. The bottom row shows the log magnitude of the FFT for the images. The original image is displayed in the left, while the super resolved images are displayed afterwards. \relax }}{37}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:5-target_prediction_sample}{{6.8}{37}{Super Resolved Forest-2 Scene using different SR models. In the upper row, the image is displayed. A detailed zoom is displayed below. The bottom row shows the log magnitude of the FFT for the images. The original image is displayed in the left, while the super resolved images are displayed afterwards. \relax }{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces Frequency domain analysis of the SR images obtained by applying different SR models to the real FOREST-2 validation dataset. In (a), the log of the magnitude of the FFT for the SR images is shown, while in (b), the amplification with respect to a simple bicubic upsampling is displayed.\relax }}{38}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:5-target-amplification-statistics}{{6.9}{38}{Frequency domain analysis of the SR images obtained by applying different SR models to the real FOREST-2 validation dataset. In (a), the log of the magnitude of the FFT for the SR images is shown, while in (b), the amplification with respect to a simple bicubic upsampling is displayed.\relax }{figure.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.10}{\ignorespaces Gradient analysis of the super resolved images using different SR models for scenes coming from the real FOREST-2 validation dataset. In the upper row, the image is displayed. The gradients in the x and y direction ($G_x$ and $G_y$ respectiely) are displayed below. the gradient magnitude $|G|$ is displayed in the bottom row.\relax }}{39}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:6-target-gradient-analysis-image}{{6.10}{39}{Gradient analysis of the super resolved images using different SR models for scenes coming from the real FOREST-2 validation dataset. In the upper row, the image is displayed. The gradients in the x and y direction ($G_x$ and $G_y$ respectiely) are displayed below. the gradient magnitude $|G|$ is displayed in the bottom row.\relax }{figure.caption.34}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.11}{\ignorespaces Histogram of the gradient magnitude $|G|$ for the whole validation real FOREST-2 dataset.\relax }}{40}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:5-gradient-histogram-validation-dataset}{{6.11}{40}{Histogram of the gradient magnitude $|G|$ for the whole validation real FOREST-2 dataset.\relax }{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}The domain gap goes both ways}{40}{subsection.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.12}{\ignorespaces Effects of using a model trained with on different domain than at inference time. When using an Synthetic FOREST image degraded with the baseline degradation model as an input, the model trained using real FOREST-2 data as the target domain generates several artifacts and underperforms severly in terms of PSNR. \relax }}{41}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:5-target-prediction-with-domain-gap}{{6.12}{41}{Effects of using a model trained with on different domain than at inference time. When using an Synthetic FOREST image degraded with the baseline degradation model as an input, the model trained using real FOREST-2 data as the target domain generates several artifacts and underperforms severly in terms of PSNR. \relax }{figure.caption.36}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.13}{\ignorespaces Effects of using a model trained with on different domain than at inference time. (a) shows the log magnitude of the radial average of the FFT for the SR images using different algorithms. (b) shows the amplification with respect to bicubic interpolation. \relax }}{42}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:5-target-prediction-with-domain-gap-fft}{{6.13}{42}{Effects of using a model trained with on different domain than at inference time. (a) shows the log magnitude of the radial average of the FFT for the SR images using different algorithms. (b) shows the amplification with respect to bicubic interpolation. \relax }{figure.caption.37}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.14}{\ignorespaces Performance obtained by super resolving the degraded synthetic FOREST images using different super resolution models.\relax }}{42}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:5-target-prediction-with-domain-gap-dataset}{{6.14}{42}{Performance obtained by super resolving the degraded synthetic FOREST images using different super resolution models.\relax }{figure.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Domain gap using non-references image quality assessment}{43}{subsection.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.15}{\ignorespaces Image quality assessment metrics for the different SR models using different datasets as input. In both metrics, the lower the score, the better the image quality.\relax }}{43}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:5-target-iqa-results}{{6.15}{43}{Image quality assessment metrics for the different SR models using different datasets as input. In both metrics, the lower the score, the better the image quality.\relax }{figure.caption.39}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}conclusions and future work}{44}{section.7}\protected@file@percent }
 \bibstyle{unsrt}
 \bibdata{bibliography}
 \bibcite{zeyde2010single}{1}
@@ -206,14 +208,17 @@
 \bibcite{ECOSTRESS2023INSTRUMENT}{12}
 \bibcite{ledig2017photorealistic}{13}
 \bibcite{he2015deep}{14}
-\bibcite{VGGnet}{15}
-\bibcite{niqe}{16}
-\bibcite{fuoli2021fourier}{17}
-\bibcite{Sobel1990AnI3}{18}
-\bibcite{ECOSTRESS2023}{19}
-\bibcite{PhyTIR2023}{20}
-\bibcite{AppEEARS2023}{21}
-\bibcite{AppEEARSAPI2023}{22}
-\bibcite{ECO1BMAPRAD2023}{23}
-\bibcite{ecostress_faq}{24}
-\gdef \@abspage@last{47}
+\bibcite{zhu2020unpaired}{15}
+\bibcite{plotz2017benchmarking}{16}
+\bibcite{bulat2018learn}{17}
+\bibcite{VGGnet}{18}
+\bibcite{niqe}{19}
+\bibcite{fuoli2021fourier}{20}
+\bibcite{Sobel1990AnI3}{21}
+\bibcite{ECOSTRESS2023}{22}
+\bibcite{PhyTIR2023}{23}
+\bibcite{AppEEARS2023}{24}
+\bibcite{AppEEARSAPI2023}{25}
+\bibcite{ECO1BMAPRAD2023}{26}
+\bibcite{ecostress_faq}{27}
+\gdef \@abspage@last{50}

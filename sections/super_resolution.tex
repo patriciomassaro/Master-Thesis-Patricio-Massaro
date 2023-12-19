@@ -29,6 +29,7 @@
     
         \begin{equation}
             I^{LR} = ( I^{HR} \ast k) \downarrow_s + \ n
+            \label{eq:2-degradation-equation}
         \end{equation}
     
         Where $I^{HR} \ast k$ is the convolution between a blurring kernel $k$ and the unknown  HR image  $I^{HR}$, $\downarrow_s$ is the downsampling operator with scaling factor $s$ and $n$ is a noise term. Super resolution objective is to solve this equation and obtain $I^{HR}$ which as stated before, is an extremely ill-posed problem. Super resolution was first proposed in the 1960s, while the first use of multiple images dates of 1989. Machine learning was used for the first time in 2000. Deep learning appears as a branch of machine learning, emphasizing the use of multi-layer neural network cascade for feature exctraction and representation. The rise of the technology wave around 2010 changed the way of solving problems in different branches. Instead of piecing together individual functional modules to form a system, the focus is to optimize parameters by global training after the whole system is designed, what is called end-to-end training. 
@@ -57,7 +58,6 @@
         Traditional pan-sharpening algorithms could be considered as deterministic MSSR  algorithms. It is usually used to increase the resolution of a multi-spectral RGB image using the panchromatic band. The overlap between the wavelengths of both wavelength ranges makes this algorithm straightforward. However, it is ill-suited for Thermal Infrared (TIR) data due to the disjointed spectral domains of the visible and TIR bands. In \cite{myself2023}, A deep learning is trained assuming the presence of common information between low-resolution LWIR images and their higher resolution RGB counterparts, with the objective of creating a super-resolved product in the LWIR band by an effective fusion. This improved image retains the essential thermal information, while simultaneously incorporated enhanced spatial resolution details captured from the visible bands. 
 
         \subsubsection{Importance of interframe correlation}
-        \subsubsection{RAMS}
     \subsection{The domain gap problem} \label{subsec:domaingap}
  
         SR is a supervised problem, the super resolved image is compared to the HR ground truth and the pixel-by-pixel differences drive the gradients of the neural network to minimize the loss, in a fully supervised manner. 
@@ -106,7 +106,8 @@
             \centering
             \includegraphics[scale=0.65]{Includes/3-GAN-degradation-model.png}
             \caption{In Degradation-learning-based methods, 
-                     adversarial training is used to encourage the degradation model to produce images in the same domain with the target domain (test images).
+                     adversarial training is used to encourage the degradation model to produce images in the same domain as the test LR images.
+                     After training, the SR model is directly used to super resolve the inputs.
                      Source \cite{luo2022learning}.}
             \label{fig:3-GAN-degradation-model}
         \end{figure}

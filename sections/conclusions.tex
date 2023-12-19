@@ -1,1 +1,20 @@
-\section{conclusions}
+\section{conclusions and future work}
+
+
+degradation model assumes complete independence between the noise and kernel components. It is a reasonable assumption but it may not be true in all cases.
+
+The domain gap is not only being very optimistic when building the dataset. 
+You can also be very pesimistic and lead to catastrophic results.
+Highlight on the difficulty of hand-picking the amount of degradation and the complexity of degradation modeling.
+Domain adaption seems to be very suitable due to: 
+
+\begin{itemize}
+    \item Flexible approach
+    \item Models don't need to be very general, they just have to adapt between two very distinctive domains.
+    \item Conditions of each missions are almost static
+    \item Severe lack of paired data but abundance of unpaired data
+    \item Just give me two datasets and the pipeline will find the way.
+\end{itemize}
+
+
+Training of non-referenced image quality assesment for remote sensing

@@ -71,21 +71,129 @@
             As this work focuses on having super resolved images with high physical consistency and not on the perceptual superiority of the images, improvements introduced in the publications like the Generative Adversarial Network (SRGAN)  and the perceptual loss for gradient calculation are not used.
         
 
+            \begin{figure*}[h!]
+                \centering
+                \includegraphics[width=1\textwidth]{includes/3-srresnet-architecture.pdf}
+                \caption{ SRResNet architecture. $X_{LR}$ represents the low resolution input image, $X_{SR}$ the super resolved image, which is then compared to the ground truth $X_{HR}$.}
+                \label{fig:generator}
+             \end{figure*}
+
         \subsubsection{RAMS}
         \subsubsection{Probabilistic Degradation Model}
+
+            To avoid the domain gap between synthetic and test images, most previous methods try to adaptively learn the degradation process via a deterministic model.
+            However, some degradations in real scenarios are stochastic and cannot be determined by the content of the image.
+            These deterministic models may fail to model the random factors and content-independent parts of degradations, which will limit the performance of the following SR models.
+            In this paper, we propose a probabilistic degradation model (PDM), which studies the degradation D as a random variable, and learns its distribution by modeling the mapping from a priori random variable z to D.
+            Compared with previous deterministic degradation models, PDM could model more diverse degradations and generate HR-LR pairs that may better cover the various degradations of test images, and thus prevent the SR model from over-fitting to specific ones.
+
+
+            Most previous degradation-learning-based SR methods have a common drawback: their degradation models are deterministic, and each HR image can only be degraded to a certain LR image.
+            It implies an assumption: the degradation is completely dependent on the content of the image.
+            However, this may not hold in most cases.
+            Some degradations are content independent and stochastic, such as random noises or blur caused by random shakes of cameras. 
+            These random factors and content-independent parts of degradations could not be well modeled by these deterministic models. 
+            A better assumption is that the degradation is subject to a distribution, which may be better modeled by a probabilistic model.
+            
+            We parameterize the degradation with two random variables, i.e., the blur kernel k and random noise n, by formulating the degradation process as the linear function from Eq. \ref{eq:2-degradation-equation}.
+            It can be divided into two linear steps \cite{zhu2020unpaired}: 
+
+            \begin{equation}
+                \begin{aligned}
+                        I^{\text{LR}}_{\text{clean}} &= (I^{\text{HR}} * k) \downarrow_s \\
+                        I^{\text{LR}} &= I^{\text{LR}}_{\text{clean}} + n
+                \end{aligned}
+            \end{equation}
+            
+            
+            The model is trained in a adversarial framework, and the distribution of the LR image could be automatically learned during the training        
+            
+            Usually,the two steps are mutually independent, as the blur kernels are mainly dependent on the properties of the camera lens while the noises are mainly related to the properties of sensors. 
+            Thus, the distribution of the degradation process can be represented as the product of the distribution of $k$ and $n$, which can be modeled by learning the mapping from a priori random variable $z$ to $k$ and $n$.
+
+
+            \begin{equation}
+                p_{D}(D) = p_{k,n}(k, n) = p_{k}(k)p_{n}(n).
+            \end{equation}
+
+            To model the distribution of the blur kernel k, we define a priori random variable $z_k$ which is subject to multi-dimensional normal distribution. 
+            Then we use a generative module to learn the mapping from zk to k: 
+
+            \begin{equation}
+                k = \text{net}K(z_k), \quad z_k \sim \mathcal{N}(0,1),
+            \end{equation}
+
+            The spatially variant blur kernel is considered first. This implies that the blur kernel for each pixel of the image is different. In that case, we have
+
+            \begin{equation}
+                z_k \in \mathbb{R}^{f_k \times h \times w}, \quad k \in \mathbb{R}^{(k \times k) \times h \times w},
+            \end{equation}
+
+            where $f_k$ is the dimension of the normal distribution $z_k$, $k$ is the size of the blur kernel, $h$ and $w$ are the height and width of the image, respectively.
+            Generally, the sizes of the convolutional weights  are set as 3 × 3, which indicates that the learned blur kernels are spatially correlated.
+            Otherwise, if the spatial size of all convolutional weights is set as 1 × 1, the blur kernel could be approximated by a spatially invariant one, which is a special case of the spatially variant blur kernel with h = w = 1.
+            This approximation simplifies the dimensions of the problem drastically and is an appropiate assumption if the crops used for training the model are small enough.
+            A Softmax layer is added at the end of the network to guarantee that all elements of k sum to one.
+            
+            
+            To model the distribution of the noise $n$, a vanilla generative module can also be used:
+
+            \begin{equation}
+                k = \text{net}N(z_n), \quad z_n \sim \mathcal{N}(0,1),
+            \end{equation}
+
+            \begin{equation}
+                z_n \in \mathbb{R}^{f_n \times h \times w}, \quad n \in \mathbb{R}^{h \times w \times c},
+            \end{equation}
+
+            Where the height, width and number of channels of the image is noted as $h$, $w$ and $c$ respectively. 
+            In this work, $c$ is always set to 1.
+
+            In other methods \cite{plotz2017benchmarking}, the noise is modeled as a combination of shot and read noise. 
+            It can be approximated as a heteroscedastic Gaussian distribution, which is dependent on the content of the image.
+
+            \begin{equation}
+                n \sim \mathcal{N}(0, \sigma_{\text{read}} + \sigma_{\text{shot}} \cdot I^{\text{LR}}_{\text{clean}}),
+            \end{equation}
+
+            This indicates that the noise is also related to the image content and the distribution of $n$ should be expressed as:
+
+
+            \begin{equation}
+                k = \text{net}N(z_n,I^{\text{LR}}_{\text{clean}}), \quad z_n \sim \mathcal{N}(0,1),
+            \end{equation}
 
             \begin{figure}[h!]
                 \centering
                 \includegraphics[scale=0.38]{Includes/3-probabilistic-degradation-model.png}
-                \caption{SADASDSA}
+                \caption{Schematic of the probabilistic degradation module.
+                         The discriminator is left out for a more intuitive description.}
                 \label{fig:3-probabilistic-degradation-model}
             \end{figure}
 
-            \paragraph{Kernel Model}
-            \paragraph{Noise Model}
-            \paragraph{Discriminator}
-            \paragraph{combining with any SR model}
+            The probabilistic degradation model is optimized via adversarial training, which encourages the output of the generator to be similar with the test images \cite{bulat2018learn}.
+            To avoid overly noisy images, a constraint to the noise level is added to the loss function via a regularization term. 
+            A multiplication constant is also added to balance the magnitude of the two terms.
 
+            \begin{equation}
+                l_{\text{total}} = l_{\text{adversarial}} + 100 \|\mathbf{n}\|_2^2.
+            \end{equation}
+
+            PDM is able to model more diverse degradations.It allows one HR image to be degraded into multiple LR (4)
+            the priori knowledge about the degradations can be easily incorporated into PDM, which may encourage it to learn the degradations better.
+
+            in our method, since PDM is better constrained and easier to be trained, it works well to train PDM and the SR model simultaneously. In this way, PDM can be integrated with any SR model to form a unified framework for blind SR, which is called PDM-SR
+
+            At last, PDM formulates the degradation process as a linear function, and the learned degradations can only impose a limited influence on the image content.
+            In this way, it better decouples the degradations with image content and could focus on learning the degradations.
+            In most previous methods, to ensure that yref has consistent content with xref , it is usually guided by a bicubically downscaled version of xref [4, 40].
+            However, this guidance may be inappropriate, especially when the test images are heavily blurred. 
+            Instead, in our PDM, due to the well-constrained blur kernels and noises, the content of yref is inherently consistent with xref .
+            As a result, PDM could avoid the limitation of extra guidance and focus on learning the degradations.
+            
+            In [12] and [40], the training of the degradation model and the SR model are separate, i.e. they firstly train a degradation model and then use the trained degradation model to help train the SR model.
+            This two-step training method is time-consuming but is necessary for their method, because their highly nonlinear degradation models will produce undesirable results at the beginning of the training, which may mislead the optimization of the SR model.
+            However, in our method, since PDM is better constrained and easier to be trained, it works well to train PDM and the SR model simultaneously. In this way, PDM can be integrated with any SR model to form a unified framework for blind SR, which is called PDM-SR
 
     \subsection{Referenced image quality metrics}
 
@@ -96,7 +204,7 @@
     These metrics are build using a pre-trained deep neural network, which is usually trained on a large dataset of images.
     The following sections will describe the most commonly used metrics in the literature.
 
-        \subsubsection{$L_2$ and $L_1$ Loss}
+        \subsubsection{pixel-wise losses}
 
             The $L_1$ and $L_2$ losses are the most commonly used pixel-based metrics in the literature. 
             Additionally, they are usually used as the loss function that drives the network gradients during training.

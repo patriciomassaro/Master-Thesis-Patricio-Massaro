@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.6.26)  14 DEC 2023 08:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.6.26)  19 DEC 2023 19:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -517,7 +517,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.34     \newpage
                   [1]) (./sections/super_resolution.tex
-<Includes/2-SR-ill-posed.jpg, id=303, 1405.25pt x 790.955pt>
+<Includes/2-SR-ill-posed.jpg, id=301, 1405.25pt x 790.955pt>
 File: Includes/2-SR-ill-posed.jpg Graphic file (type jpg)
 <use Includes/2-SR-ill-posed.jpg>
 Package pdftex.def Info: Includes/2-SR-ill-posed.jpg  used on input line 9.
@@ -528,10 +528,10 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has b
                    \relax 
 l.30         \begin{equation}
                               [2 <./Includes/2-SR-ill-posed.jpg>]
-<Includes/2-MISR.jpeg, id=313, 200.67531pt x 72.94228pt>
+<Includes/2-MISR.jpeg, id=311, 200.67531pt x 72.94228pt>
 File: Includes/2-MISR.jpeg Graphic file (type jpg)
 <use Includes/2-MISR.jpeg>
-Package pdftex.def Info: Includes/2-MISR.jpeg  used on input line 46.
+Package pdftex.def Info: Includes/2-MISR.jpeg  used on input line 47.
 (pdftex.def)             Requested size: 301.0122pt x 109.41313pt.
 
 
@@ -541,26 +541,26 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.56 
+l.57 
       [3] [4 <./Includes/2-MISR.jpeg>]
-<Includes/2-domain-gap.pdf, id=335, 876.27374pt x 529.98pt>
+<Includes/2-domain-gap.pdf, id=334, 876.27374pt x 529.98pt>
 File: Includes/2-domain-gap.pdf Graphic file (type pdf)
 <use Includes/2-domain-gap.pdf>
 Package pdftex.def Info: Includes/2-domain-gap.pdf  used on input line 77.
 (pdftex.def)             Requested size: 350.50328pt x 211.98824pt.
-<Includes/2-DomainGap.png, id=340, 840.13875pt x 361.35pt>
+<Includes/2-DomainGap.png, id=339, 840.13875pt x 361.35pt>
 File: Includes/2-DomainGap.png Graphic file (type png)
 <use Includes/2-DomainGap.png>
 Package pdftex.def Info: Includes/2-DomainGap.png  used on input line 99.
 (pdftex.def)             Requested size: 378.05894pt x 162.60599pt.
  [5 <./Includes/2-domain-gap.pdf>]
-<Includes/3-GAN-degradation-model.png, id=356, 652.4375pt x 234.8775pt>
+<Includes/3-GAN-degradation-model.png, id=355, 652.4375pt x 234.8775pt>
 File: Includes/3-GAN-degradation-model.png Graphic file (type png)
 <use Includes/3-GAN-degradation-model.png>
 Package pdftex.def Info: Includes/3-GAN-degradation-model.png  used on input line 107.
 (pdftex.def)             Requested size: 424.07935pt x 152.66856pt.
 
-Overfull \hbox (5.82567pt too wide) in paragraph at lines 107--110
+Overfull \hbox (5.82567pt too wide) in paragraph at lines 107--111
  [][] 
  []
 
@@ -569,12 +569,12 @@ Overfull \hbox (12.01985pt too wide) in paragraph at lines 5--6
 \OT1/cmr/m/n/10.95 Early super-resolution meth-ods com-monly gen-er-ated high-resolution (HR) to low-resolution
  []
 
-<Includes/4-degradation_kernels.pdf, id=368, 1084.05pt x 722.7pt>
+<Includes/4-degradation_kernels.pdf, id=367, 1084.05pt x 722.7pt>
 File: Includes/4-degradation_kernels.pdf Graphic file (type pdf)
 <use Includes/4-degradation_kernels.pdf>
 Package pdftex.def Info: Includes/4-degradation_kernels.pdf  used on input line 14.
 (pdftex.def)             Requested size: 418.25368pt x 278.83032pt.
-<Includes/4-degradation-kernel-examples.pdf, id=369, 1505.625pt x 1003.75pt>
+<Includes/4-degradation-kernel-examples.pdf, id=368, 1505.625pt x 1003.75pt>
 File: Includes/4-degradation-kernel-examples.pdf Graphic file (type pdf)
 <use Includes/4-degradation-kernel-examples.pdf>
 Package pdftex.def Info: Includes/4-degradation-kernel-examples.pdf  used on input line 21.
@@ -591,64 +591,49 @@ File: Includes/4-radiometric_noise_example.pdf Graphic file (type pdf)
 Package pdftex.def Info: Includes/4-radiometric_noise_example.pdf  used on input line 60.
 (pdftex.def)             Requested size: 397.48622pt x 397.48622pt.
  [9 <./Includes/4-radiometric_noise_example.pdf>]
-<Includes/3-probabilistic-degradation-model.png, id=474, 1062.97125pt x 281.05pt>
+<includes/3-srresnet-architecture.pdf, id=474, 679.57887pt x 233.9139pt>
+File: includes/3-srresnet-architecture.pdf Graphic file (type pdf)
+<use includes/3-srresnet-architecture.pdf>
+Package pdftex.def Info: includes/3-srresnet-architecture.pdf  used on input line 76.
+(pdftex.def)             Requested size: 418.25368pt x 143.96504pt.
+ [10 <./includes/3-srresnet-architecture.pdf>] [11]
+<Includes/3-probabilistic-degradation-model.png, id=511, 1062.97125pt x 281.05pt>
 File: Includes/3-probabilistic-degradation-model.png Graphic file (type png)
 <use Includes/3-probabilistic-degradation-model.png>
-Package pdftex.def Info: Includes/3-probabilistic-degradation-model.png  used on input line 79.
+Package pdftex.def Info: Includes/3-probabilistic-degradation-model.png  used on input line 168.
 (pdftex.def)             Requested size: 403.93327pt x 106.8001pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 99.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 99.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 99.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 99.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 99.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 99.
-
-[10 <./Includes/3-probabilistic-degradation-model.png>] [11] [12]
-<Includes/3-NR-IQA.pdf, id=508, 1525.7pt x 659.46375pt>
+ [12 <./Includes/3-probabilistic-degradation-model.png>] [13] [14]
+<Includes/3-NR-IQA.pdf, id=544, 1525.7pt x 659.46375pt>
 File: Includes/3-NR-IQA.pdf Graphic file (type pdf)
 <use Includes/3-NR-IQA.pdf>
-Package pdftex.def Info: Includes/3-NR-IQA.pdf  used on input line 202.
+Package pdftex.def Info: Includes/3-NR-IQA.pdf  used on input line 310.
 (pdftex.def)             Requested size: 381.42407pt x 164.86552pt.
- [13 <./Includes/3-NR-IQA.pdf>] [14]
-<Includes/4-frequency-analysis.pdf, id=529, 1084.05pt x 361.35pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[15] [16 <./Includes/3-NR-IQA.pdf>]
+<Includes/4-frequency-analysis.pdf, id=566, 1084.05pt x 361.35pt>
 File: Includes/4-frequency-analysis.pdf Graphic file (type pdf)
 <use Includes/4-frequency-analysis.pdf>
-Package pdftex.def Info: Includes/4-frequency-analysis.pdf  used on input line 256.
+Package pdftex.def Info: Includes/4-frequency-analysis.pdf  used on input line 364.
 (pdftex.def)             Requested size: 418.25368pt x 139.41516pt.
- [15 <./Includes/4-frequency-analysis.pdf>]
-<Includes/4-gradient-analysis.pdf, id=594, 858.62057pt x 568.28786pt>
+ [17 <./Includes/4-frequency-analysis.pdf>]
+<Includes/4-gradient-analysis.pdf, id=628, 858.62057pt x 568.28786pt>
 File: Includes/4-gradient-analysis.pdf Graphic file (type pdf)
 <use Includes/4-gradient-analysis.pdf>
-Package pdftex.def Info: Includes/4-gradient-analysis.pdf  used on input line 302.
+Package pdftex.def Info: Includes/4-gradient-analysis.pdf  used on input line 410.
 (pdftex.def)             Requested size: 418.25368pt x 276.83327pt.
- [16 <./Includes/4-gradient-analysis.pdf>]) (./sections/datasets.tex
-<Includes/5-wavelength-comparison.png, id=653, 863.225pt x 385.44pt>
+ [18] [19 <./Includes/4-gradient-analysis.pdf>]) (./sections/datasets.tex
+<Includes/5-wavelength-comparison.png, id=694, 863.225pt x 385.44pt>
 File: Includes/5-wavelength-comparison.png Graphic file (type png)
 <use Includes/5-wavelength-comparison.png>
 Package pdftex.def Info: Includes/5-wavelength-comparison.png  used on input line 33.
 (pdftex.def)             Requested size: 418.25368pt x 186.75584pt.
- [17
+ [20
 
 ]
-<Includes/5-ecostress-map-location.png, id=668, 947.54pt x 483.8075pt>
+<Includes/5-ecostress-map-location.png, id=709, 947.54pt x 483.8075pt>
 File: Includes/5-ecostress-map-location.png Graphic file (type png)
 <use Includes/5-ecostress-map-location.png>
 Package pdftex.def Info: Includes/5-ecostress-map-location.png  used on input line 55.
@@ -657,137 +642,138 @@ Package pdftex.def Info: Includes/5-ecostress-map-location.png  used on input li
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[18 <./Includes/5-wavelength-comparison.png>]
+[21 <./Includes/5-wavelength-comparison.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 76.
- [19 <./Includes/5-ecostress-map-location.png>]
-<Includes/5-data_processing_flow_chart.pdf, id=691, 1375.1375pt x 731.73375pt>
+ [22 <./Includes/5-ecostress-map-location.png>]
+<Includes/5-data_processing_flow_chart.pdf, id=734, 1375.1375pt x 731.73375pt>
 File: Includes/5-data_processing_flow_chart.pdf Graphic file (type pdf)
 <use Includes/5-data_processing_flow_chart.pdf>
 Package pdftex.def Info: Includes/5-data_processing_flow_chart.pdf  used on input line 136.
 (pdftex.def)             Requested size: 418.25368pt x 222.55879pt.
- [20]
-<Includes/5-random_crop_processor.pdf, id=699, 1701.35625pt x 591.20876pt>
+ [23]
+<Includes/5-random_crop_processor.pdf, id=742, 1701.35625pt x 591.20876pt>
 File: Includes/5-random_crop_processor.pdf Graphic file (type pdf)
 <use Includes/5-random_crop_processor.pdf>
 Package pdftex.def Info: Includes/5-random_crop_processor.pdf  used on input line 143.
 (pdftex.def)             Requested size: 418.25368pt x 145.33905pt.
-<Includes/4-forest-locations.png, id=700, 682.2288pt x 348.3414pt>
+<Includes/4-forest-locations.png, id=743, 682.2288pt x 348.3414pt>
 File: Includes/4-forest-locations.png Graphic file (type png)
 <use Includes/4-forest-locations.png>
 Package pdftex.def Info: Includes/4-forest-locations.png  used on input line 154.
 (pdftex.def)             Requested size: 418.25368pt x 213.5563pt.
- [21 <./Includes/5-data_processing_flow_chart.pdf> <./Includes/5-random_crop_processor.pdf>] [22 <./Includes/4-forest-locations.png>] [23]) (./sections/experiment_setup.tex [24]) (./sections/results.tex [25
+ [24 <./Includes/5-data_processing_flow_chart.pdf> <./Includes/5-random_crop_processor.pdf>] [25 <./Includes/4-forest-locations.png>] [26]) (./sections/experiment_setup.tex [27]) (./sections/results.tex [28
 
 ]
-<Includes/5-source-prediction-sample.pdf, id=742, 1409.0235pt x 2146.78918pt>
+<Includes/5-source-prediction-sample.pdf, id=784, 1409.0235pt x 2146.78918pt>
 File: Includes/5-source-prediction-sample.pdf Graphic file (type pdf)
 <use Includes/5-source-prediction-sample.pdf>
 Package pdftex.def Info: Includes/5-source-prediction-sample.pdf  used on input line 46.
 (pdftex.def)             Requested size: 418.25368pt x 637.22821pt.
- [26]
+ [29]
 Overfull \vbox (90.8688pt too high) has occurred while \output is active []
 
- [27 <./Includes/5-source-prediction-sample.pdf>]
-<Includes/5-lr-images-fft.pdf, id=847, 1076.82304pt x 714.35706pt>
+ [30 <./Includes/5-source-prediction-sample.pdf>]
+<Includes/5-lr-images-fft.pdf, id=888, 1076.82304pt x 714.35706pt>
 File: Includes/5-lr-images-fft.pdf Graphic file (type pdf)
 <use Includes/5-lr-images-fft.pdf>
 Package pdftex.def Info: Includes/5-lr-images-fft.pdf  used on input line 64.
 (pdftex.def)             Requested size: 323.04941pt x 214.30876pt.
-<Includes/5-lr-images-fft-comparison.pdf, id=849, 715.37325pt x 714.29047pt>
+<Includes/5-lr-images-fft-comparison.pdf, id=890, 715.37325pt x 714.29047pt>
 File: Includes/5-lr-images-fft-comparison.pdf Graphic file (type pdf)
 <use Includes/5-lr-images-fft-comparison.pdf>
 Package pdftex.def Info: Includes/5-lr-images-fft-comparison.pdf  used on input line 78.
 (pdftex.def)             Requested size: 321.91498pt x 321.42773pt.
- [28 <./Includes/5-lr-images-fft.pdf>]
-<Includes/5-source-sr-fft-comparison.pdf, id=890, 715.47047pt x 714.29047pt>
+ [31 <./Includes/5-lr-images-fft.pdf>]
+<Includes/5-source-sr-fft-comparison.pdf, id=932, 715.47047pt x 714.29047pt>
 File: Includes/5-source-sr-fft-comparison.pdf Graphic file (type pdf)
 <use Includes/5-source-sr-fft-comparison.pdf>
 Package pdftex.def Info: Includes/5-source-sr-fft-comparison.pdf  used on input line 94.
 (pdftex.def)             Requested size: 357.73436pt x 357.14435pt.
- [29 <./Includes/5-lr-images-fft-comparison.pdf>]
-<Includes/5-source-domain-lr-performance-scatterplot.pdf, id=945, 1077.94026pt x 343.96127pt>
+ [32 <./Includes/5-lr-images-fft-comparison.pdf>]
+<Includes/5-source-domain-lr-performance-scatterplot.pdf, id=987, 1077.94026pt x 343.96127pt>
 File: Includes/5-source-domain-lr-performance-scatterplot.pdf Graphic file (type pdf)
 <use Includes/5-source-domain-lr-performance-scatterplot.pdf>
 Package pdftex.def Info: Includes/5-source-domain-lr-performance-scatterplot.pdf  used on input line 112.
 (pdftex.def)             Requested size: 418.25368pt x 133.4568pt.
- [30 <./Includes/5-source-sr-fft-comparison.pdf>]
-<Includes/5-source-lr-amplification-statistics.pdf, id=1006, 715.37325pt x 714.29047pt>
+ [33 <./Includes/5-source-sr-fft-comparison.pdf>]
+<Includes/5-source-lr-amplification-statistics.pdf, id=1048, 715.37325pt x 714.29047pt>
 File: Includes/5-source-lr-amplification-statistics.pdf Graphic file (type pdf)
 <use Includes/5-source-lr-amplification-statistics.pdf>
 Package pdftex.def Info: Includes/5-source-lr-amplification-statistics.pdf  used on input line 131.
 (pdftex.def)             Requested size: 357.68575pt x 357.14435pt.
- [31 <./Includes/5-source-domain-lr-performance-scatterplot.pdf>]
-<Includes/5-source-domain-comparison.png, id=1061, 4492.785pt x 2993.1825pt>
+ [34 <./Includes/5-source-domain-lr-performance-scatterplot.pdf>]
+<Includes/5-source-domain-comparison.png, id=1103, 4492.785pt x 2993.1825pt>
 File: Includes/5-source-domain-comparison.png Graphic file (type png)
 <use Includes/5-source-domain-comparison.png>
 Package pdftex.def Info: Includes/5-source-domain-comparison.png  used on input line 155.
 (pdftex.def)             Requested size: 418.25368pt x 278.64627pt.
- [32 <./Includes/5-source-lr-amplification-statistics.pdf>] [33 <./Includes/5-source-domain-comparison.png (PNG copy)>]
-<Includes/5-target_prediction_sample.pdf, id=1125, 1427.83401pt x 1076.82304pt>
+ [35 <./Includes/5-source-lr-amplification-statistics.pdf>] [36 <./Includes/5-source-domain-comparison.png (PNG copy)>]
+<Includes/5-target_prediction_sample.pdf, id=1166, 1427.83401pt x 1076.82304pt>
 File: Includes/5-target_prediction_sample.pdf Graphic file (type pdf)
 <use Includes/5-target_prediction_sample.pdf>
-Package pdftex.def Info: Includes/5-target_prediction_sample.pdf  used on input line 187.
+Package pdftex.def Info: Includes/5-target_prediction_sample.pdf  used on input line 186.
 (pdftex.def)             Requested size: 399.7908pt x 301.50839pt.
- [34 <./Includes/5-target_prediction_sample.pdf>]
-<Includes/5-target-amplification-statistics.pdf, id=1186, 715.404pt x 714.29047pt>
+ [37 <./Includes/5-target_prediction_sample.pdf>]
+<Includes/5-target-amplification-statistics.pdf, id=1226, 715.404pt x 714.29047pt>
 File: Includes/5-target-amplification-statistics.pdf Graphic file (type pdf)
 <use Includes/5-target-amplification-statistics.pdf>
-Package pdftex.def Info: Includes/5-target-amplification-statistics.pdf  used on input line 213.
+Package pdftex.def Info: Includes/5-target-amplification-statistics.pdf  used on input line 212.
 (pdftex.def)             Requested size: 357.70113pt x 357.14435pt.
- [35 <./Includes/5-target-amplification-statistics.pdf>]
-<Includes/6-target-gradient-analysis-image.pdf, id=1242, 1436.99469pt x 1438.17305pt>
+<Includes/6-target-gradient-analysis-image.pdf, id=1228, 1436.99469pt x 1438.17305pt>
 File: Includes/6-target-gradient-analysis-image.pdf Graphic file (type pdf)
 <use Includes/6-target-gradient-analysis-image.pdf>
-Package pdftex.def Info: Includes/6-target-gradient-analysis-image.pdf  used on input line 227.
+Package pdftex.def Info: Includes/6-target-gradient-analysis-image.pdf  used on input line 226.
 (pdftex.def)             Requested size: 402.35577pt x 402.68571pt.
- [36 <./Includes/6-target-gradient-analysis-image.pdf>]
-<Includes/5-gradient-histogram-validation-dataset.pdf, id=1319, 970.41924pt x 558.99525pt>
+ [38 <./Includes/5-target-amplification-statistics.pdf>]
+<Includes/5-gradient-histogram-validation-dataset.pdf, id=1285, 970.41924pt x 558.99525pt>
 File: Includes/5-gradient-histogram-validation-dataset.pdf Graphic file (type pdf)
 <use Includes/5-gradient-histogram-validation-dataset.pdf>
-Package pdftex.def Info: Includes/5-gradient-histogram-validation-dataset.pdf  used on input line 244.
+Package pdftex.def Info: Includes/5-gradient-histogram-validation-dataset.pdf  used on input line 243.
 (pdftex.def)             Requested size: 388.16081pt x 223.59415pt.
-<Includes/5-target-prediction-with-domain-gap.pdf, id=1322, 1438.17305pt x 713.46983pt>
+ [39 <./Includes/6-target-gradient-analysis-image.pdf>]
+<Includes/5-target-prediction-with-domain-gap.pdf, id=1365, 1438.17305pt x 713.46983pt>
 File: Includes/5-target-prediction-with-domain-gap.pdf Graphic file (type pdf)
 <use Includes/5-target-prediction-with-domain-gap.pdf>
-Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap.pdf  used on input line 264.
+Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap.pdf  used on input line 268.
 (pdftex.def)             Requested size: 402.68571pt x 199.77019pt.
- [37 <./Includes/5-gradient-histogram-validation-dataset.pdf>]
-<Includes/5-target-prediction-with-domain-gap-fft.pdf, id=1378, 715.404pt x 714.29047pt>
+ [40 <./Includes/5-gradient-histogram-validation-dataset.pdf>]
+<Includes/5-target-prediction-with-domain-gap-fft.pdf, id=1420, 715.404pt x 714.29047pt>
 File: Includes/5-target-prediction-with-domain-gap-fft.pdf Graphic file (type pdf)
 <use Includes/5-target-prediction-with-domain-gap-fft.pdf>
-Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-fft.pdf  used on input line 278.
+Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-fft.pdf  used on input line 283.
 (pdftex.def)             Requested size: 286.15654pt x 285.71112pt.
-<Includes/5-target-prediction-with-domain-gap-dataset.pdf, id=1380, 1077.94026pt x 354.80179pt>
+ [41 <./Includes/5-target-prediction-with-domain-gap.pdf>]
+<Includes/5-target-prediction-with-domain-gap-dataset.pdf, id=1482, 1077.94026pt x 354.80179pt>
 File: Includes/5-target-prediction-with-domain-gap-dataset.pdf Graphic file (type pdf)
 <use Includes/5-target-prediction-with-domain-gap-dataset.pdf>
-Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-dataset.pdf  used on input line 291.
+Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-dataset.pdf  used on input line 298.
 (pdftex.def)             Requested size: 409.62155pt x 134.82608pt.
- [38 <./Includes/5-target-prediction-with-domain-gap.pdf>] [39 <./Includes/5-target-prediction-with-domain-gap-fft.pdf> <./Includes/5-target-prediction-with-domain-gap-dataset.pdf>]
-<Includes/5-target-iqa-results.pdf, id=1542, 1438.27144pt x 714.682pt>
+ [42 <./Includes/5-target-prediction-with-domain-gap-fft.pdf> <./Includes/5-target-prediction-with-domain-gap-dataset.pdf>]
+<Includes/5-target-iqa-results.pdf, id=1583, 1438.27144pt x 714.682pt>
 File: Includes/5-target-iqa-results.pdf Graphic file (type pdf)
 <use Includes/5-target-iqa-results.pdf>
-Package pdftex.def Info: Includes/5-target-iqa-results.pdf  used on input line 327.
+Package pdftex.def Info: Includes/5-target-iqa-results.pdf  used on input line 330.
 (pdftex.def)             Requested size: 402.71326pt x 200.10959pt.
- [40 <./Includes/5-target-iqa-results.pdf>]) (./sections/conclusions.tex) [41] (./main.bbl [42]) [43] (./main.aux)
+ [43 <./Includes/5-target-iqa-results.pdf>]) (./sections/conclusions.tex) [44] (./main.bbl [45]) [46] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9D0C6B3F26704B7487195D8AA6616552;9993.
+(rerunfilecheck)             Checksum: 2A219008335CE30E0DAE510B6EA9608E;10382.
  ) 
 Here is how much of TeX's memory you used:
- 13885 strings out of 476029
- 234882 string characters out of 5786180
+ 13914 strings out of 476029
+ 235491 string characters out of 5786180
  1876346 words of memory out of 5000000
- 33877 multiletter control sequences out of 15000+600000
- 522100 words of font info for 69 fonts, out of 8000000 for 9000
+ 33890 multiletter control sequences out of 15000+600000
+ 522721 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,1120b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (47 pages, 21275264 bytes).
+ 75i,15n,79p,1120b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on main.pdf (50 pages, 21346682 bytes).
 PDF statistics:
- 1742 PDF objects out of 2073 (max. 8388607)
- 869 compressed objects within 9 object streams
- 185 named destinations out of 1000 (max. 500000)
- 582 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1796 PDF objects out of 2073 (max. 8388607)
+ 915 compressed objects within 10 object streams
+ 197 named destinations out of 1000 (max. 500000)
+ 587 words of extra memory for PDF output out of 10000 (max. 10000000)
 

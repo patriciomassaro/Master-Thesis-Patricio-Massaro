@@ -79,6 +79,20 @@ Christian Ledig, Lucas Theis, Ferenc Huszar, Jose Caballero, Andrew Cunningham,
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 \newblock Deep residual learning for image recognition, 2015.
 
+\bibitem{zhu2020unpaired}
+Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei~A. Efros.
+\newblock Unpaired image-to-image translation using cycle-consistent
+  adversarial networks, 2020.
+
+\bibitem{plotz2017benchmarking}
+Tobias Plotz and Stefan Roth.
+\newblock Benchmarking denoising algorithms with real photographs, 2017.
+
+\bibitem{bulat2018learn}
+Adrian Bulat, Jing Yang, and Georgios Tzimiropoulos.
+\newblock To learn image super-resolution, use a gan to learn how to do image
+  degradation first, 2018.
+
 \bibitem{VGGnet}
 Karen Simonyan and Andrew Zisserman.
 \newblock Very deep convolutional networks for large-scale image recognition.
