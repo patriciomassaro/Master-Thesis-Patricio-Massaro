@@ -68,7 +68,7 @@ In this case, the degradation model is unknown and the objective of the GAN is t
 
         The radial profile of the log magnitude of the FFT for the LR images shown in Fig. \ref{fig:5-lr-images-fft-comparison.pdf} confirmed what was observed previously.
         The adapted-LR image diminishes the high frequency components much more than the baseline-LR image with amplifications of -6dB in frequencies starting at 0.1 cycles per pixel, with a stable effect of -6dB from 0.3 to 0.7 cycles per pixel. 
-        It is important to note that 0.1 cycles per pixel at a 210m GSD corresponds to a cycle frequency of 2100m, 0.3 cycles per pixel corresponds to 700m and 0.7 cycles per pixel to 300m.
+        It is important to note that 0.1 cycles per pixel at a 210m GSD corresponds to a cycle frequency of 2100 $m^{-1}$, 0.3 cycles per pixel corresponds to 700 $m^-1$ and 0.7 cycles per pixel to 300 $m^{-1}$.
         This suggests that the degradation model from the real FOREST-2 images is more complex and loses more information than the baseline degradation model.
         An analysis for the whole validation dataset will be further discussed to verify that this behaviour is consistent across different scenes and conditions.
 
@@ -81,7 +81,7 @@ In this case, the degradation model is unknown and the objective of the GAN is t
             \label{fig:5-lr-images-fft-comparison.pdf}
         \end{figure}
 
-        When analyzing the super resolved images versus the ground truth in the frequency domain, a very similar frequency response is observed for the super resolved images of the adapted and the baseline pipelines.
+        When analyzing the super resolved images versus the ground truth in the frequency domain, a very similar frequency response is observed for both pipelines.
         Moreover, the SR images are able to stay above -3dB, a common threshsold used in the literature, up until 0.3 cycles per pixel, which correspond to 300$\frac{1}{m}$ when each pixel equals 70m.
         This suggests that the SR model in the adapted pipeline is able to recover the lost information at those frequencies due its more complex degradation model.
         Starting at 0.3 cycles per pixel, a decrease in amplification is observed for both pipelines, but more steeply for the adapted pipeline.
@@ -98,19 +98,79 @@ In this case, the degradation model is unknown and the objective of the GAN is t
             \label{fig:5-source-sr-fft-comparison}
         \end{figure}
 
+        \subsubsection{Probabilistic degradation models comparison}
 
-        \subsubsection{LR comparison}
+        In order to better understand the stochastic nature of the generator, a kernel was extracted 2000 times from the it using different realizations of the random variable $z_k$.
+        The mean and standard deviation of the sampled kernels was then computed.
+        It is important to note that the experiment configuration assumes that the kernel does not depend on the pixel content or position, resulting in one kernel per image.
+        The results are shown in Fig. \ref{fig:5-source-kernel-mean-std}. 
+        In order to make the standard deviation of each pixel comparable, its value is normalized by the mean value of the corresponding pixel. 
+        This allows to express the standard deviation as a percentage of the mean corresponding pixel value.
+        
+        While the baseline and the adapted kernel have the maximum mean and std in the same pixel, the adapted one is much more spread out. 
+        The baseline kernel is composed of a few pixels very close to each other.
+        This suggests that the adapted kernel is more complex and spread out, while the baseline kernel is simpler and more concentrated.
+        The result of this is that the adapted kernel produces more blurry images, as the kernel is more spread out, while the baseline kernel produces less blurry images, as the degradation is more concentrated.
+        The figure also displays the benefits of the probabilistic degradation model.
+        Using only one HR image, the generator is able to produce a wide variety of LR pairs. Allowing the training of SR models able to generalize better to the real world.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Includes/5-source-kernel-mean-std.pdf}
+            \caption{Mean and standard deviation of the estimated kernels for the baseline and adapted degradation model, using 2000 realizations of $z_k$.
+                     The standard deviation of each pixel is normalized by the corresponding mean value.
+                     kernel pixels with mean lower than $10^{-4}$ are considered with 0 std for clarity in the plot.}
+            \label{fig:5-source-kernel-mean-std}
+        \end{figure}
+
+        In the case of the noise, the experiment setup assumes that it depends on the pixel content and position.
+        For that reason, two different characterizations were done. 
+        First, The stochastic component of the noise will be assessed by computing the SNR between the clean image $I_{\text{LR}}^{\text{clean}}$ and the output of the noise module for one HR input and 2000 realizations of $z_n$.
+        This shows again the benefits of a stochastic model, several LR versions of an HR image can be generated, enriching a training dataset.
+
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Includes/5-source-noise-1-sample.pdf}
+            \caption{Distribution of SNR values using $I_{\text{LR}}^{\text{clean}}$, product of the convolution of the kernel and $I_{\text{HR}}^{\text{clean}}$, and the noise module output for both pipelines.
+                     The output noise is generated 2000 times, using different realizations of the random variable $z_n$ for each iteration and the same input image.
+                    }
+            \label{fig:5-source-noise-1-sample}
+        \end{figure}
+        
+
+        Second, the signal-to-noise (SNR) ratio between the clean image $I_{\text{LR}}^{\text{clean}}$ and the output of the noise module of the generator will be computed one time for the whole validation dataset.
+        An estimated density function of the SNR for each degradation model is shown in Fig. \ref{fig:5-source-noise-SNR}.
+        The SNR is in general bigger when using the baseline model compared to the adapted one.
+        This implies that in the output of the generator, the noise has more energy compared to the clean image when the target domain is composed of scenes coming from the FOREST-2 satellite. 
+        The distribution of the noise can not be assessed using this method, but it was observed in Fig. \ref{fig:5-source-domain-comparison} that it seems to have a higher dependency on the pixel value of the input.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Includes/5-source-noise-SNR.pdf}
+            \caption{Comparison of the SNR expressed in dB of the low resolution images generated by the baseline and adapted degradation model.}
+            \label{fig:5-source-noise-SNR}
+        \end{figure}
+
+        The observed effects support what is observed in the Fig. \ref{fig:5-source-domain-comparison}. 
+        The adapted pipeline produces broader kernels and noise with more energy, compared to the baseline pipeline.
+        This leads to more blurry and more noisy generated LR images. 
+        The kernel imposes the diminishing of frequency components in the signal, and the noise degrades the ratio of clean signal energy in the image.
+        Both components will create a more difficult scenario for the super resolution model, which will try to go back to the HR image from the generated LR image.
+
+        \subsubsection{Low resolution images comparison}
 
         A quantitative analysis of the LR images obtained by the generator of each pipeline is performed. 
         Fig. \ref{fig:5-source-domain-lr-performance-scatterplot} shows 3 supervised performance metrics obtained by comparing the LR images obtained by the pipelines with the gaussian blurring + bicubic downsampling degradation.
         In this case, a consistent higher PSNR and SSIM means that the baseline-LR image is closer to the gaussian blurring + bicubic downsampling LR image than the one generated by the adapted pipeline. 
         A lower LPIPS means that even using perceptual metrics, the baseline-LR image is also closer.
-        This is consistent with the results shown in Fig. \ref{fig:5-source_domain_sample}, where the adapted LR image is more blurry and noisy, suggesting that the unknown degradation is worse than the baseline degradation model.
+        This is consistent with the results shown in Fig. \ref{fig:5-source_domain_sample}, where the adapted LR image is more blurry and noisy, suggesting that the unknown degradation is far from a baseline degradation model.
         
         \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{Includes/5-source-domain-lr-performance-scatterplot.pdf}
-            \caption{Performance metrics between the LR images obtained by the pipelines vs the gaussian blurring + bicubic downsampling degradation.}
+            \caption{Performance metrics between the LR images obtained by the pipelines vs the gaussian blurring + bicubic downsampling degradation.
+                     On the left, the PSNR is displayed. On the middle and the right, SSIM and LPIPS are represented respectively.}
             \label{fig:5-source-domain-lr-performance-scatterplot}
         \end{figure}
 
@@ -124,7 +184,6 @@ In this case, the degradation model is unknown and the objective of the GAN is t
         The spatial frequency is obtained from the radial distance to the center of the FFT, as shown in \ref{subsubsec:frequency_domain_analysis}.
         In (b), the amplification of each generated LR image with respect to a simple gaussian blurring + downscaling is shown. 
         The results for the whole dataset show that the LR images generated by the adapted pipeline yield a reduction in the higher frequency components consistently across all samples, with a ± 1 standard deviation interval between -4 and -6 dB from between 0.3 and 0.7 cycles per 210m pixel.
-        This translates in blurrier images, and a more difficult starting point for a SR model to work with.
 
         \begin{figure}[H]
             \centering
@@ -148,7 +207,7 @@ In this case, the degradation model is unknown and the objective of the GAN is t
         In the lower row (b), the SR model is discarded and a simple bicubic upsampling is used to super resolve the degraded images of each pipeline. 
         In this case, using the baseline LR version as input consistently yields better results than the adapted LR version, in all metrics.
         This suggests that the learned degradation model from FOREST-2 images loses more information than the baseline, resulting in a lower effective ground sampling distance than what was is specified in FOREST-2 fact sheet.
-        Consistent with what was found in the frequency domain analysis observed in Fig. \ref{fig:5-source-sr-fft-comparison}, the SR model is able to recover most of the information, as the performance after using the SR models is very similar. 
+        Consistent with what was found in the frequency domain analysis observed in Fig. \ref{fig:5-source-sr-fft-comparison}, the SR model is able to recover most of the information, as the performance when employing the SR models is very similar. 
         
         \begin{figure}[H]
             \centering
@@ -159,7 +218,7 @@ In this case, the degradation model is unknown and the objective of the GAN is t
             \label{fig:5-source-domain-comparison}
         \end{figure}
 
-        Fig \ref{fig:5-source-domain-comparison} proves the relevance of the domain gap in super resolution, the SR model is able to estimate the inverse of the degradation function in most cases, if given the correct data.
+        Fig \ref{fig:5-source-domain-comparison} proves the relevance of the domain gap in super resolution, the SR model is able to estimate the inverse of the degradation function, if given the correct data.
         The problem relies on that in most experiments, the wrong degradation is shown to the model, forcing it to learn the inverse of an incorrect function.  
         This plays an essential role when deploying super resolution model in real production environments, where the degradation model may not be known. 
 
@@ -203,7 +262,7 @@ In this case, the degradation model is unknown and the objective of the GAN is t
         As higher frequencies are related to noise and artifacts, this suggests that the adapted model is able to recover more details than the baseline model, while minimizing undesired components.
         The amplification plot of the SR models against bicubic upsampling shows the same behaviour in a more clear way. Between 0.1 and 0.25 cycles per pixel, the amplification peaks  between 6 and 8 dB on average with respect to bicubic, while the baseline model is between 0 and 2 dB.
         Such amplification, at a pixel size of 70m, corresponds to cycle frequencies between  300 $\frac{1}{m}$ and 700 $\frac{1}{m}$, which is consistent with the loss of components observed in \ref{fig:5-lr-images-fft-comparison}.
-        The variability of the amplification allows to conclude that this amplification is consistently higher than the baseline-SISR for all the validation dataset.
+        The variability of the amplification allows to conclude that this amplification is consistently higher than the baseline-SISR along the dataset.
         On the other side, while the amplification is very similar in frequencies related to noise, the adapted model seems to step up a little bit compared to the baseline.  
         This suggests that the adapted model is able to recover details from real FOREST-2 images, amplifying frequencies of interest, at the cost of a small increase in the overall noise of the image.
 
@@ -249,16 +308,16 @@ In this case, the degradation model is unknown and the objective of the GAN is t
 
          % Another example would be images taken from FOREST-2 in several years may not have the same distribution as current images, as the instruments may have degraded over time.
 
-        To simulate this situation, the model trained using real FOREST-2 images was employed to super-resolve synthetic FOREST images degraded using the baseline degradation model. The results, shown in Figs. \ref{fig:5-target-prediction-with-domain-gap} and \ref{fig:5-target-prediction-with-domain-gap-fft}, indicate the performance of the adapted model is catastrophic, producing several artifacts and yielding a PSNR difference of approximately 10dB, which represents a tenfold difference in terms of Mean Squared Error (MSE). This highlights the critical need for adaptable SR models that can effectively handle diverse and evolving real-world scenarios.
+        % To simulate this situation, the model trained using real FOREST-2 images was employed to super-resolve synthetic FOREST images degraded using the baseline degradation model. The results, shown in Figs. \ref{fig:5-target-prediction-with-domain-gap} and \ref{fig:5-target-prediction-with-domain-gap-fft}, indicate the performance of the adapted model is catastrophic, producing several artifacts and yielding a PSNR difference of approximately 10dB, which represents a tenfold difference in terms of Mean Squared Error (MSE). This highlights the critical need for adaptable SR models that can effectively handle diverse and evolving real-world scenarios.
 
 
         The combination of the probabilistic degradation model and the SR model were proven helpful to bridge the domain gap and inprove the resolution of real FOREST-2 images.
         However, it is important to understand what happens when the target domain used in training does not match the conditions that will occur in the real world.
-        While the common scenario is that the real degradation model is more complex than the one assumed in the experiments, the opposite can also occur.
-        Assuming a more complex degradation model in the dataset could lead to generated LR images with more attenuation in the frequency domain, resulint in an SR model that "over-amplifies", producing noisy images with undesired artifacts.
+        While the common scenario is that the real degradation model is more complex than the one assumed in the dataset generation, the opposite can also occur.
+        Assuming a more complex degradation model in the dataset could lead to LR images with more attenuation in higher frequency components, resulting in an SR model that "over-amplifies", producing noisy images with undesired artifacts.
         In this work, HR-LR pairs generated using a baseline degradation model exemplify an overly optimistic degradation scenario.
-        When using the adapted SR model on these generated LR images, this second scenario can be analyzed.
-        As in this experiment, the ground truth is known, the performance of the SR model can be evaluated using metrics like PSNR and SSIM.
+        When using the adapted SR model on these generated LR images, this scenario can be analyzed.
+        As in this experiment the ground truth is known, the performance of the SR model can be evaluated using metrics like PSNR and SSIM.
         
         The results are shown in Figs. \ref{fig:5-target-prediction-with-domain-gap} and \ref{fig:5-target-prediction-with-domain-gap-fft}.
         The performance of the adapted model on images with an optimistic degradation model is catastrophic, producing several artifacts and yielding a PSNR difference of approximately 10dB, which represent a 10x difference in terms of MSE.
@@ -275,8 +334,7 @@ In this case, the degradation model is unknown and the objective of the GAN is t
         The adapted model adds amplification in the higher range of spatial frequency, related with noise and artifacts.
         The frequencies of interest are also amplified.
         This suggests that while the adapted model highlights edges and details, it also severely amplifies the noise and artifacts, resulting in a worse performance in terms of PSNR.
-        % It is important to note that the amplification curve does not show a considerable difference with respect to the one in Fig. \ref{fig:5-target-amplification-statistics},
-        % highlighting the fact that the frequency analysis is not suitable by itself to evaluate the performance of the SR model.
+        
 
         \begin{figure}[H]
             \centering
@@ -302,39 +360,39 @@ In this case, the degradation model is unknown and the objective of the GAN is t
         
         
     This demonstrates that while this approach is very good to bridge a domain gap, it is not robust at all to domain shifts. 
-    This limitation is in sync with what is found in the literature, where GAN approaches are not able to generalize to arbitrary domains DASDASD.
+    This limitation is in sync with what is found in the literature seen in \ref{subsubsec:implicit-modelling}, implicit modelling for blind super resolution using GANs are not able to generalize to arbitrary domains not seen in the target domain.
 
-    \subsection{Domain gap using non-references image quality assessment}
+    \subsection{Domain gap assessment using non-referenced image quality assessment}
 
     As in the target domain the ground truth is not known due to the lack of a paired dataset, the performance of the SR model can not be evaluated using metrics like PSNR and SSIM.
-    The image quality assessment metrics was done for $\mathcal{D}_{\text{SF}-\text{RF}}$ and $\mathcal{D}_{\text{SF}-\text{SF}}$, calculating the NIQE and BRISQUE scores of all the super resolved images from each validation dataset.
+    Non-referenced image quality assessment (NR-IQA) metrics can help to understand the relative performance of the SR models when arbitrary LR images are used as an input.
+    
+    The analysis was performed by taking the adapted and baseline SR models, trained on $\mathcal{D}_{\text{SF}-\text{RF}}$ and $\mathcal{D}_{\text{SF}-\text{SF}}$ respectively, and using them to super resolve synthetic degraded forest-2 images and real LR forest-2 images as an input.
+    Then, the NIQE and BRISQUE scores are calculated.
     
     The results are shown in Fig. \ref{fig:5-target-iqa-results}.
-    For both metrics, a large gap is observed between the adapted model and the rest for dataset $\mathcal{D}_{\text{SF}-\text{RF}}$, suggesting that the adapted model is able to produce more natural images than the rest.
+    For both metrics, a large gap is observed between the adapted model and the rest when the input are real FOREST-2 data, suggesting that the adapted model is able to produce more natural images than the rest.
     This behaviour does not replicates when the input images come from $\mathcal{D}_{\text{SF}-\text{SF}}$.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.28]{Includes/5-target-iqa-results.pdf}
+        \caption{Image quality assessment metrics for the different SR models using different datasets as input. 
+                In both metrics, the lower the score, the better the image quality.}
+        \label{fig:5-target-iqa-results}
+    \end{figure}
     
     Moreover, for the adapted model, both metrics tend to get worse when the input images come from synthetic FOREST-2 images. The contrary happens for the rest of the models.
-    This suggests that any SR model is able to produce more natural images only when the input images come from the same distribution as the target domain used in training.
+    This suggests that the SR model is able to produce more natural images only when the input images come from the same distribution as the target domain used in training.
     
     However, it is important to note that: 
 
     \begin{enumerate}
-        \item The images used for training the NIQE and BRISQUE models are not remote sensing images, and therefore, the results may not be representative. This could be circumvented by training a NIQE/BRISQUE model using remote sensing images only.
-        \item NIQE and BRISQUE are objective measures of image quality, not of physical consistency or image fidelity.
+        \item NIQE and BRISQUE are calculated using a pre-trained model. The images used for the pre-training are not remote sensing images, and therefore, the results may not be representative. This could be circumvented by training a NIQE/BRISQUE model using with a more adequate dataset for the task.
+        \item NIQE and BRISQUE are a measure of image quality and naturalness, not physical consistency or reconstruction fidelity.
     \end{enumerate}
 
-    While the comparison of results may help to understand the behaviour of the models, it is important to note that the results are not representative of the real world performance of the models. 
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.28]{Includes/5-target-iqa-results.pdf}
-            \caption{Image quality assessment metrics for the different SR models using different datasets as input. 
-                    In both metrics, the lower the score, the better the image quality.}
-            \label{fig:5-target-iqa-results}
-        \end{figure}
-
-
-        
+    While the relative comparison of these results may help to understand the behaviour of the models, it is important to note that the results are not representative of their real world performance. 
 
         
 \newpage

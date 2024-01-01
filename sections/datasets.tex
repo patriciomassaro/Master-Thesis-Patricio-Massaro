@@ -61,7 +61,10 @@ While FOREST's temporal resolution exceeds that of ECOSTRESS, allowing for the m
 
 The AppEEARS platform returns multiple scenes that correspond to the specified area sample within the requested timeframe. This includes 5 mapped radiance measurements alongside their corresponding Quality Assurance (QA) bands. Additionally, a CSV file is provided, detailing quality statistics  for each scene. The interface returns any scene that overlaps with the requested area. For that reason, some GeoTIFFs may be significantly smaller than others, with variances up to 90\%. Moreover, an important number of these GeoTIFFs may contain a high percentage of bad quality pixels, rendering them unsuitable for model training. Furthermore, as highlighted in the ECOSTRESS frequently asked questions \cite{ecostress_faq}, the accuracy of radiance measurements is highly dependent on clear sky conditions; cloudy scenes typically yield negligible radiance emissions.
 
-The dataset includes several GeoTIFFs for each scene. Downloading the entirety of this dataset is impractical due to its huge size.  From the 50 scenes, each one is potentially replicated over 20 times over the 10 months request window. Such a dataset, given its magnitude, cannot be used for model training with the available hardware resources. Therefore, a procedure is developed to identify and select the most appropriate scene for each month, based on a predefined set of criteria:
+The dataset includes several GeoTIFFs for each scene. Downloading the entirety of this dataset is impractical due to its huge size.  
+From the 50 scenes, each one is potentially replicated over 20 times over the 10 months request window.
+Such a dataset, given its magnitude, cannot be used for model training with the available hardware resources.
+Therefore, a procedure is developed to identify and select the most appropriate scene for each month, based on a predefined set of criteria:
 
 \begin{enumerate}
 \item Scenes should have a low proportion of bad quality pixels.
@@ -128,7 +131,12 @@ The fill values in the mapped radiances and the data quality classes are used to
     \caption{Fill Value and Data Quality Classes}
 \end{table}
 
-The synthetic LWIR are not suitable for the super-resolution task yet. They are too big to be kept in memory, and not all their values are of good quality. For that reason, for each scene, a number of random crops of size 264x264 pixels are taken. The random crop processor pipeline is displayed in Fig. \ref{fig:5-random_crop_processor}. It is an iterative process where at each stage, crops that do not comply with the quality considerations ( all pixels are of good quality and no stripe noise was detected) are discarded until the target number of crops per scene is achieved. Additionally, the Affine Transformation is translated so that the images can be georeferenced.
+The synthetic LWIR are not suitable for the super-resolution task yet.
+They are too big to be kept in memory, and not all their values are of good quality.
+For that reason, for each scene, a number of random crops of size 264x264 pixels are taken.
+The random crop processor pipeline is displayed in Fig. \ref{fig:5-random_crop_processor}.
+It is an iterative process where at each stage, crops that do not comply with the quality considerations ( all pixels are of good quality and no stripe noise was detected) are discarded until the target number of crops per scene is achieved.
+Additionally, the Affine Transformation is translated so that the images can be georeferenced.
 
 
 \begin{figure}[H]
@@ -149,14 +157,43 @@ The synthetic LWIR are not suitable for the super-resolution task yet. They are 
 
 \subsection{Obtaining FOREST-2 data}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{Includes/4-forest-locations.png}
-    \caption{Location of the FOREST-2 scenes.}
-    \label{fig:4-forest-locations}
-\end{figure}
+    To obtain a dataset of FOREST-2 image, the company provides an internal API that allows the download of the scenes captured by the satellite. 
+    The download of the scenes is done programmatically in the locations provided in Fig. \ref{fig:4-forest-locations}. 
 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{Includes/4-forest-locations.png}
+        \caption{Location of the FOREST-2 scenes.}
+        \label{fig:4-forest-locations}
+    \end{figure}
 
+    The scenes are downloaded in the NetCDF-4 format, containing the LWIR1, LWIR2 and MWIR bands, as long as the latitude and longitude information. 
+    An example of a scene is shown in Fig. \ref{fig:4-forest-complete example}. 
+    As in this work, the focus is on the long wave infrared, the MWIR band is discarded.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{Includes/4-forest2-unprocessed-bands.pdf}
+        \caption{LWIR1, LWIR2 and MWIR bands of a FOREST-2 scene downloaded from the company's API.}
+        \label{fig:4-forest-complete example}
+    \end{figure}
+
+    The provided array have an enormous proportion of NA values and are not suitable for taking crops.
+    For that, a bounding box is defined for each band, removing most of the NA values. 
+    The resulting scenes are shown in Fig. \ref{fig:4-forest-bounding-box}.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{Includes/4-forest2-cropped-bands.pdf}
+        \caption{LWIR1 and LWIR2 of a FOREST-2 scene downloaded from the company's API, after cropping NA values.}
+        \label{fig:4-forest-bounding-box}
+    \end{figure}
+
+    A similar random crop processor as in Fig. \ref{fig:5-random_crop_processor} is employed afterwards. 
+    The objective is to obtain crops 3 times less than the original size, as the objective is to train a SR model with a scale factor of 3.
+    If any crop has any NA value or strip noise is detected, it is discarded and the process restarts.
+    Using the latitude and the longitude information, the affine transformation is calculated so that the crops can be georeferenced, if necessary.
+    
 \subsection{Datasets}
 
 For a better understanding of how the proposed architecture works, several datasets combinations are used. 

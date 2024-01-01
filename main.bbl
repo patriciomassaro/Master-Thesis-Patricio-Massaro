@@ -1,5 +1,152 @@
 \begin{thebibliography}{10}
 
+\bibitem{lst2005}
+J.-M Lefevre, C.~Quentin, and Danièle Hauser.
+\newblock Land surface temperature retrieval techniques and applications : Case
+  of the avhrr.
+\newblock {\em Measuring and Analysing the directional spectrum of ocean
+  waves.}, 01 2005.
+
+\bibitem{townshend94}
+C.~O.~JUSTICE J.~R. G.~TOWNSHEND.
+\newblock The 1 km resolution global data set: needs of the international
+  geosphere biosphere programme.
+\newblock {\em International Journal of Remote Sensing}, 15(17):3417--3441,
+  1994.
+
+\bibitem{becker90}
+François Becker and Zhao-Liang Li.
+\newblock Becker f, li z. towards a local split window method over land
+  surfaces. international journal of remote sensing.
+\newblock {\em International Journal of Remote Sensing - INT J REMOTE SENS},
+  11:369--393, 03 1990.
+
+\bibitem{sca2009}
+J.C. Jimenez-Munoz, J.~Cristobal, J.A. Sobrino, G.~Soria, M.~Ninyerola, and
+  X.~Pons.
+\newblock Revision of the single-channel algorithm for land surface temperature
+  retrieval from landsat thermal-infrared data.
+\newblock {\em IEEE Transactions on Geoscience and Remote Sensing},
+  47(1):339--349, 2009.
+
+\bibitem{mwa2001}
+A.~Karnieli Z.~Qin and P.~Berliner.
+\newblock A mono-window algorithm for retrieving land surface temperature from
+  landsat tm data and its application to the israel-egypt border region.
+\newblock {\em International Journal of Remote Sensing}, 22(18):3719--3746,
+  2001.
+
+\bibitem{LI201314}
+Zhao-Liang Li, Bo-Hui Tang, Hua Wu, Huazhong Ren, Guangjian Yan, Zhengming Wan,
+  Isabel~F. Trigo, and José~A. Sobrino.
+\newblock Satellite-derived land surface temperature: Current status and
+  perspectives.
+\newblock {\em Remote Sensing of Environment}, 131:14--37, 2013.
+
+\bibitem{HORNING20082986}
+N.~Horning.
+\newblock Remote sensing.
+\newblock In Sven~Erik Jørgensen and Brian~D. Fath, editors, {\em Encyclopedia
+  of Ecology}, pages 2986--2994. Academic Press, Oxford, 2008.
+
+\bibitem{UNEP2021Wildfire}
+{United Nations Environment Programme}.
+\newblock Spreading like wildfire: The rising threat of extraordinary landscape
+  fires.
+\newblock
+  \url{https://www.unep.org/resources/report/spreading-wildfire-rising-threat-extraordinary-landscape-fires},
+  2021.
+\newblock Accessed: [2023-12-20].
+
+\bibitem{lippitt2015time}
+Christopher~D Lippitt, Douglas~A Stow, and Lloyd~L Coulter.
+\newblock {\em Time-sensitive remote sensing}.
+\newblock Springer, 2015.
+
+\bibitem{ijgi11120601}
+Parwati Sofan, Fajar Yulianto, and Anjar~Dimara Sakti.
+\newblock Characteristics of false-positive active fires for biomass burning
+  monitoring in indonesia from viirs data and local geo-features.
+\newblock {\em ISPRS International Journal of Geo-Information}, 11(12), 2022.
+
+\bibitem{atlanticcouncil2021extreme}
+{Atlantic Council}.
+\newblock Extreme heat: Redefining business resilience for the climate crisis.
+\newblock Atlantic Council, August 2021.
+
+\bibitem{Hsu2021Disproportionate}
+Angel Hsu, Glenn Sheriff, Tirthankar Chakraborty, et~al.
+\newblock Disproportionate exposure to urban heat island intensity across major
+  us cities.
+\newblock {\em Nat Commun}, 12(2721), 2021.
+
+\bibitem{deilami2018urban}
+K.~Deilami, M.~D. Kamruzzaman, and Y.~Liu.
+\newblock Urban heat island effect: A systematic review of spatio-temporal
+  factors, data, methods, and mitigation measures.
+\newblock {\em International journal of applied earth observation and
+  geoinformation}, 67:30--42, 2018.
+
+\bibitem{mohamed2017land}
+A.~A. Mohamed, J.~Odindi, and O.~Mutanga.
+\newblock Land surface temperature and emissivity estimation for urban heat
+  island assessment using medium-and low-resolution space-borne sensors: A
+  review.
+\newblock {\em Geocarto international}, 32(4):455--470, 2017.
+
+\bibitem{sobrino2012impact}
+J.~A. Sobrino, R.~Oltra-Carri{\'o}, G.~S{\`o}ria, R.~Bianchi, and M.~Paganini.
+\newblock Impact of spatial resolution and satellite overpass time on
+  evaluation of the surface urban heat island effects.
+\newblock {\em Remote Sensing of Environment}, 117:50--56, 2012.
+
+\bibitem{huang2013generating}
+B.~Huang, J.~Wang, H.~Song, D.~Fu, and K.~Wong.
+\newblock Generating high spatiotemporal resolution land surface temperature
+  for urban heat island monitoring.
+\newblock {\em IEEE Geoscience and Remote Sensing Letters}, 10(5):1011--1015,
+  2013.
+
+\bibitem{USGS2023Landsat}
+{U.S. Geological Survey}.
+\newblock {Landsat Satellite Missions}, 2023.
+\newblock Accessed: 2023-12-20.
+
+\bibitem{terra_nasa}
+{Terra} -- {NASA's} flagship earth observing satellite.
+\newblock \url{https://terra.nasa.gov/}, 2023.
+\newblock Accessed: [insert date here].
+
+\bibitem{Zhu2021}
+W.~Zhu, J.~Sun, C.~Yang, M.~Liu, X.~Xu, and C.~Ji.
+\newblock How to measure the urban park cooling island? a perspective of
+  absolute and relative indicators using remote sensing and buffer analysis.
+\newblock {\em Remote Sensing}, 13(16):3154, August 2021.
+
+\bibitem{Shi2019}
+Y.~Shi, Y.~Xiang, and Y.~Zhang.
+\newblock Urban design factors influencing surface urban heat island in the
+  high-density city of guangzhou based on the local climate zone.
+\newblock {\em Sensors}, 19(16):3459, August 2019.
+
+\bibitem{Yang2017}
+Chaobin Yang, Xingyuan He, Lingxue Yu, Jiuchun Yang, Fengqin Yan, Kun Bu,
+  Liping Chang, and Shuwen Zhang.
+\newblock The cooling effect of urban parks and its monthly variations in a
+  snow climate city.
+\newblock {\em Remote Sensing}, 9(10):1066, October 2017.
+
+\bibitem{Rouse1973MonitoringVS}
+John~Wilson Rouse, Robert~H. Haas, John~A. Schell, and D.~W. Deering.
+\newblock Monitoring vegetation systems in the great plains with erts.
+\newblock 1973.
+
+\bibitem{skopje2018}
+Gordana Kaplan, Ugur Avdan, and Zehra~Yigit Avdan.
+\newblock Urban heat island analysis using the landsat 8 satellite data: A case
+  study in skopje, macedonia.
+\newblock {\em Proceedings}, 2(7), 2018.
+
 \bibitem{zeyde2010single}
 Roman Zeyde, Michael Elad, and Matan Protter.
 \newblock On single image scale-up using sparse-representations, 2010.
@@ -19,10 +166,56 @@ Syed Muhammad~Anwar Bashir, Yanning Wang, Murtaza Khan, and Yulei Niu.
 \newblock A comprehensive review of deep learning-based single image
   super-resolution, 2021.
 
+\bibitem{timofte2015seven}
+Radu Timofte, Rasmus Rothe, and Luc~Van Gool.
+\newblock Seven ways to improve example-based single image super resolution,
+  2015.
+
+\bibitem{lai2017deep}
+Wei-Sheng Lai, Jia-Bin Huang, Narendra Ahuja, and Ming-Hsuan Yang.
+\newblock Deep laplacian pyramid networks for fast and accurate
+  super-resolution, 2017.
+
+\bibitem{simonyan2015deep}
+Karen Simonyan and Andrew Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition,
+  2015.
+
+\bibitem{he2015deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition, 2015.
+
+\bibitem{ledig2017photorealistic}
+Christian Ledig, Lucas Theis, Ferenc Huszar, Jose Caballero, Andrew Cunningham,
+  Alejandro Acosta, Andrew Aitken, Alykhan Tejani, Johannes Totz, Zehan Wang,
+  and Wenzhe Shi.
+\newblock Photo-realistic single image super-resolution using a generative
+  adversarial network, 2017.
+
+\bibitem{wang2018recovering}
+Xintao Wang, Ke~Yu, Chao Dong, and Chen~Change Loy.
+\newblock Recovering realistic texture in image super-resolution by deep
+  spatial feature transform, 2018.
+
+\bibitem{goodfellow2014generative}
+Ian~J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David
+  Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
+\newblock Generative adversarial networks, 2014.
+
 \bibitem{martens2019superresolution}
 Marcus martens, Dario Izzo, Andrej Krzic, and Daniël Cox.
 \newblock Super-resolution of proba-v images using convolutional neural
   networks, 2019.
+
+\bibitem{Salvetti_2020}
+Francesco Salvetti, Vittorio Mazzia, Aleem Khaliq, and Marcello Chiaberge.
+\newblock Multi-image super resolution of remotely sensed images using residual
+  attention deep neural networks, July 2020.
+
+\bibitem{Bordone_Molini_2020}
+Andrea Bordone~Molini, Diego Valsesia, Giulia Fracastoro, and Enrico Magli.
+\newblock Deepsum: Deep neural network for super-resolution of unregistered
+  multitemporal images, May 2020.
 
 \bibitem{MISR2007}
 John Kennedy, Ora Israel, Alex Frenkel, Rachel bar shalom, and Haim Azhari.
@@ -52,32 +245,64 @@ Andreas Lugmayr, Martin Danelljan, Radu Timofte, Namhyuk Ahn, Dongwoon Bai, Jie
 Anran Liu, Yihao Liu, Jinjin Gu, Yu~Qiao, and Chao Dong.
 \newblock Blind image super-resolution: A survey and beyond, 2021.
 
+\bibitem{zhang2018residual}
+Yulun Zhang, Yapeng Tian, Yu~Kong, Bineng Zhong, and Yun Fu.
+\newblock Residual dense network for image super-resolution, 2018.
+
+\bibitem{gu2019blind}
+Jinjin Gu, Hannan Lu, Wangmeng Zuo, and Chao Dong.
+\newblock Blind super-resolution with iterative kernel correction, 2019.
+
+\bibitem{luo2020unfolding}
+Zhengxiong Luo, Yan Huang, Shang Li, Liang Wang, and Tieniu Tan.
+\newblock Unfolding the alternating optimization for blind super resolution,
+  2020.
+
+\bibitem{zontak2011}
+Maria Zontak and Michal Irani.
+\newblock Internal statistics of a single natural image.
+\newblock In {\em CVPR 2011}, pages 977--984, 2011.
+
+\bibitem{glasner2009}
+Daniel Glasner, Shai Bagon, and Michal Irani.
+\newblock Super-resolution from a single image.
+\newblock In {\em 2009 IEEE 12th International Conference on Computer Vision},
+  pages 349--356, 2009.
+
+\bibitem{bellkligler2020blind}
+Sefi Bell-Kligler, Assaf Shocher, and Michal Irani.
+\newblock Blind super-resolution kernel estimation using an internal-gan, 2020.
+
+\bibitem{shocher2017zeroshot}
+Assaf Shocher, Nadav Cohen, and Michal Irani.
+\newblock "zero-shot" super-resolution using deep internal learning, 2017.
+
+\bibitem{CycleGAN2017}
+Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei~A Efros.
+\newblock Unpaired image-to-image translation using cycle-consistent
+  adversarial networks.
+\newblock In {\em Computer Vision (ICCV), 2017 IEEE International Conference
+  on}, 2017.
+
+\bibitem{yuan2018unsupervised}
+Yuan Yuan, Siyuan Liu, Jiawei Zhang, Yongbing Zhang, Chao Dong, and Liang Lin.
+\newblock Unsupervised image super-resolution using cycle-in-cycle generative
+  adversarial networks, 2018.
+
 \bibitem{luo2022learning}
 Zhengxiong Luo, Yan Huang, Shang Li, Liang Wang, and Tieniu Tan.
 \newblock Learning the degradation distribution for blind image
   super-resolution, 2022.
 
-\bibitem{zhang2018residual}
-Yulun Zhang, Yapeng Tian, Yu~Kong, Bineng Zhong, and Yun Fu.
-\newblock Residual dense network for image super-resolution, 2018.
+\bibitem{bulat2018learn}
+Adrian Bulat, Jing Yang, and Georgios Tzimiropoulos.
+\newblock To learn image super-resolution, use a gan to learn how to do image
+  degradation first, 2018.
 
-\bibitem{ECOSTRESS2023INSTRUMENT}
-Simon Hook and Gerardo Rivera.
-\newblock {ECOsystem Spaceborne Thermal Radiometer Experiment on Space Station
-  (ECOSTRESS)}.
-\newblock \url{https://ecostress.jpl.nasa.gov/instrument}, 2023.
-\newblock Accessed: 28-November-2023.
-
-\bibitem{ledig2017photorealistic}
-Christian Ledig, Lucas Theis, Ferenc Huszar, Jose Caballero, Andrew Cunningham,
-  Alejandro Acosta, Andrew Aitken, Alykhan Tejani, Johannes Totz, Zehan Wang,
-  and Wenzhe Shi.
-\newblock Photo-realistic single image super-resolution using a generative
-  adversarial network, 2017.
-
-\bibitem{he2015deep}
-Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
-\newblock Deep residual learning for image recognition, 2015.
+\bibitem{wei2020unsupervised}
+Yunxuan Wei, Shuhang Gu, Yawei Li, and Longcun Jin.
+\newblock Unsupervised real-world image super resolution via domain-distance
+  aware training, 2020.
 
 \bibitem{zhu2020unpaired}
 Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei~A. Efros.
@@ -88,10 +313,21 @@ Jun-Yan Zhu, Taesung Park, Phillip Isola, and Alexei~A. Efros.
 Tobias Plotz and Stefan Roth.
 \newblock Benchmarking denoising algorithms with real photographs, 2017.
 
-\bibitem{bulat2018learn}
-Adrian Bulat, Jing Yang, and Georgios Tzimiropoulos.
-\newblock To learn image super-resolution, use a gan to learn how to do image
-  degradation first, 2018.
+\bibitem{isola2018imagetoimage}
+Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, and Alexei~A. Efros.
+\newblock Image-to-image translation with conditional adversarial networks,
+  2018.
+
+\bibitem{fritsche2019frequency}
+Manuel Fritsche, Shuhang Gu, and Radu Timofte.
+\newblock Frequency separation for real-world super-resolution, 2019.
+
+\bibitem{ECOSTRESS2023INSTRUMENT}
+Simon Hook and Gerardo Rivera.
+\newblock {ECOsystem Spaceborne Thermal Radiometer Experiment on Space Station
+  (ECOSTRESS)}.
+\newblock \url{https://ecostress.jpl.nasa.gov/instrument}, 2023.
+\newblock Accessed: 28-November-2023.
 
 \bibitem{VGGnet}
 Karen Simonyan and Andrew Zisserman.
@@ -101,6 +337,11 @@ Karen Simonyan and Andrew Zisserman.
 \bibitem{niqe}
 Anish Mittal, Rajiv Soundararajan, and Alan~C. Bovik.
 \newblock Making a “completely blind” image quality analyzer, 2013.
+
+\bibitem{mittal2012}
+Anish Mittal, Anush~Krishna Moorthy, and Alan~Conrad Bovik.
+\newblock No-reference image quality assessment in the spatial domain.
+\newblock {\em IEEE Transactions on Image Processing}, 21(12):4695--4708, 2012.
 
 \bibitem{fuoli2021fourier}
 Dario Fuoli, Luc~Van Gool, and Radu Timofte.

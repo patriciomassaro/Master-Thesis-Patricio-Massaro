@@ -1,53 +1,63 @@
 \babel@toc {english}{}\relax 
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Storyline}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Wildfire monitoring using thermal remote sensing}{2}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Spatio-temporal trade-off}{2}{subsubsection.1.2.1}%
-\contentsline {section}{\numberline {2}Super resolution}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Single-Image Super Resolution}{3}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}SR Resnet}{3}{subsubsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.2}Multi-Image Super Resolution}{3}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Multi-spectral super resolution}{3}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Importance of interframe correlation}{4}{subsubsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.3}The domain gap problem}{4}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Blind image Super Resolution}{5}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Methodology}{7}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Baseline Degradation model}{7}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Blurring Kernel}{7}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Radiometric error correction}{8}{subsubsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.2}Models Architecture}{10}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}SRResNet}{10}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}RAMS}{10}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Probabilistic Degradation Model}{10}{subsubsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.3}Referenced image quality metrics}{13}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}pixel-wise losses}{13}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Peak Signal-to-Noise Ratio (PSNR)}{13}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Structural Similarity Index (SSIM)}{14}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Learned perceptual image patch similarity (LPIPS)}{14}{subsubsection.3.3.4}%
-\contentsline {subsubsection}{\numberline {3.3.5}Adjusting measures to a multi-image framework}{15}{subsubsection.3.3.5}%
-\contentsline {subsection}{\numberline {3.4}Non-referenced Image quality metrics}{15}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Naturalness Image Quality Evaluator (NIQE)}{15}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Blind/Referenceless Image Spatial Quality Evaluator (BRISQUE)}{16}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Frequency Domain Analysis}{16}{subsubsection.3.4.3}%
-\contentsline {subsubsection}{\numberline {3.4.4}Gradient Distribution analysis}{18}{subsubsection.3.4.4}%
-\contentsline {section}{\numberline {4}Datasets}{20}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Obtaining a high resolution dataset}{20}{subsection.4.1}%
-\contentsline {subsubsection}{\numberline {4.1.1}The ECOSTRESS mission}{20}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}Accessing ECOSTRESS Scenes}{21}{subsubsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.3}Selecting the best scenes}{21}{subsubsection.4.1.3}%
-\contentsline {subsubsection}{\numberline {4.1.4}Data Processing}{23}{subsubsection.4.1.4}%
-\contentsline {subsection}{\numberline {4.2}Obtaining FOREST-2 data}{25}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Datasets}{25}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Synthetic FOREST - Degraded Synthetic FOREST}{25}{subsubsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.2}Synthetic FOREST - real FOREST (Unpaired)}{26}{subsubsection.4.3.2}%
-\contentsline {subsubsection}{\numberline {4.3.3}Synthetic FOREST- real FOREST ( Paired)}{26}{subsubsection.4.3.3}%
-\contentsline {section}{\numberline {5}Experiment Setup}{27}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Training}{27}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Results and discussion}{28}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Source domain}{28}{subsection.6.1}%
-\contentsline {subsubsection}{\numberline {6.1.1}LR comparison}{33}{subsubsection.6.1.1}%
-\contentsline {subsubsection}{\numberline {6.1.2}Effects of the degradation model in SR}{35}{subsubsection.6.1.2}%
-\contentsline {subsection}{\numberline {6.2}Target domain}{36}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}The domain gap goes both ways}{40}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Domain gap using non-references image quality assessment}{43}{subsection.6.4}%
-\contentsline {section}{\numberline {7}conclusions and future work}{44}{section.7}%
+\contentsline {section}{\numberline {2}Thermal Remote Sensing}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Electromagnetic spectrum}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Land surface temperature}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Quality dimensions of remote sensing data}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Motivation}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Wildfire Monitoring}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Urban heat}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}The spatio-temporal trade off}{7}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Super resolution}{9}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Single-Image Super Resolution}{11}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Upsampling method}{11}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Network design}{12}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Loss functions}{13}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}Multi-Image Super Resolution}{14}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Multi-spectral super resolution}{15}{subsubsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.3}The domain gap problem}{17}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Blind image Super Resolution}{17}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Explicit modelling with external dataset}{18}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Explicit modelling with single image}{20}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Implicit modelling}{20}{subsubsection.4.4.3}%
+\contentsline {section}{\numberline {5}Methodology}{23}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Models Architecture}{23}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Probabilistic degradation model}{23}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}SRResNet}{27}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Baseline Degradation model}{27}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Blurring Kernel}{28}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Radiometric error correction}{29}{subsubsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.3}Signal-to-Noise Ratio (SNR)}{31}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Referenced image quality metrics}{31}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}pixel-wise losses}{31}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Peak Signal-to-Noise Ratio (PSNR)}{31}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Structural Similarity Index (SSIM)}{32}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}Learned perceptual image patch similarity (LPIPS)}{32}{subsubsection.5.4.4}%
+\contentsline {subsubsection}{\numberline {5.4.5}Adjusting measures to a slight translations in the SR process.}{33}{subsubsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.5}Non-referenced Image quality metrics}{33}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Naturalness Image Quality Evaluator (NIQE)}{34}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}Blind/Referenceless Image Spatial Quality Evaluator (BRISQUE)}{34}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}Frequency Domain Analysis}{35}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Gradient Distribution analysis}{36}{subsubsection.5.5.4}%
+\contentsline {section}{\numberline {6}Datasets}{38}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Obtaining a high resolution dataset}{38}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}The ECOSTRESS mission}{38}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Accessing ECOSTRESS Scenes}{39}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Selecting the best scenes}{39}{subsubsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.4}Data Processing}{41}{subsubsection.6.1.4}%
+\contentsline {subsection}{\numberline {6.2}Obtaining FOREST-2 data}{42}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Datasets}{44}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Synthetic FOREST - Degraded Synthetic FOREST}{44}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}Synthetic FOREST - real FOREST (Unpaired)}{45}{subsubsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.3}Synthetic FOREST- real FOREST ( Paired)}{45}{subsubsection.6.3.3}%
+\contentsline {section}{\numberline {7}Experiment Setup}{46}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Training}{46}{subsection.7.1}%
+\contentsline {section}{\numberline {8}Results and discussion}{47}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Source domain}{47}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}Probabilistic degradation models comparison}{52}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {8.1.2}Low resolution images comparison}{55}{subsubsection.8.1.2}%
+\contentsline {subsubsection}{\numberline {8.1.3}Effects of the degradation model in SR}{57}{subsubsection.8.1.3}%
+\contentsline {subsection}{\numberline {8.2}Target domain}{58}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}The domain gap goes both ways}{62}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Domain gap assessment using non-referenced image quality assessment}{65}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Conclusions and future work}{67}{section.9}%
