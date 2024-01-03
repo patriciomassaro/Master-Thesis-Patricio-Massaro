@@ -189,9 +189,9 @@ Additionally, the Affine Transformation is translated so that the images can be 
         \label{fig:4-forest-bounding-box}
     \end{figure}
 
-    A similar random crop processor as in Fig. \ref{fig:5-random_crop_processor} is employed afterwards. 
-    The objective is to obtain crops 3 times less than the original size, as the objective is to train a SR model with a scale factor of 3.
-    If any crop has any NA value or strip noise is detected, it is discarded and the process restarts.
+    A similar random crop processor as in Fig. \ref{fig:5-random_crop_processor} is used afterwards. 
+    The objective is to obtain several crops of size 88x88 pixels, that match the 264x264 pixels of the synthetic HR FOREST-2 images when upscaled by a factor of 3.
+    If any crop has any NA value or strip noise is detected, it is discarded and the process restarts, with a maximum retries of 100.
     Using the latitude and the longitude information, the affine transformation is calculated so that the crops can be georeferenced, if necessary.
     
 \subsection{Datasets}
@@ -234,7 +234,7 @@ In case any of the domains has less samples than the other, the class will boots
     The dataset $\mathcal{D}_{\text{SF}-\text{SF}}$ is built by taking the HR synthetic FOREST crops and applying the baseline degradation model proposed in \ref{subsec:baseline_degradation_model}. 
     The 264x264 crops are reduced to 88x88. The training set is used to train the SR Resnet model, while the validation set is used to monitor the training process and avoid overfitting. 
     Even though in this case the HR and LR version of the same scene is available, the training dataset is unpaired by shuffling the samples.
-    The validation set is not shuffled, and thus can be used to calculate supervised metrics like PSNR and SSIM. 
+    The validation set is not shuffled, and thus metrics like PSNR and SSIM can be calculated in the target domain (red arrows flow in Fig. \ref{fig:3-GAN-degradation-model}). 
 
     The parameters used for the degradation model are described below:
 
@@ -242,7 +242,7 @@ In case any of the domains has less samples than the other, the class will boots
         \centering
         \begin{tabular}{l|l}
         Parameter & Value \\ \hline
-        Scale ratio & x3 \\ 
+        downscaling ratio & 3 \\ 
         Gaussian Kernel size & 21 \\ 
         Gaussian kernel sigma in X axis &  $\sim \mathcal{N}(1,0.3)$  \\ 
         Gaussian kernel sigma in Y axis &  $\sim \mathcal{N}(1,0.3)$  \\ 

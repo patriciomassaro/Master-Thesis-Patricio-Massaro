@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1704145765 "main.aux" "main.bbl" "main" 1704146219 0
+["bibtex main"] 1704278938 "main.aux" "main.bbl" "main" 1704279236 0
   "./bibliography.bib" 1704120477 33370 e093503bea648631b773d39263ef477c ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1704146219 48137 d70d06488d83513c1289581992ef7176 "pdflatex"
+  "main.aux" 1704279236 48297 8b46e4cc9641cbe37ea21fa543eac098 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1704146216 "/Users/pmassaro/Repos/Orora/Master-Thesis-Patricio-Massaro/main.tex" "main.pdf" "main" 1704146219 0
+["pdflatex"] 1704279233 "/Users/pmassaro/Repos/Orora/Master-Thesis-Patricio-Massaro/main.tex" "main.pdf" "main" 1704279236 0
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -128,6 +128,7 @@
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1673989714 30429 213676d4c7327a21d91ddaed900e7b81 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty" 1575499565 5766 13a9e8766c47f30327caf893ece86ac8 ""
+  "/Users/pmassaro/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty" 1615845910 6149 2398eec4faa1ee24ff761581e580ecf1 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657483315 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-dist/tex/latex/subfig/subfig.sty" 1158586182 21369 9ef165ca6df8815c92e693146a376c92 ""
@@ -139,7 +140,7 @@
   "/Users/pmassaro/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1687778622 4378216 ff7759507d85ef6d97ae3d1d41d2dec1 ""
   "/Users/pmassaro/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt" 1687778679 7879541 3d80fca37940c9a4cfadd5d5fca7df01 ""
   "/Users/pmassaro/Library/TinyTeX/texmf.cnf" 1674732469 708 85fd07691b6294ba94c59dbc62380410 ""
-  "/Users/pmassaro/Repos/Orora/Master-Thesis-Patricio-Massaro/main.tex" 1703524545 2597 a43a7e5b898bfbcc3ee62348c022882c ""
+  "/Users/pmassaro/Repos/Orora/Master-Thesis-Patricio-Massaro/main.tex" 1704183318 2618 1eadc845c312d8d441f19920ee2596d8 ""
   "Includes/0-siegel.eps" 1701861022 167923 957d8b5cbcb254a215b65fb0fc073a1c ""
   "Includes/1-electromagnetic-spectrum.png" 1703439273 23500 a4bfb4e47eec1534ed3ddaf5a471a3f5 ""
   "Includes/2-DomainGap.png" 1701861022 101620 dbf6cb30502a948904f0c83baf89abcf ""
@@ -192,15 +193,15 @@
   "includes/1-skopje-LST.png" 1703246898 167261 4a65a2f86d894732efabae603201a682 ""
   "includes/1-skopje-NDVI.png" 1703246898 184215 27a75bef3282570fba457455662e500f ""
   "includes/3-srresnet-architecture.pdf" 1703578837 73110 94a4f060c43923b049df3279b05afc13 ""
-  "main.aux" 1704146219 48137 d70d06488d83513c1289581992ef7176 "pdflatex"
-  "main.bbl" 1704145765 15007 3968657f3542965e3c46c8ac4cd3604b "bibtex main"
-  "main.out" 1704146219 12577 c1b8fef5a6a446cc3c51d08c7048073a "pdflatex"
-  "main.tex" 1703524545 2597 a43a7e5b898bfbcc3ee62348c022882c ""
-  "main.toc" 1704146219 6047 7e3d9fa3cd74180e906fccc42d3a1213 "pdflatex"
+  "main.aux" 1704279236 48297 8b46e4cc9641cbe37ea21fa543eac098 "pdflatex"
+  "main.bbl" 1704278938 15007 3968657f3542965e3c46c8ac4cd3604b "bibtex main"
+  "main.out" 1704279236 12479 ff65d08ec18ff37a0136747d25c4e09d "pdflatex"
+  "main.tex" 1704183318 2618 1eadc845c312d8d441f19920ee2596d8 ""
+  "main.toc" 1704279236 5972 5c6886d58ccfa5db62bed78881151af0 "pdflatex"
   "sections/Acknowledgement.tex" 1701861022 36 4676beb5183715b4038845298a06fd33 ""
-  "sections/conclusions.tex" 1704146216 1105 5ff1990a62af48d0d414e3d76497b89b ""
-  "sections/datasets.tex" 1704016298 27185 16aa267d872b2caf30118c34b16631a8 ""
-  "sections/experiment_setup.tex" 1703689143 97 424810b677851d58c80f04a1619d748f ""
+  "sections/conclusions.tex" 1704279233 10969 c7b5d6cb950fb3b1ae07df32d38d93b0 ""
+  "sections/datasets.tex" 1704185183 27305 ce8d84277b20190a560d1196ec03cb3a ""
+  "sections/experiment_setup.tex" 1704271142 10291 98a8efad0ab6e0767c3f1241d32c4228 ""
   "sections/introduction.tex" 1704121113 23651 066074c6f7ae53b8728225f35b0f7b27 ""
   "sections/methodology.tex" 1704144246 39439 a73aa47f3bab21195b2df40c791de142 ""
   "sections/results.tex" 1704145805 35544 1e45ef83dc3889423c9e429b36971932 ""
