@@ -14,18 +14,18 @@ C.~O.~JUSTICE J.~R. G.~TOWNSHEND.
 \newblock {\em International Journal of Remote Sensing}, 15(17):3417--3441,
   1994.
 
-\bibitem{becker90}
-François Becker and Zhao-Liang Li.
-\newblock Becker f, li z. towards a local split window method over land
-  surfaces. international journal of remote sensing.
-\newblock {\em International Journal of Remote Sensing - INT J REMOTE SENS},
-  11:369--393, 03 1990.
+\bibitem{author2023thermal}
+Philippe GAMET.
+\newblock Paving the way to daily high-resolution multi-spectral thermal
+  infrared remote sensing.
+\newblock ECOSTRESS Science Team Meeting 2022, April 2022.
+\newblock Presented at ECOSTRESS Science Team Meeting.
 
 \bibitem{sca2009}
 J.C. Jimenez-Munoz, J.~Cristobal, J.A. Sobrino, G.~Soria, M.~Ninyerola, and
   X.~Pons.
 \newblock Revision of the single-channel algorithm for land surface temperature
-  retrieval from landsat thermal-infrared data.
+  retrieval from landsat thermal-infra-red data.
 \newblock {\em IEEE Transactions on Geoscience and Remote Sensing},
   47(1):339--349, 2009.
 
@@ -42,6 +42,13 @@ Zhao-Liang Li, Bo-Hui Tang, Hua Wu, Huazhong Ren, Guangjian Yan, Zhengming Wan,
 \newblock Satellite-derived land surface temperature: Current status and
   perspectives.
 \newblock {\em Remote Sensing of Environment}, 131:14--37, 2013.
+
+\bibitem{becker90}
+François Becker and Zhao-Liang Li.
+\newblock Becker f, li z. towards a local split window method over land
+  surfaces. international journal of remote sensing.
+\newblock {\em International Journal of Remote Sensing - INT J REMOTE SENS},
+  11:369--393, 03 1990.
 
 \bibitem{HORNING20082986}
 N.~Horning.
@@ -166,6 +173,13 @@ Syed Muhammad~Anwar Bashir, Yanning Wang, Murtaza Khan, and Yulei Niu.
 \newblock A comprehensive review of deep learning-based single image
   super-resolution, 2021.
 
+\bibitem{Liu2019}
+Qing-Ming Liu, Rui-Sheng Jia, Chao-Yue Zhao, Xiao-Ying Liu, Hong-Mei Sun, and
+  Xing-Li Zhang.
+\newblock Face super-resolution reconstruction based on self-attention residual
+  network.
+\newblock {\em IEEE Access}, PP:1--1, 12 2019.
+
 \bibitem{timofte2015seven}
 Radu Timofte, Rasmus Rothe, and Luc~Van Gool.
 \newblock Seven ways to improve example-based single image super resolution,
@@ -175,6 +189,11 @@ Radu Timofte, Rasmus Rothe, and Luc~Van Gool.
 Wei-Sheng Lai, Jia-Bin Huang, Narendra Ahuja, and Ming-Hsuan Yang.
 \newblock Deep laplacian pyramid networks for fast and accurate
   super-resolution, 2017.
+
+\bibitem{zhang2018image}
+Yulun Zhang, Kunpeng Li, Kai Li, Lichen Wang, Bineng Zhong, and Yun Fu.
+\newblock Image super-resolution using very deep residual channel attention
+  networks, 2018.
 
 \bibitem{simonyan2015deep}
 Karen Simonyan and Andrew Zisserman.
@@ -225,8 +244,8 @@ John Kennedy, Ora Israel, Alex Frenkel, Rachel bar shalom, and Haim Azhari.
 \bibitem{myself2023}
 Christian Mollière, Julia Gottfriedsen, Martin Langer, Patricio Massaro,
   Christian Soraruf, and Matthias Schubert.
-\newblock Multi-spectral super-resolution of thermal infrared data products for
-  urban heat applications, 2023.
+\newblock Multi-spectral super-resolution of thermal infra-red data products
+  for urban heat applications, 2023.
 
 \bibitem{lugmayr2020ntire}
 Andreas Lugmayr, Martin Danelljan, Radu Timofte, Namhyuk Ahn, Dongwoon Bai, Jie
@@ -358,7 +377,7 @@ Irwin Sobel and G.~M. Feldman.
 \newblock [Online accessed 28-November-2023].
 
 \bibitem{PhyTIR2023}
-{PhyTIR: Plant High Temperature InfraRed Viewer}.
+{PhyTIR: Plant High Temperature infra-red Viewer}.
 \newblock \url{https://phytir.jpl.nasa.gov/}, 2023.
 \newblock [Online accessed 28-November-2023].
 

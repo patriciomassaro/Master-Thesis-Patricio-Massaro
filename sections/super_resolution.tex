@@ -1,6 +1,6 @@
 \section{Super resolution} \label{sec:SR}
 
-    Super resolution refers to an image processing technique looking to recover a corresponding high-resolution image from a low-resolution version of it, with applications that range from natural images \cite{zeyde2010single}, \cite{martin2001database} to satellite \cite{valsesia2021permutation} and medical imaging \cite{bashir2021comprehensive}. SR remains a challenging task in computer vision because it is considered an ill-posed problem: several HR images can generate exactly the same LR image. 
+    Super resolution refers to an image processing technique looking to recover a corresponding high resolution (HR) image from a low resolution (LR) version of it, with applications that range from natural images \cite{zeyde2010single}, \cite{martin2001database} to satellite \cite{valsesia2021permutation} and medical imaging \cite{bashir2021comprehensive}. SR remains a challenging task in computer vision because it is considered an ill-posed problem: several HR images can generate exactly the same LR image. 
 
        \begin{figure}[H]
             \centering
@@ -11,17 +11,17 @@
     
     Super resolution was first proposed in the 1960s, while the first use of multiple images dates of 1989. 
     Traditional interpolation-based methods for upsampling images were the first type of algorithms used for super resolution.
-    The most common techniques are nearest-neighbor, bilinear and bicubic interpolation.
+    The most common are nearest-neighbor, bilinear and bicubic interpolation.
     Nearest-neighbor interpolation is the most straightforward algorithm, as the interpolated value is based on its nearest pixel values. 
     While this method requires almost no calculations, the results are usually blocky because there are no interpolated smooth transitions.
     Bilinear and bicubic interpolation produces smoother transitions using linear or cubic interpolation in both axes. 
-    Bilinear interpolation needs a receptive fields of 2x2 and is usually faster, bicubic needs a receptive field of 4x4. 
+    Bilinear interpolation needs a receptive fields of 2x2 and is usually faster, while bicubic needs a receptive field of 4x4. 
     The latter is the most common baseline to quantify the improvement of any super resolution algorithm. 
 
-    Machine learning was used for the first time in 2000. 
+    Machine learning was used for the first time in the 2000s. 
     Deep learning appears as a branch of machine learning, emphasizing the use of multi-layer neural network cascade for feature exctraction and representation. 
-    The rise of the technology wave around 2010 changed the way of solving problems in different branches.
-    Instead of piecing together individual feature extraction or functional modules to form a system, the focus is now to optimize parameters by global training after the whole system is designed, what is called end-to-end training.
+    The rise of this technology wave started around 2010 and changed the way of solving problems in many different fields.
+    Instead of piecing together individual feature extraction or functional modules to form a system, the focus is now to optimize parameters by global training after the whole system is designed, in what is called an end-to-end training fashion.
 
     \begin{figure}[H]
         \centering
@@ -32,7 +32,9 @@
 
     Super resolution using machine or deep learning is a supervised problem, meaning that the super resolved output must be compared to a HR ground truth image. 
     The difference between the two images is used to calculate the objective loss function that the model seeks to minimize.
-    In very few occassions, paired LR-HR images are available.For that reason, the most common approach is to generate the LR images from the HR ground truth using a known degradation model, such as bicubic downsampling + white noise. An example of this method is depicted in Fig. \ref{fig:3-super-resolution-data}. 
+    Unfortunately, paired LR-HR images are available in very few occassions.
+    For that reason, the most common approach is to generate the LR images from the HR ground truth using a known degradation model, such as bicubic downsampling + additive white noise. An example of this method is depicted in Fig. \ref{fig:3-super-resolution-data}. 
+    
     The real degradation process is unknown, and is affected by numerous factors such as sensor-induces noise, lossy compresion, speckle noise, motion blur and optical limitations, between others.
     The disadvantages of using such a simplified degradation process to generate a dataset will be further discussed throughout this work.
 
@@ -47,33 +49,43 @@
 
     \subsection{Single-Image Super Resolution}
 
-        In a typical single-image super resolution (SISR) framework, the LR image $I^{LR}$ is modeled as follows:
+        In a typical single-image super resolution (SISR) framework, the LR image $I^{LR}$ is modelled as follows:
     
         \begin{equation}
             I^{LR} = D(I^{HR},\Theta) = ( I^{HR} \ast k) \downarrow_s + \ n
             \label{eq:2-degradation-equation}
         \end{equation}
     
-        Where $\Theta$ are the function parameters, $I^{HR} \ast k$ is the convolution between a blurring kernel $k$ and the unknown  HR image  $I^{HR}$, $\downarrow_s$ is the downsampling operator with scaling factor $s$ and $n$ is a noise term.
+        Where $\Theta$ are the function parameters, $I^{HR} \ast k$ is the convolution between a blurring kernel $k$ and the  HR image  $I^{HR}$, $\downarrow_s$ is the downsampling operator with scaling factor $s$ and $n$ is a noise term.
+        
         The relationship between the LR and HR images $D$ is known as the degradation model.
         SISR objective is to solve the inverse equation and obtain $I^{HR}$ from $I^{LR}$, estimating $D^{-1}$ in the process. As stated before, this an extremely ill-posed problem as $D^{-1}$ is not injective, meaning there are infinite possibilities of $I^{HR}$ for which the equation condition hold. 
 
-        A variety of deep learning methods were developed over the years to solve the SR problem, all of them are trained using both low and high-resolution images (LR-HR pairs), most of them generated as in Fig. \ref{fig:3-super-resolution-data}. The models can be classified based on the upsampling method chosen and it's location, the deep learning network and the loss used for learning.
+        A variety of deep learning methods were developed over the years to solve the SR problem, all of them are trained using both low and high-resolution images (LR-HR pairs), most of them generated as in Fig. \ref{fig:3-super-resolution-data}. The models can be classified based on the upsampling method chosen and it's location, the deep learning network and the loss used in the training loop.
 
 
         \subsubsection{Upsampling method}
 
-        The upsampling is essential in deep learning-based SR methods. The most important feature of them is that, as opposed to traditional upsampling methods such as interpolation, they may add new information in the process.
+        The upsampling step is essential for SR methods. The most important feature of deep learning based upsampling  is that contrary to traditional approaches such as interpolation, they may add new information in the process.
 
-        Sub-pixel convolutional layers performs upsampling by generating several additional channels using convolution, and by reshaping these channels, the resolution of the output is upsampled. The layer has a respective wide field that helps learn more contextual information that results in more realistic details, at the cost of possible artifacts. 
+        Sub-pixel convolutional layers performs upsampling by generating several additional channels or feature maps, and by reshaping these channels, the resolution of the output is upsampled. The layer has a respective wide field that helps learn more contextual information that results in more realistic details, at the cost of possible artifacts.
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Includes/2-sub-pixel-convolution.png}
+            \caption{Sub-pixel convolution schematic. Source: \cite{Liu2019}.}
+            \label{fig:2-sub-pixel-convolution}
+        \end{figure}
+
+
+        
 
         Deconvolution layers do the inverse of the convolution operation. 
-        That means predicting the probable HR image based on the feature maps from the LR image. The process consists on inserting zeros between the pixels of the LR image, and then applying a convolution operation. The amount of zeros is determined by the scaling factor. This method is widely used in SR methods due to its compatibility with the normal convolution, but may cause uneven overlapping in the generated HR image, resulting in a non-realistic image with decreased performance.
+        That means predicting the probable HR image based on the feature maps from the LR image. The process consists on inserting zeros between the pixels of the LR image, and then applying a convolution operation. The amount of zeros is determined by the scaling factor. This method is widely used in SR methods due to its compatibility with the normal convolution, but may cause uneven overlapping in the generated HR image, resulting in a non-realistic image and decreased performance.
 
-
-        The location of the upsampling layer plays an important role in the architecture. Pre-upsampling SR methods first upsample the LR image and then apply the convolutional layers. The convolutional network task is then to refine the already upsampled image. The biggest drawback is that the dimensions of the image is increzed at the beggining, resulting in higher computational and memory cost than other methods.
-        Post-upsampling SR methods first apply the convolutional layers and then upsample the image. The convolutional network task is then to exctract features in a low-dimensional space. The computational cost is lower than pre-upsampling methods, but the extraction of the low level features for a good reconstruction may be more difficult than refining an already upsampled image. 
-        This frameworks may be combined by iteratively up and downsampling the image \cite{timofte2015seven}, or by performing progressive upsampling until the desired dimensions are reached \cite{lai2017deep}.
+        The location of the upsampling layer plays an important role in the architecture. Pre-upsampling SR methods first upsample the LR image and then apply the convolutional layers, so that the convolutional network task is to refine the already upsampled image. The biggest drawback is that the dimensions of the image is increzed at the beggining, resulting in higher computational and memory cost than other methods.
+        Post-upsampling SR methods first apply the convolutional layers and then upsample the image. The convolutional network task is then to exctract features in a low-dimensional space so that it can be upsampled afterwards. The computational cost is lower than pre-upsampling methods, but the extraction of the high-level features for a good reconstruction may be more difficult than refining an already upsampled image. 
+        The frameworks can be combined by iteratively up and downsampling the image \cite{timofte2015seven}, or by performing progressive upsampling until the desired dimensions are reached \cite{lai2017deep}.
 
         \subsubsection{Network design}
 
@@ -85,33 +97,39 @@
             \label{eq:2-residual-learning}
         \end{equation}
         Where $H(x)$ is the mapping function of the network and $x$ is the input. If the residual is local, the skip connection is made over a small block of layers. Global residual makes the input and the output of the whole network to be correlated, which is a very desirable property in SR, as the HR image should have significant correlation with the LR image. In this case, the network transform the LR image into an HR image by generating the missing high-frequency details. 
-        Attention learning is the idea where certain factors are given more preference. 
-
+        
         In channel attention, a particular block is added in the model where global average pooling (GAP) squeezes the input channels; these constants are processed by two fully connected layers to generate channel-wise residuals that define how important is one pixel for each other.
         In SR, most of the models use local fields for the generation of SR pixels, while in a few cases, some textures or patches which are far apart are necessary for generating accurate local patches. This drives the development of attention blocks that extract non-local representations to add information of pixels that are far away from each other.
 
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Includes/2-feature-attention.png}
+            \caption{Residual Channel attention schematic. This approach combines both residual learning and channel attention.
+             Source: \cite{zhang2018image}}
+            \label{fig:2-feature-attention}
+        \end{figure}
 
         \subsubsection{Loss functions}
 
-        As in any supervised learning problem, the selection of the loss function is critical. In SR, they are used for measuring the error in the reconstruction of the HR image. 
+        As in any supervised learning problem, the selection of the loss function is critical. In SR, they are used for measuring how the output of the model and the HR image diverge.
         
         Initial research employed the loss at the fundamental block of an image, the pixel.
         The most common loss function is the Mean Squared Error (MSE), which is the average of the squared differences between the predicted and the ground truth images.
-        The MSE is the most common loss function in image processing, but it is not the best choice for SR.
+        While it is widely used in image processing, it is not the best choice for SR.
         This is because the MSE is very sensitive to outliers and tends to generate overly smooth results, as it converges to the mean of the distribution. Thus, researchers often have used L1 or MAE loss.
-        These pixel losses focus on reconstruction fidelity and do not cater for the perceptual quality or textures of the image, resulting in less high-frequency details and overly smooth results. Other were designed to overcome this problem and will be discussed.
+        Pixel-based losses focus on reconstruction fidelity and do not cater for the perceptual quality or textures of the image, resulting in less high-frequency details and overly smooth results. Other losses were designed to overcome this problem.
 
-        If The perceptual quality is an important objective of the SR task, the differences between the generated and groud truth images could be assessed using an image classification network. The distance between the high-level data representation on a determined layer of the network for both images can be calculated in the following way:
+        If the perceptual quality is an important objective of the SR task, the differences between the generated and groud truth images could be assessed using an image classification network. This is usually called content loss and measures the distance between the high-level data representation on a determined layer of the network for both images can be calculated in the following way:
 
         \begin{equation}
-            \mathcal{L}(I^{\text{HR}}, I^{\text{SR}}; N) = \frac{1}{H*W*C}\sum_{i,j,k}(r^{l}_{i,j,k}(I^{\text{HR}}) - r^{l}_{i,j,k}(I^{\text{SR}}))^2
+            \mathcal{L}(I^{\text{HR}}, I^{\text{SR}}; N) = \frac{1}{H_r*W_r*C_r}\sum_{i,j,k}(r^{l}_{i,j,k}(I^{\text{HR}}) - r^{l}_{i,j,k}(I^{\text{SR}}))^2
         \end{equation}
 
-        Where $r^{l}$ is the output of the $k$-th channel of the $l$-th layer of the pre-trained classification network $N$ when the input is $I^{HR}$ or $I^{SR}$. $H$, $W$ and $C$ are the dimensions of the layer output (height, width and channels). 
+        Where $r^{l}$ is the output of the $l$-th layer of the pre-trained classification network $N$ for a given input. $H_r$, $W_r$ and $C_r$ are the dimensions of the layer output (height, width and channels). 
         Commonly used classification networks are VGG \cite{simonyan2015deep} or ResNet \cite{he2015deep}.
-        The purpose of the content los is to compare the information about image features from the network. This ensures the visual similarity between the original and generated image by comparing content and not individual pixels. Thus, content loss functions helps producing visually perceptible and more realistic loooking images and are widely used in SR \cite{ledig2017photorealistic,wang2018recovering}. On the other hand, this type of loss may not focus on the physical consistency of the image, resulting in possible artifacts that may look realistic but are non-existant. This is one of the main reasons why the content loss is not used in remote sensing applications.
+        The purpose of the content loss is to compare the information about image features from the network. This ensures the visual similarity between the original and generated image by comparing content and not individual pixels. Thus, content loss functions helps producing visually perceptible and more realistic loooking images and are widely used in SR \cite{ledig2017photorealistic,wang2018recovering}. On the other hand, this type of loss may not focus on the physical consistency of the image, resulting in possible artifacts that may look realistic but are non-existant. This is one of the main reasons why the content loss is not usually used in remote sensing applications.
 
-        The adversarial loss is based on the generative adversarial network (GAN) \cite{goodfellow2014generative}. The GAN is composed of two networks, a generator and a discriminator. The generator is trained to generate SR images that are indistinguishable from the real HR images, while the discriminator is trained to distinguish between the generated and real images. 
+        The adversarial loss is based on generative adversarial networks (GANs) \cite{goodfellow2014generative}. The GAN is composed of two networks, a generator and a discriminator. The generator is trained to generate SR images that are indistinguishable from the real HR images, while the discriminator is trained to distinguish between the generated and real images. 
         Training is performed in sequencial steps, where the generator is adjusted for better results that may fool the discriminator, and then the discriminator is adjusted to better distinguish between the generated and real images.
         When the generator is able to create outputs that conform to the distribution of the actual data, the discriminator is no longer able to distinguish between the generated and real images. In many cases, the mean squared error is used due to improved results: 
 
@@ -123,9 +141,9 @@
         \end{equation}
 
         Where $D$ is the discriminator network. 
-        Results show that although the adversarial loss yielded lower physical consistency metrics, content and perceptual metrics were improved. 
+        Results show that although the adversarial loss yields lower physical consistency metrics, content and perceptual metrics were improved. 
         The use of the discriminator was able to regenerate intrincate patterns that were very difficult to learn using ordinary deep learning methods. 
-        This is because the pixel-loss-based solutions perform a pixel-wise aggregation of the posible solutions in the pixel space, while adversarial loss drives the reconstruction towards the natural image manifold, producing more perceptually convincing solutions. 
+        This is because the pixel-loss based solutions perform a pixel-wise aggregation of the posible solutions in the pixel space, while adversarial loss drives the reconstruction towards the natural image manifold, producing more perceptually convincing solutions. 
         The main drawbacks of the adversarial loss are the inherent instability in the training of GANs and the probable degradation in physical consistency metrics.
         The latter is the main reason why this type of loss will not be used throughout this work.
 
@@ -159,15 +177,15 @@
 
     \subsection{Multi-Image Super Resolution}
 
-        Multi-Image Super-Resolution (MISR) is the task of yielding HR images by fusing multiple LR observations of the same scene, which allows the achievement of higher reconstruction accuracy than relying on only one image.
+        Multi-Image Super-Resolution (MISR) is the task of producing HR images by fusing multiple LR observations of the same scene, which allows the achievement of higher reconstruction accuracy than relying on only one image.
         The development of this approach progressed at a slower pace due to the extesive pre-processing requirements imposed on the input, as this algorithms have a high sensibility to the input variability and their proper co-registration.  
 
-        When the input images are of the same nature, but taken at different points in the temporal dimension, the problem is often called multi-image super resolution.
+        When the input images are of the same nature, but taken at different points in time, the problem is often called multi-image super resolution.
         On the other hand, when the images are taken at the same time but they come from different sensors and show different spectral bands, it is called multi-spectral super resolution, which will be further discussed. 
 
         The main problem in MISR is the difficulty to generate a dataset with multiple images of the same scene, and it is the main reason why SISR is more popular.
         In 2019, the European Space Agency (ESA) organized an SR challenge  \cite{martens2019superresolution} based on real-world scenes acquired by the PROBA-V satellite, each of which contains an HR image (100m GSD) coupled with at least nine LR images that are not perfectly co-registered and they may be taken months apart. 
-        This challenge, with a not-synthetically generated HR-LR image pairs, fostered a new generation of model architectures that are able to fuse the multiple LR images to create better reconstructions \cite{Salvetti_2020,Bordone_Molini_2020}.
+        This challenge, with a non-synthetically generated HR-LR image pairs, fostered a new generation of model architectures that are able to fuse the multiple LR images to create better reconstructions \cite{Salvetti_2020,Bordone_Molini_2020}.
          Both of the cited networks were tested in synthetically generated datasets throuhout this work and showed better performance than SISR networks, but they were discarded because of the impossibility to have a multi-image dataset using real FOREST-2 images.
 
         \begin{figure}[H]
@@ -183,7 +201,7 @@
 
         In the context of MSSR, each spectral band, corresponding to a specific wavelenght range, provides unique information about the observed scene. Some of the spectral bands yield better resolution because of their physical properties and the costs related to their sensors. Using this higher resolution bands to increase the detail in the lower bands seems like a resaonable approach.
 
-        Traditional pan-sharpening algorithms could be considered as deterministic MSSR  algorithms. They are usually used to increase the resolution of a multi-spectral RGB image using the panchromatic band. The overlap between the wavelengths of the bands makes this algorithm straightforward and useful. However, it is ill-suited for Thermal Infrared (TIR) data due to the disjointed spectral domains of the visible and TIR bands.
+        Traditional pan-sharpening algorithms could be considered as deterministic MSSR  algorithms. They are usually used to increase the resolution of a multi-spectral RGB image using the panchromatic band. The overlap between the wavelengths of the bands makes this algorithm straightforward and useful. However, it is ill-suited for Thermal infra-red (TIR) data due to the disjointed spectral domains of the visible and TIR bands.
         The result of pansharpening TIR data is shown in Fig. \ref{fig:2-pansharpening}  While the general resolution of the image is improved, several TIR hotspots are darkened and highlights from the visible bands are translated to the super-resolved image. This is particularly problematic for clouds, which have an inverse spectral response in the TIR and RGB bands. 
         
         \begin{figure}[H]
@@ -200,7 +218,7 @@
 
     \subsection{The domain gap problem} \label{subsec:domaingap}
  
-        SR is a supervised problem, the super resolved image is compared to the HR ground truth and the differences (pixel-by-pixel or perceptual) drive the gradients of the neural network to minimize the loss, in a fully supervised manner. 
+        SR is a supervised problem, the super resolved image is compared to the HR ground truth and their differences (pixel-by-pixel, perceptual or adversarial) drive the gradients of the neural network to minimize the loss, in a fully supervised manner. 
         The objective of this work is to increase the resolution of FOREST-2 images, but a high resolution version of FOREST-2 is not available. 
         The only alternative is to use scenes from other missions that have a higher resolution.
 
@@ -208,7 +226,7 @@
         However, this is rarely the case when using "non-ideal", real world images.
         In spite of their success on synthetic datasets, the poor generalization capacity of the trained SR networks limits their application in real scenarios, leading to blurry images and strange artifacts in the SR results \cite{lugmayr2020ntire}.
 
-        The domain gap problem occurs when there are systematic discrepancies between data use for training and the real-world data. 
+        The domain gap problem occurs when there are systematic discrepancies between data used for training and the real-world data. 
         This is described in Fig. \ref{fig:2-domain-gap}, where the HR image is processed through different known degradations. 
         If an SR model is trained using the left-most degradation, it will produce undesirable results if LR images generated by the other degradations are used as input.
         In this example, the left-most degradation seems to have better resolution and less noise than the rest. This will lead to noisier and blurrier results when using the other degradations as input.
@@ -228,7 +246,7 @@
         Non-blind SR methods assume that the degradation process is known, and maps the bicubic downsampled LR image to the natural HR image space.
         However, an arbitrary LR input image, as a scene captured by a satellite, is usually degraded by an unknown process, which is difficult to be modelled explicitly.
         The arbitrary LR input is not in the same domain as the bicubic downsamopled LR image, and thus the non-blind SR methods are not successful in the super resolution process.
-        There will be a large domain gap between the SR output and the desired image samples from the target natural HR domain, leading to a poor-quality result.
+        There will be a large domain gap between the SR output and the desired image samples from the target natural HR domain, leading to a poor quality result.
         Blind SR methods, on the other hand, aim to learn the degradation process from the training data, and map the arbitrary LR input image to the natural HR image space.
         
         \begin{figure}[H]
@@ -265,7 +283,7 @@
         \end{figure}
 
         The biggest drawback  of this approach is that it relies on an additional input of degradation estimation, specially the kernel. 
-        Howerver, estimating the correct kernel from an arbitrary LR image is not easy and kernel mismatch will result in a dramatic loss in SR performance.
+        However, estimating the correct kernel from an arbitrary LR image is not easy and kernel mismatch will result in a dramatic loss in SR performance.
         This method remains feasible only when a way of obtaining a reliable degradation estimation is available.
         Otherwise, a manual process to find the best input for better result is needed.
         
@@ -283,7 +301,7 @@
         \subsubsection{Explicit modelling with single image}
 
         SR modelling with a single image is based on internal statistics of natural images: patches of a single image tend to recur within and across different scales of the image \cite{zontak2011}.
-        This characteristic is very powerful, since it is image-specific and unsupervised. It was used first in 2009 in a method that does not used deep learning \cite{glasner2009}, and gained traction with KernelGAN \cite{bellkligler2020blind}. 
+        This characteristic is very powerful, since it is image-specific and unsupervised. It was used first in 2009 in a method that does not use deep learning \cite{glasner2009}, and gained traction with KernelGAN \cite{bellkligler2020blind}. 
         KernelGAN interprets the maximization of patch recurrence as a data distribution learning problem, assuming that the downsampled version of an LR image generated by the optimal kernel should share the same patch distribution with the original LR input.
         Using a GAN framework, a deep linear network is used as a generator to parametrize the underlying SR kernel, and a discriminator distinguishes generated patches from those of the original LR image.
         Once training finishes, the output of the generator is an estimation of the blurring kernel of the input image. 
@@ -313,17 +331,25 @@
         Implicit modelling aims to grasp the underlying degradation model through learning from an external dataset.
         On paired HR-LR images, the SR model is already enough. However, these datasets are rarely available in real-world scenarios.
         Usually the data available is unpaired, meaning that HR images and LR images with realistic degradations are available, but there is no correspondence between them.
-        Existing approaches exploit the data distribution learning ability of GANs, where discriminators are used to distinguish between the generated images from the real ones, pushing the generator towards an appropiate direction.
+        Existing approaches exploit the data distribution learning ability of GANs, where discriminators are used to distinguish between generated LR images from the real ones, pushing the generator towards an appropiate direction.
         
-        First attempts for implicit modelling were based on CycleGANs \cite{CycleGAN2017}, that consists of two generators and two discriminators that move from domain A to B and viceversa. 
+        First attempts for implicit modelling were based on CycleGANs \cite{CycleGAN2017}, that consist of two generators and two discriminators that move from domain A to B and viceversa. 
         The cycle consistency loss is based on the principle that after a round-trip transformation, the original image should be recovered.
         In CinCGAN \cite{yuan2018unsupervised}, the HR input is transformed using bicubic downsampling before doing SR with a pre-trained network and is regarded as the clean LR domain.
         Two CycleGAN structures are applied to transform the LR input to the clean LR domain and to the HR domain. 
         This way, no paired data is necessary.
 
-        Another way of performing implicit modelling is using a single GAN to learn the degradation process from HR to LR, and generate a supervised paired dataset that can be used for training the SR network.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{Includes/4-ccingan.png}
+            \caption{CinCGAN schematic diagram. Source: \cite{yuan2018unsupervised}}    
+            \label{fig:2-CinCGAN}
+        \end{figure}
+
+        Another way of performing implicit modelling is using a single GAN to learn the degradation process from HR to LR, and generate a  paired dataset that can be used for training the SR network.
         The generator simulates the degradation from the HR domain to the LR domain and the discriminator distinguishes between the generated LR images and the real LR images.
-        In these methods, such as \cite{luo2022learning,bulat2018learn}, usually the discriminator architecture is focused to distinguish the images using the high-frequency contents of them, due to the fact that degradations usually have a big overlap at lower frequencies.
+        In these methods, such as \cite{luo2022learning,bulat2018learn}, usually the discriminator architecture is focused to distinguish the images using the high-frequency contents of them, due to the fact that degradations usually have a big overlap at lower frequencies. The main difference between \cite{luo2022learning} and \cite{bulat2018learn} is that the former uses a network to produce the blurring kernel and the additive noise, while the latter uses a network to produce the LR image directly.
+        
         To further reduce the domain gap, several extensions of the method are proposed. 
         In \cite{wei2020unsupervised}, both the generated and real LR images are used to train the SR model.
         The super resolved version of the generated LR images can be compared with the original HR input using a pixel-wise loss, and the super resolved real LR images can be used for training trough a discriminator that distinguishes between them and the HR images.
@@ -336,7 +362,7 @@
         \end{figure}
         
     
-        While very flexible, limitations of implicit modelling are the dependency on huge dataset that is just not possible in some applications. 
+        While very flexible, limitations of implicit modelling are the dependency on huge dataset that is just not possible in some applications and the poor generalization capabicity of the resulting SR model to arbitrary inputs that are not on the LR domain. 
         Additionally, several artifacts may be produced in the SR results due to the difficulty and instability of GANs training.
         The choice of the generator in the case of degradation learning GAN is also very important, if it is not well constrained enough, it will produce unrealistic results that will misguide the SR network and lead to poor results even after long training sessions.
          

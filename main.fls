@@ -870,6 +870,16 @@ INPUT ./Includes/3-super-resolution-data.png
 INPUT Includes/3-super-resolution-data.png
 INPUT ./Includes/3-super-resolution-data.png
 INPUT ./Includes/3-super-resolution-data.png
+INPUT ./Includes/2-sub-pixel-convolution.png
+INPUT ./Includes/2-sub-pixel-convolution.png
+INPUT Includes/2-sub-pixel-convolution.png
+INPUT ./Includes/2-sub-pixel-convolution.png
+INPUT ./Includes/2-sub-pixel-convolution.png
+INPUT ./Includes/2-feature-attention.png
+INPUT ./Includes/2-feature-attention.png
+INPUT Includes/2-feature-attention.png
+INPUT ./Includes/2-feature-attention.png
+INPUT ./Includes/2-feature-attention.png
 INPUT ./Includes/2-gans-natural-manifold.png
 INPUT ./Includes/2-gans-natural-manifold.png
 INPUT Includes/2-gans-natural-manifold.png
@@ -905,6 +915,11 @@ INPUT ./Includes/2-kernelGAN.png
 INPUT Includes/2-kernelGAN.png
 INPUT ./Includes/2-kernelGAN.png
 INPUT ./Includes/2-kernelGAN.png
+INPUT ./Includes/4-ccingan.png
+INPUT ./Includes/4-ccingan.png
+INPUT Includes/4-ccingan.png
+INPUT ./Includes/4-ccingan.png
+INPUT ./Includes/4-ccingan.png
 INPUT ./Includes/2-degradation-gan.png
 INPUT ./Includes/2-degradation-gan.png
 INPUT Includes/2-degradation-gan.png
@@ -1126,6 +1141,7 @@ INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
@@ -1136,6 +1152,7 @@ INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
