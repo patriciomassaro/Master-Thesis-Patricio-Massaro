@@ -2,7 +2,7 @@
 
 In this thesis, the feasibility of applying blind single-image super resolution algorithms to thermal remote sensing data in real world environments was studied with satisfactory results. The framework used is very flexible, requiring only two unpaired datasets with enough data. Additionally, one of the contributions of this work is the development of methods that may help in the assessment of performance without the need for paired data. While they are not sufficient to quantify the performance of the SR model, they are a good indicator of the quality of the results.
 
-The work started , by introducing the fundamentals of remote sensing, the importance of thermal infrared data for land surface temperature estimation, and the dimensions of quality that they present.
+The work started , by introducing the fundamentals of remote sensing, the importance of thermal infra-red data for land surface temperature estimation, and the dimensions of quality that they present.
 Applications of LST products like wildfire management and urban heat studies require high spatial and temporal resolutions, which are not available in the current options. 
 Because of different variables like payload capacity of the missions, sensor technology and the cost of the missions, there is a trade-off betweem spatial and temporal resolutions that is not possible to circumvent at the present day.
 While Ororatech has a plan to improve the temporal resolution using swarms of small satellites like FOREST-2, the spatial resolution remains a challenging problem.
@@ -26,7 +26,7 @@ Surprisingly enough, the result of super resolving LR images coming from the ada
 When comparing the results of the adapted SR model with the baseline on real FOREST-2 images, a lot more of detail and edges seem to be present, at a cost of a small increment in the overall noise. 
 The images have stronger components in a range of frequencies, compared with bicubic upsampling, in the order of 6dB. Additionally, the frequencies match the ones lost during the degradation process, implying that the adapted SR model is able to recover the lost frequencies during the degradation process.
 This phenomena can also be observed by analyzing the gradient magnitude of the images, where the adapted SR model produces images that tend to have bigger gradients, implying sharper edges. 
-While the model was trained on thermal infrared data, it was proven robust to be used directly on LST products. This allows to improved the spatial resolution of LST images that were already processed from TIR data, without the need of reprocessing them.
+While the model was trained on thermal infra-red data, it was proven robust to be used directly on LST products. This allows to improved the spatial resolution of LST images that were already processed from TIR data, without the need of reprocessing them.
 
 However, the model is still very sensitive to the domain gap. 
 When applying the adapted SR model to bicubic downsampled images, the results are catastrophic.

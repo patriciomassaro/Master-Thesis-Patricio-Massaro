@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: unsrt.bst
 Database file #1: bibliography.bib
 Warning--empty booktitle in Rouse1973MonitoringVS
-You've used 69 entries,
+You've used 72 entries,
             1791 wiz_defined-function locations,
-            795 strings with 16506 characters,
-and the built_in function-call counts, 13379 in all, are:
-= -- 915
-> -- 962
+            810 strings with 17088 characters,
+and the built_in function-call counts, 13950 in all, are:
+= -- 954
+> -- 1006
 < -- 3
-+ -- 347
-- -- 278
-* -- 817
-:= -- 2163
-add.period$ -- 177
-call.type$ -- 69
-change.case$ -- 68
++ -- 363
+- -- 291
+* -- 854
+:= -- 2261
+add.period$ -- 186
+call.type$ -- 72
+change.case$ -- 71
 chr.to.int$ -- 0
-cite$ -- 70
-duplicate$ -- 481
-empty$ -- 1370
-format.name$ -- 278
-if$ -- 2968
+cite$ -- 73
+duplicate$ -- 500
+empty$ -- 1425
+format.name$ -- 291
+if$ -- 3092
 int.to.chr$ -- 0
-int.to.str$ -- 69
-missing$ -- 25
-newline$ -- 317
-num.names$ -- 66
-pop$ -- 371
+int.to.str$ -- 72
+missing$ -- 26
+newline$ -- 332
+num.names$ -- 69
+pop$ -- 385
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 290
+skip$ -- 299
 stack$ -- 0
-substring$ -- 360
-swap$ -- 101
+substring$ -- 369
+swap$ -- 104
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 88
-width$ -- 71
-write$ -- 650
+while$ -- 92
+width$ -- 74
+write$ -- 681
 (There was 1 warning)
