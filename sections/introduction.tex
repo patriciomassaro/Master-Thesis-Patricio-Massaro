@@ -6,12 +6,12 @@ and sensors, and it offers work on a large scale with cheap, fairly accurate, an
 
 Land Surface Temperature (LST) images at a high temporal resolution are of prime importance to efficiently monitor physical processes related to climate change such as water stress, evapotranspiration, wildfires or urban heat islands \cite{lst2005}.
 Additionally, LST has been approved as one of the high-priority parameters for the International Geosphere and Biosphere Program (IGBP) \cite{townshend94}.
-LST is retrieved from remote sensing images in the Thermal InfraRed (TIR) spectral domain.  
-Most of the application mentioned before have very exigent requirements for the TIR data products, needing as many detailed images as possible (spatial resolution), but also having many images available per day to monitor such dynamic processes (temporal resolution).
-Unfortunately these requirements are not met by the current available products and research may be hindered by the lack of data. 
+LST is retrieved from remote sensing images in the Thermal Infra-Red (TIR) spectral domain.  
+Most of the applications mentioned before have very exigent requirements for the TIR data products, needing as many detailed images as possible (spatial resolution), but also having as many images available per day to monitor such dynamic processes (temporal resolution).
+Unfortunately these requirements are not met by the currently available products and research may be hindered by the lack of data. 
 Bigger missions have high spatial resolution but have a revisit time of several days.
-Smaller satellite providers are deploying constellations of smaller satellites that provide very high temporal resolution, but their smaller payload result in low spatial resolution.
-Their  sensors do not generally retrieve TIR data at a satisfactory spatial resolution for local scale applications and fine scale analysis, especially for highly heterogeneous environments like urban areas, diverse agricultural plots or sparse forests.
+Smaller satellite providers are deploying constellations of smaller satellites that provide very high temporal resolution, but their smaller payload result generally in lower spatial resolution.
+Their sensors do not generally retrieve TIR data at a satisfactory spatial resolution for local scale applications and fine scale analysis, especially for highly heterogeneous environments like urban areas, diverse agricultural plots or sparse forests.
 
 Super resolution (SR) is a post-processing technique that aims to increase the spatial resolution of images while preserving the physical consistency of the scenes.
 Using AI for SR has many applications in heterogeneus fields like medical imaging, computer vision and also remote sensing. 
@@ -25,11 +25,11 @@ In Chapter 3, the motivation of this work is presented, diving deeper into appli
 The trade-off between spatial and temporal resolution that the current available products is also shown, making it the main driver super-resolution.
 In Chapter 4, the main techniques of super-resolution are presented, as well as the main challenges of the datasets used in the literature.
 The domain gap problem is also introduced, as well as the concept of blind super-resolution.
-In Chapter 5, the methodology of this work is presented, including the models architecture and the rationale behind the choices made, the degradation models used for dataset generation and the metrics used for evaluation.
-In Chapter 6, the data gathering process is introduced and the datasets that will be used in the experimentation are presented.
-In Chapter 7, the experimentation setup is presented, including the training and parameters.
-In Chapter 8, the results of the experimentation are presented and discussed.
-Chapter 9 presents conclusions of this work, as well as the future work that can be done to improve the results obtained.
+Chapter 5 describes the methodology of this work, including the models architecture and the rationale behind the choices made. Furthermore, it introduces the degradation models used for dataset generation and the metrics used for evaluation.
+The data gathering process is being introduced in Chapter 6 and the datasets that will be used in the experimentation are presented.
+Chapter 7 then presents the experimentation setup, including the training process and choice of hyperparameters.
+Afterwards Chapter 8 discusses the results of the selected experiments.
+Finally, Chapter 9 presents conclusions of this work, as well as the future work that can be done to improve the results obtained.
     
 \section{Thermal Remote Sensing} \label{sec:thermal_remote_sensing}
 
@@ -62,7 +62,7 @@ Data from remote-sensing instruments can be recorded as images or, in the case o
     In the visual spectrum, usually reflected light is the measured. 
     In the Infrared spectrum (IR), light emitted from a certain wavelength is measured.
     This is because all bodies have a temperature above absolute zero, and this temperature is detectable as radiation.
-    IR spectrum goes from 1400 nm wavelenght to 1 mm and are further subdivided due to the width of the spectrum:
+    IR spectrum goes from 1400 nm wavelength to 1 mm and are further subdivided due to the width of the spectrum:
 
     \begin{itemize}
         \item  Short-wave infrared (SWIR): 1,4 to 3,0 µm
@@ -80,7 +80,7 @@ Data from remote-sensing instruments can be recorded as images or, in the case o
 
     \subsection{Land surface temperature}
 
-        Land Surface Temperature (LST) is the radiative temperature of the land—derived from previously mentioned thermal infrared radiation that the Earth’s surface emits.
+        Land Surface Temperature (LST) is the radiative temperature of the land surface. It is derived from previously mentioned thermal infrared radiation that the Earth’s surface emits.
         LST is essentially a measure of how hot Earth's surface would feel to the touch in a particular location.
         It is one of the key parameters that affect surface energy balance, regional climates, heat fluxes, and energy exchanges.
         When taking Earth’s temperature, we’re interested in thermal infrared (TIR) specifically, which has a wavelength of 3 to 14 µm (both MWIR and LWIR), corresponding to black body temperatures of between -60°C and 700 °C, according to plancks equation:
@@ -142,7 +142,7 @@ The trade-off between spatial and temporal resolution that the current available
 
     \subsection{Wildfire Monitoring}
 
-    Forest fires can be natural or manmade phenomena that occurred in natural ecosystems and usually, they spread uncontrollably.
+    Forest fires can be natural or man-made phenomena that occurred in natural ecosystems and usually, they spread uncontrollably.
     The have increased steadily worldwide over the past decade, and according to the UN Environment Programme (UNEP), this trend will continue, with a potential 50\% increase in forest fires by the end of the century \cite{UNEP2021Wildfire}. 
     The escalating frequency and intensity of wildfires across the globe have prompted a reassessment of our current monitoring systems and methodologies. Traditional ground and aerial surveillance methods are increasingly proving inadequate in the face of rapidly spreading, unpredictable fires, particularly those obscured by smoke and difficult terrain. This inadequacy hinders effective firefighting efforts and exacerbates the environmental, economic, and human toll of these disasters. 
     Luckily, in most cases, a layer of fume is not an obstacle for a satellite to detect a fire, as they rely on thermal infrared sensors that can measure radiance through the smoke.
@@ -226,7 +226,7 @@ The trade-off between spatial and temporal resolution that the current available
             \label{fig:1-spatio-temporal-trade-off}
         \end{figure}
 
-        This opens the question of whether it is possible to increase the spatial resolution of the data products available using a post-processing technique such as super resolution, whithout compromising the physical consistency of the scenes.
+        This opens the question of whether it is possible to increase the spatial resolution of the data products available using a post-processing technique such as super resolution, without compromising the physical consistency of the scenes.
         The main techniques of super resolution and their most difficult challenges to apply them to LST/TIR data are described in the next section.
 
 \newpage
