@@ -6,6 +6,7 @@ and sensors, and it offers to work on a large scale with cheap, fairly accurate,
 
 Land Surface Temperature (LST) images at a high temporal resolution are of prime importance to efficiently monitor physical processes related to climate change such as water stress, evapotranspiration, risk of wildfires or urban heat islands \cite{lst2005}.
 Additionally, LST has been approved as one of the high-priority parameters for the International Geosphere and Biosphere Program (IGBP) \cite{townshend94}.
+
 LST is retrieved from remote sensing images in the Thermal infra-red (TIR) spectral domain.  
 Some of the applications mentioned before have very exigent requirements for the TIR data products, needing as many detailed images as possible (spatial resolution), but also having as many images available per day to monitor such dynamic processes (temporal resolution).
 Unfortunately these requirements are not met by the currently available products and research may be hindered by the lack of data. 
@@ -14,6 +15,7 @@ Private satellite providers such as OroraTech are deploying constellations of sm
 
 Super resolution (SR) is a post-processing technique that aims to increase the spatial resolution of images while preserving their physical consistency.
 Using artificial intelligence (AI) for SR has many applications in heterogeneous fields like medical imaging, computer vision and also remote sensing. 
+
 While several deep learning architectures have been proposed with promising results in synthetic datasets, it remains a challenge to apply them to real data.
 This is because most of the assumptions made to generate the datasets needed for training do not represent the physical reality accurately.
 Throughout this thesis, super resolution of TIR data products provided by OroraTech's mission FOREST-2 will be explored, so that better LST products can be developed and improvements in research may be achieved.
@@ -38,6 +40,7 @@ In Chapter 8, the results of the experimentation are presented and analyzed.
 The final conclusions of this work are discussed in chapter 9, as well as the future work that can be done to improve the results obtained.
 
 \newpage
+
     
 \section{Thermal Remote Sensing} \label{sec:thermal_remote_sensing}
 
@@ -72,7 +75,9 @@ Data from remote-sensing instruments can be recorded as images or, in other case
     In the visual spectrum, usually reflected light is the measured. 
     In the infra-red spectrum (IR), light emitted from a certain wavelength is measured.
     This is because all bodies have a temperature above absolute zero, and this temperature is detectable as radiation.
+
     The IR spectrum goes from 1400 nm wavelenght to 1 mm and are further subdivided due to its width:
+
 
     \begin{itemize}
         \item  Short-wave infra-red (SWIR): 1,4 to 3,0 µm
@@ -90,7 +95,9 @@ Data from remote-sensing instruments can be recorded as images or, in other case
 
     \subsection{Land surface temperature}
 
+
         Land Surface Temperature (LST) is the radiative temperature of the land, derived from the previously mentioned thermal infra-red radiation that the Earth’s surface emits.
+
         LST is essentially a measure of how hot Earth's surface would feel to the touch in a particular location.
         It is one of the key parameters that affect surface energy balance, regional climates, heat fluxes, and energy exchanges.
         When taking Earth’s temperature, the interest relies in thermal infra-red (TIR) specifically, which has a wavelength of 3 to 14 µm (both MWIR and LWIR), corresponding to black body temperatures of between -60°C and 700 °C, according to Planck’s law.
@@ -166,7 +173,7 @@ The trade-off between spatial and temporal resolution that the current available
 
     \subsection{Wildfire Monitoring}
 
-    Forest fires can be natural or manmade phenomena that occurred in natural ecosystems and usually, they spread uncontrollably.
+    Forest fires can be natural or man-made phenomena that occurred in natural ecosystems and usually, they spread uncontrollably.
     The have increased steadily worldwide over the past decade, and according to the UN Environment Programme (UNEP), this trend will continue, with a potential 50\% increase in forest fires by the end of the century \cite{UNEP2021Wildfire}. 
     The escalating frequency and intensity of wildfires across the globe have prompted a reassessment of current monitoring systems and methodologies. Traditional ground and aerial surveillance methods are increasingly proving inadequate in the face of rapidly spreading, unpredictable fires, particularly those obscured by smoke and difficult terrain. This inadequacy hinders effective firefighting efforts and exacerbates the environmental, economic, and human toll of these disasters. 
     Luckily, in most cases, a layer of fume is not an obstacle for a satellite to detect a fire, as they rely on thermal infra-red sensors that can measure radiance through the smoke.
@@ -252,7 +259,7 @@ The trade-off between spatial and temporal resolution that the current available
             \label{fig:1-spatio-temporal-trade-off}
         \end{figure}
 
-        This opens the question of whether it is possible to increase the spatial resolution of the data products available using a post-processing technique such as super resolution, whithout compromising the physical consistency of the scenes.
+        This opens the question of whether it is possible to increase the spatial resolution of the data products available using a post-processing technique such as super resolution, without compromising the physical consistency of the scenes.
         The main techniques of super resolution and their most difficult challenges to apply them to LST/TIR data are described in the next section.
 
 \newpage
