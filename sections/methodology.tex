@@ -1,25 +1,29 @@
 \section{Methodology} \label{sec:methodology}
 
+Throughout this section, the selected architectures for the blind super resolution task will be explained in depth Additionally, 
+
 
 \subsection{Models Architecture}
 
 \subsubsection{Probabilistic degradation model}
 
-    This architecture, proposed in \cite{luo2022learning}, belongs to the implicit modelling blind super resolution methods. 
-    Most methods in this category try to adaptively learn the degradation process via a deterministic model in order to avoid the domain gap between synthetic and test image.
-    However, some degradations in real scenarios are stochastic and cannot be determined by the content of the image.
-    These approach may fail to model the random factors and content-independent parts of degradations, which will limit the performance of the following SR models.
-    In this architecture, the degradation D is assumed as a random variable, and a network learns its distribution by modeling the mapping from a priori random variable $z$ to D.
-    Compared with previous deterministic degradation models, PDM could model more diverse degradations and generate HR-LR pairs that may better cover the various degradations of test images, and preventing the SR model from over-fitting to specific ones.
+    This architecture, introduced in \cite{luo2022learning}, is classified among implicit modeling methods for blind super-resolution.
+    Typically, models in this category aim to adaptively learn the degradation process through deterministic models, bridging the domain gap between synthetic HR-LR pairs and real-world images.
+    Nevertheless, certain degradations in practical scenarios show stochastic behavior and do not strictly correlate with the image's content. Such methods may struggle to capture these unpredictable elements and the content-independent aspects of degradation, potentially constraining the performance of the subsequent SR model. In this particular architecture, degradation \(D\) is assumed as a random variable and networks seek to learn its distribution by establishing a mapping from random variable \(z\) to \(D\). 
 
-    Other degradation-learning-based SR methods have an assumption: the degradation is completely dependent on the content of the image.
-    However, this may not hold in most cases.
-    Some degradations are content independent and stochastic, such as random noises. 
-    These random factors and content-independent parts of degradations could not be well modeled by these deterministic models. 
-    A better assumption is that the degradation is subject to a distribution, which may be better modeled by a probabilistic model.
+    Contrary to previous models that use deep learning directly transform a high-resolution (HR) image into a low-resolution (LR) one, this strategy employs two networks to generate a blurring kernel and additive noise, following eq. \ref{eq:2-degradation-equation}. This constraint makes the integration of this degradation model with an SR model easier, helping to perform an efficient end-to-end training. 
     
-    The degradation is parametrized with two random variables, i.e., the blur kernel $k$ and random noise $\mathbf{n}$, by formulating the degradation process as the linear function from Eq. \ref{eq:2-degradation-equation}.
-    It can be divided into two linear steps \cite{zhu2020unpaired}: 
+    The stochastic nature of the model allows to produce a wider array of degradations, thereby allowing the creation of diverse HR-LR pairs. This diversity may better cover the possible degradations in test LR images and prevents the SR model from overfitting to specific scenarios.
+
+
+    % Other degradation-learning-based SR methods have an assumption: the degradation is completely dependent on the content of the image.
+    % However, this may not hold in most cases.
+    % Some degradations are content independent and stochastic, such as random noises. 
+    % These random factors and content-independent parts of degradations could not be well modeled by these deterministic models. 
+    % A better assumption is that the degradation is subject to a distribution, which may be better modeled by a probabilistic model.
+    
+    The degradation is parametrized using two random variables, the blur kernel $k$ and random noise $n$, by formulating the degradation process as the linear function from Eq. \ref{eq:2-degradation-equation}.
+    The equation can be divided into two linear steps \cite{zhu2020unpaired}: 
 
     \begin{equation}
         \begin{aligned}
@@ -28,49 +32,49 @@
         \end{aligned}
     \end{equation}
     
-    Usually,the two steps are mutually independent, as the blur kernels are mainly dependent on the properties of the camera lens while the noises are mainly related to the properties of sensors. 
-    Thus, the distribution of the degradation process can be represented as the product of the distribution of $k$ and $n$, which can be modeled by learning the mapping from a priori random variable $z$ to $k$ and $n$.
+    In most cases, the two steps are mutually independent, as the blur kernels are mainly dependent on the properties of the camera lens while the noises are mainly related to the properties of sensors. 
+    Thus, the distribution of the degradation process can be represented as the product of the distribution of $k$ and $n$, which can be modeled by learning the mapping from random variable $z_k$ and $z_n$ to $k$ and $n$, respectively.
 
 
     \begin{equation}
         p_{D}(D) = p_{k,n}(k, n) = p_{k}(k)p_{n}(n).
     \end{equation}
 
-    To model the distribution of the blur kernel k, we define a priori random variable $z_k$ which is subject to multi-dimensional normal distribution. 
-    Then we use a generative module to learn the mapping from $z_k$ to k: 
+    To model the distribution of the blur kernel k, a random variable $z_k$ which is subject to multi-dimensional normal distribution is defined. 
+    Then a generative module to learn the mapping from $z_k$ to k is used. 
 
     \begin{equation}
         k = \text{net}K(z_k), \quad z_k \sim \mathcal{N}(0,1),
     \end{equation}
 
-    The spatially variant blur kernel is considered first. This implies that the blur kernel for each pixel of the image is different. In that case, we have
+    The spatially variant blur kernel is considered first. This implies that the blur kernel for each pixel of the image is different. In that case, the shapes of $z_k$ and $k$ are:
 
     \begin{equation}
-        z_k \in \mathbb{R}^{f_k \times h \times w}, \quad k \in \mathbb{R}^{(k \times k) \times h \times w},
+        z_k \in \mathbb{R}^{f_k \times H \times W}, \quad k \in \mathbb{R}^{(k \times k) \times H \times W},
     \end{equation}
 
-    where $f_k$ is the dimension of the normal distribution $z_k$, $k$ is the size of the blur kernel, $h$ and $w$ are the height and width of the image, respectively.
-    Generally, the sizes of the convolutional weights  are set as 3 × 3, which indicates that the learned blur kernels are spatially correlated.
-    Otherwise, if the spatial size of all convolutional weights is set as 1 × 1, the blur kernel could be approximated by a spatially invariant one, which is a special case of the spatially variant blur kernel with h = w = 1.
+    where $f_k$ is the dimension of the normal distribution $z_k$ and $k$ is the size of the blur kernel. $H$ and $W$ represent the height and width of the image, respectively.
+    Generally, the sizes of the convolutional weights are set as 3 × 3, which indicates that the learned blur kernels of neighboring pixels are spatially correlated.
+    If the spatial size of all convolutional weights is set as 1 × 1, the blur kernel could be approximated by a spatially invariant one, which is a special case of the spatially variant blur kernel with $H = W = 1$.
     This approximation simplifies the dimensions of the problem drastically and is an appropiate assumption if the crops used for training the model are small enough.
-    A Softmax layer is added at the end of the network to guarantee that all elements of k sum to one.
+    A Softmax layer is added at the end of the network to guarantee that all elements of $k$ sum up to one.
     
     
-    To model the distribution of the noise $n$, a vanilla generative module can also be used:
+    To model the distribution of the noise $n$, a  generative module can also be used:
 
     \begin{equation}
         k = \text{net}N(z_n), \quad z_n \sim \mathcal{N}(0,1),
     \end{equation}
 
     \begin{equation}
-        z_n \in \mathbb{R}^{f_n \times h \times w}, \quad n \in \mathbb{R}^{h \times w \times c},
+        z_n \in \mathbb{R}^{f_n \times H \times W}, \quad n \in \mathbb{R}^{H \times W \times c},
     \end{equation}
 
-    Where the height, width and number of channels of the image is noted as $h$, $w$ and $c$ respectively. 
-    In this work, $c$ is always set to 1.
+    Where the height, width and number of channels of the image is noted as $H$, $W$ and $C$ respectively. 
+    In this work, $C$ is always set to 1.
 
     In other methods \cite{plotz2017benchmarking}, the noise is modeled as a combination of shot and read noise. 
-    It can be approximated as a heteroscedastic Gaussian distribution, which is dependent on the content of the image.
+    It can be approximated as a heteroscedastic Gaussian distribution, which is dependent on the content of the image:
 
     \begin{equation}
         n \sim \mathcal{N}(0, \sigma_{\text{read}} + \sigma_{\text{shot}} \cdot I^{\text{LR}}_{\text{clean}}),
@@ -87,22 +91,21 @@
         \centering
         \includegraphics[width=\textwidth]{Includes/3-probabilistic-degradation-model.png}
         \caption{Schematic of the probabilistic degradation module.
-                The discriminator is left out for a more intuitive description.}
+                The discriminator is left out for a more intuitive description. Source: \cite{luo2022learning}}
         \label{fig:3-probabilistic-degradation-model}
     \end{figure}
 
-    The probabilistic degradation model is optimized via adversarial training, which encourages the output of the generator to be similar with the test images \cite{bulat2018learn}.
+    The probabilistic degradation model is optimized via adversarial training, which encourages the output of the generator to be similar with the test LR images \cite{bulat2018learn}.
     To avoid overly noisy images, a constraint to the noise level is added to the loss function via a regularization term. 
     A multiplication constant is also added to balance the magnitude of the two terms.
 
     \begin{equation}
-        l_{\text{total}} = l_{\text{adversarial}} + 100 \|\mathbf{n}\|_2^2.
+        l_{\text{total}} = l_{\text{adversarial}} + 100 \cdot \|n\|_2^2.
     \end{equation}
 
     This approach formulates the degradation process as a linear function, and the learned degradations can only impose a limited influence on the image content.
     In this way, it better decouples the degradations with image content and allows to focus on learning the degradations.
-    This limitation eliminates the need of a guidance using a bicubically downscaled version of the HR image, as opposed to \cite{wei2020unsupervised} or \cite{bulat2018learn}.
-    This guidance may be inappropriate, especially when the test images are heavily blurred.
+    This limitation imposed on the generator eliminates the need of a guidance using a bicubically downscaled version of the HR image, as opposed to \cite{wei2020unsupervised} or \cite{bulat2018learn}.
 
     \begin{figure}[H]
         \centering
@@ -114,8 +117,8 @@
         \label{fig:3-slim-gen-module}
     \end{figure}
 
-    To discriminate the generated images from the test images, a PatchGAN discriminator is used \cite{isola2018imagetoimage}. This architecture assesses the structure of local image patches, allowing it to focus on high-frequency details of the image. This is particularly useful in the context of this work, where the generated images are expected to share a lot of information in the low frequencies of the domain and the differences with the test images are expected to be in the high frequencies. The architecture of the discriminator is shown in Fig. \ref{fig:3-slim-patchgan-module}.
-    The network tries to classify if each N × N patch in an image is real or fake. The size of the patches depend mostly on the number of convolutional layers with stride 2 that are employed.  The discriminator outputs a matrix of values, where each value represents the probability that the corresponding patch is real. The final output is obtained by averaging the values in the matrix. The PatchGAN discriminator is trained to minimize a classification loss. 
+    To discriminate the generated images from the test images, a PatchGAN discriminator is used \cite{isola2018imagetoimage}. This architecture assesses the structure of local image patches, allowing it to focus on high-frequency details of the image. This is particularly useful in the context of this approach, where the generated images are expected to share a lot of information in the low frequencies of the domain and the differences with the test  LR images are expected to be in the high frequencies. The architecture of the discriminator is shown in Fig. \ref{fig:3-slim-patchgan-module}.
+    The network tries to classify if each patch in an image is real or fake. The size of the patches depend mostly on the number of convolutional layers with stride 2 that are employed.  The discriminator outputs a matrix of values, where each value represents the probability that the corresponding patch is real. The final output is obtained by averaging the values in the matrix. The PatchGAN discriminator is trained to minimize a classification loss. 
 
     \begin{figure}[H]
         \centering
@@ -127,7 +130,7 @@
 
     
     The constrained nature of the probabilistic degradation model allows the possibility to train it simoultanously with a super resolution algorithm, as described in Fig. \ref{fig:3-GAN-degradation-model}.      
-    In this way, PDM can be integrated with any SR model to form a unified framework for blind SR that can be trained in an end-to-end fashion, allowing for faster iterations.
+    In this way, it can be integrated with any SR model to form a unified framework for blind SR that can be trained in an end-to-end fashion, allowing for faster iterations.
     Other methods \cite{fritsche2019frequency} \cite{wei2020unsupervised} require that the training of the degradation model and the SR model in separate phases. They firstly train a degradation model and then use the trained degradation model to generate pairs and train the SR model.
     This two-step training method is time-consuming but necessary because the highly nonlinear degradation models used will produce undesirable results at the beginning of the training, which may mislead the optimization of the SR model.
 
@@ -142,15 +145,16 @@
 
     This creates a very flexible framework for blind super resolution. 
     The only data requirement is a big enough unpaired dataset of LR and HR images and an optional smaller paired dataset for validation and early stopping of the model training.
-    The biggest limitation of this approach is the one that degradation-learning-based methods have: the HR images (source domain) and the LR images (target domain) must be well defined and the model will not generalize a domain that is not the LR images. 
-    Using this framework for general images is difficult, due to the variety of cameras and sensors, compression algorithms that play a part in the image distribution. However, this work is focused on 2 specific missions with a well defined degradation process, so this limitation is not a problem.
+    The biggest limitation of this approach is the one that degradation-learning-based methods have: the HR images (source domain) and the LR images (target domain) must be well defined and the model will not generalize to a domain that is not the datasets. 
+    Using this framework for general images is difficult, due to the variety of cameras, sensors and compression algorithms that play a part in the image distribution. However, this work is focused on 2 specific missions with a well defined degradation process, so this limitation is not a problem.
 
 
 \subsubsection{SRResNet}
 
     
-    To perform the super resolution task, the SRResNet architecture is used. This network has been used extensively in the literature and has proven to be a good baseline for SR. It can also be easily extended for multi-spectral super resolution, as in \cite{myself2023}. It uses a residual network architecture,in a post-upsampling framework based on sub-pixel convolution layers and a pixel based loss function.
-    Introduced in 2017 \cite{ledig2017photorealistic}, SRResnet is the generator in the SRGAN architecture, which is a GAN-based super resolution method. The purpose of the GAN is to drive the reconstruction process towards the natural image manifold, producing more visually convincing solution. Additionally, a perceptual loss based on activation layers of a pre-trained VGG network \cite{simonyan2015deep} is incorporated to the training objective. As this work focuses on having super resolved images with high physical consistency and not on the perceptual superiority of the images, these two components are left out, and only the generator is going to be used. The architecture, with slight modifications, is detailed in Fig. \ref{fig:3-resnet-architecture}.
+    To perform the super resolution task, the SRResNet architecture is used. This network has been used extensively in the literature and has proven to be a good baseline for SR. It can also be easily extended for multi-spectral super resolution, as in \cite{myself2023}. It uses a residual network architecture, in a post-upsampling framework based on sub-pixel convolution layers.
+    
+    Introduced in 2017 \cite{ledig2017photorealistic}, SRResnet is the generator in the SRGAN architecture, which is a GAN-based super resolution method. The purpose of the GAN is to drive the reconstruction process towards the natural image manifold, producing more visually convincing solution. Additionally, a perceptual loss based on activation layers of a pre-trained VGG network \cite{simonyan2015deep} is incorporated to the pixel loss training objective. As this work focuses on having super resolved images with high physical consistency and not on the perceptual superiority of the images, these two components are left out.  Keeping only the generator and the pixel loss. The architecture, with slight modifications, is detailed in Fig. \ref{fig:3-resnet-architecture}.
 
     First, features are extracted from the input using a convolutional layer with 64 filters and kernel size of 3, plus a ParametricReLU activation function.
     Before going through the core of the network, the feature map is reduced by half using a 1x1 convolutional layer.
@@ -160,7 +164,7 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=1\textwidth]{includes/3-srresnet-architecture.pdf}
+        \includegraphics[width=1\textwidth]{Includes/3-srresnet-architecture.pdf}
         \caption{ Modified SRResNet architecture. $X_{LR}$ represents the low resolution input image, $X_{SR}$ the super resolved image, which is then compared to the ground truth $X_{HR}$.}
         \label{fig:3-resnet-architecture}
      \end{figure}
@@ -169,18 +173,16 @@
 
         As stated in \ref{subsec:domaingap}, early super-resolution methods commonly generated high-resolution (HR) to low-resolution (LR) samples using predefined degradation techniques, with bicubic downsampling being the most used setting \cite{zhang2018residual}.
         This kind of synthetic data, while easy to obtain, often results in a domain gap problem, where the data used for training and assessing the model do not come from the same distribution as real data.
-        This gap usually leads to performance drops when the models implemented in production environments.
-        A possible solution is to synthesize samples with a stochastic degradation model, which includes a set of multiple blurring kernels and several random noises configurations that convert scenes from an HR mission into LR versions, as if they were taken using FOREST-2.
+        This gap usually leads to performance drops when the models are deployed in production environments.
+        A possible solution is to synthesize samples with a stochastic degradation model, which includes a set of multiple blurring kernels and several random noise configurations that convert scenes from an HR mission into LR versions, as if they were taken using FOREST-2.
         The larger degradation space grant these models better generalization capabilities and let experts be part of the kernel definition process, based on prior knowledge of the degradation process.
-        Unfortunately, the variety of predefined degradation's is still limited and still fail in most applications.
-
-        A degradation model like this one will be used as a baseline for this work.
+        However, the variety of predefined degradation's is still limited and still fail in most applications. A degradation model like this one will be used to generate a baseline dataset for this work.
         
 
         \subsubsection{Blurring Kernel}
 
         In the literature, the kernel of the degradation process is usually modelled as a fixed isotropic gaussian kernel, with a parameter $\sigma$ that depends on the scale factor of the super resolution process.
-        To provide more variability to it to each dataset pair, the parameters of the blurring kernel that determine it's width in both axis, $\sigma_x$ and $\sigma_y$, are sampled from a normal distribution with a determined mean and standard deviation. Fig. \ref{fig:4-degradation_kernels} shows some examples of kernels generated using this method, in the upper row, both distributions have a similar mean and distribution, resulting fairly isotropic kernels. In the lower row, the mean of the x axis is much higher than the variance of the x axis, resulting in highly anisotropic kernels. The effects of these kernels on the HR-LR generation are shown in Fig. \ref{fig:4-degradation-kernel-examples}.
+        To provide more variability to it to each dataset pair, the parameters of the blurring kernel that determine it's width in both axis, $\sigma_x$ and $\sigma_y$, are sampled from a normal distribution with a determined mean and standard deviation. Fig. \ref{fig:4-degradation_kernels} shows some examples of kernels generated using this method, in the upper row, both distributions have a similar mean and variance, resulting in fairly isotropic kernels. In the lower row, the mean of the x axis is much higher than the mean of the y axis, resulting in highly anisotropic kernels. The effects of these kernels on the HR-LR generation are shown in Fig. \ref{fig:4-degradation-kernel-examples}.
 
 
 
@@ -194,7 +196,7 @@
         \begin{figure}[H]
                 \centering
                 \includegraphics[width=\linewidth]{Includes/4-degradation-kernel-examples.pdf}
-                \caption{Effects of different blurring kernels on the HR-LR generation. The upper row contains images generated using blurring kernels with symmetric distributions. The lower rows contains images generated using asymmetric distributions for the variances, resulting in highly anisotropic kernels.}
+                \caption{Effects of different blurring kernels on the HR-LR generation. The upper row contains images generated using blurring kernels with symmetric distributions. The lower rows contains images generated using asymmetric distributions, resulting in highly anisotropic kernels.}
                 \label{fig:4-degradation-kernel-examples}
             \end{figure}
             
@@ -202,7 +204,7 @@
 
         FOREST-2 radiometric accuracy is 1K at 300K.
         Other missions report lower nominal radiometric accuracies, such as the case of ECOSTRESS instrument sheet \cite{ECOSTRESS2023INSTRUMENT} which is 0.5K at 300K.
-        This difference in accuracy should be taken into account. To align these accuracies, we first calculate the additional error required using the following equation:
+        This difference in accuracy should be taken into account. To align these accuracies, the additional error required has to be calculated using the following equation:
 
         \begin{equation}
             e_{\text{forest}} = \sqrt{e_{\text{eco}}^2 + e_{\text{extra}}^2} 
@@ -220,7 +222,7 @@
         
         By multiplying the results of equations \ref{eq:4-radiometric-error-correction} and \ref{eq:4-planck-derivative}, we can obtain the radiance error for both FOREST LWIR bands. The additional radiance errors for LWIR1 and LWIR2 bands are found to be \(1.5472 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\) and \(1.1444 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\), respectively.
 
-        The difference in radiances will be split into two components. On one side, the cold Bias represents a systematic error in the measurement, this error acknowledges discrepancies that can be attributed to sensor calibration and atmospheric conditions. On the other side, the random noise accounts for unpredictable fluctuations in the measurement process. It could be due to a variety of sources like electronic noise in the sensor, random atmospheric disturbances, or other stochastic factors. As the extent of each component is not known and to give more variability to this basic degradation model, a random factor $\phi \in [0,1] $ is introduced so that:
+        The difference in radiances will be split into two components. On one side, the cold bias represents a systematic error in the measurement, this error acknowledges discrepancies that can be attributed to sensor calibration and atmospheric conditions. On the other side, the random noise accounts for unpredictable fluctuations in the measurement process. It could be due to a variety of sources like electronic noise in the sensor, random atmospheric disturbances, or other stochastic factors. As the extent of each component is not known and to give more variability to this basic degradation model, a random factor $\phi \in [0,1] $ is introduced so that:
 
         \begin{equation}
         \begin{aligned}
@@ -266,13 +268,13 @@
             In a general form, the $L_1$ and $L_2$ losses are defined as follows:
 
             \begin{equation}
-                \mathcal{L}_{L_k} = \frac{1}{N} \sum_{i=1}^{N} |y_i - \hat{y}_i|^k
+                \mathcal{L}_{L_p} = \frac{1}{H \cdot W} \sum_{i=1}^{H} \sum_{k=1}^{W} |I^{\text{HR}}_{i,k} - I^{SR}_{i,k}|^p
             \end{equation}
 
-            Where $y_i$ and $\hat{y}_i$ are the ground truth and the super resolved image, respectively, and $k$ is the exponent of the loss function. 
+            Where $I^{\text{HR}}_{i,k}$ and $I^{SR}_{i,k}$ are the ground truth and the super resolved image at the pixel position [i,k], respectively, and $p$ is the exponent of the loss function. 
             The $L_2$ loss weights high-value differences higher than low-value differences due to the exponent of 2. 
             This generates overly smooth for low values and a lot of variability in high values. 
-            For that reason, it is more common to see the $L_1$ loss being used in the literature and it will be employed in this experiment .
+            For that reason, it is more common to see the $L_1$ loss being used in the SR literature and it will be employed in the experiment.
 
         \subsubsection{Peak Signal-to-Noise Ratio (PSNR)}
 
@@ -308,27 +310,27 @@
 
         LPIPS is a perceptual metric that leverages deep learning to compute perceptual differences between images. Specifically, it uses the activations of a pre-trained convolutional neural network (in this case, VGG \cite{VGGnet} ) to extract perceptual features from the images. 
         Then, it calculates the Euclidean distance between these feature vectors to measure the perceptual difference.
-        This measure has gained popularity in SR tasks due to its high correlation with human judgments of visual similarity.
+        This measure has gained popularity in SR tasks due to its high correlation with human judgments of visual similarity \cite{zhang2018unreasonable}.
         
         The LPIPS score is given by:
         
         \begin{equation}
-        LPIPS(I, I') = \sqrt{\sum_{i=1}^{N} w_i\|f_i(I)-f_i(I')\|^2}
+        LPIPS(I^{HR}, I^{SR}) = \sqrt{\sum_{i=1}^{N} w_i\|f_i(I^{HR})-f_i(I^{SR})\|^2}
         \end{equation}
         
-        where $I$ and $I'$ are the images being compared, $f_i(I)$ denotes the $i$-th layer activation when image $I$ is input to the pre-trained network, $N$ is the number of layers considered, and $w_i$ is the learned weight for the $i$-th layer.
+        where $I^{HR}$ and $I^{SR}$ are the images being compared, $f_i(I)$ denotes the $i$-th layer activation when image $I$ is the input to the pre-trained network, $N$ is the number of layers considered, and $w_i$ is the learned weight for the $i$-th layer.
         
         A lower LPIPS score indicates a lower distance between the feature vectors, and thus a greater perceptual similarity between the two images. 
         Due to the fact that in this work we are interested in the physical consistency of the super-resolved images, 
         this metric will be shown but will not drive any decision during the training process.
         
 
-        \subsubsection{Adjusting measures to a slight translations in the SR process.}
+        \subsubsection{Adjusting measures to bias and translations in the SR process.}
     
             In order to calculate the losses and performance metrics, the generated test images (SR) are compared against the ground truth high resolution images (HR).
-            Additional changes should be introduced in a MISR environment \cite{martens2019superresolution}.
-            First, minor shifts on the contents of the pixels are expected and the metrics should have some tolerance to small pixel-translations in the high-resolution space by evaluating on a sliding cropped image. 
-            That means, looking for a displacement of SR by at most d pixels in each direction that minimizes the error. 
+            Additional changes should be considered, particularly in a MISR environment \cite{martens2019superresolution}.
+            Minor shifts on the contents of the pixels are expected and  SR methods may have undesired effects on the border pixels .The metrics should then have some tolerance to small pixel-translations in the high-resolution space by evaluating on a sliding cropped image. 
+            This implies looking for a displacement of SR by at most $d$ pixels in each direction and picking the one that minimizes the error. 
             An example of how this is applied in a loss that needs to be minimized can be found in Eq. \ref{eq:4_adjusted_metrics}
     
             \begin{equation}
@@ -338,7 +340,7 @@
     
             Additionally, commonly used metrics punish biases as much as noise in the reconstruction.
             For example, if $I^{SR} = I^{HR} + \epsilon$, where $\epsilon$ is a constant bias, a perfect reconstruction of $I^{SR}$ is possible if $\epsilon$ is known. 
-            A quality metric should award a high score in super-resolutions with this characteristics in comparison to the introduction of noise and information loss. Metrics like L2/L1 losses and PSNR do the exact opposite and should have a bias compensation like the following: 
+            A quality metric should award a high score in super-resolutions with these characteristics in comparison to the introduction of noise and information loss. Metrics like L2/L1 losses and PSNR do the exact opposite and thus should incorporate a bias compensation like the following: 
     
             \begin{equation}
                 \begin{aligned}
@@ -352,20 +354,19 @@
 
     \subsection{Non-referenced Image quality metrics}
 
-    No-Reference Image Quality Assessment (NR-IQA) aims to develop methods to measure image quality in alignment with human perception without the need for a high-quality reference image. 
+    Non-Referenced Image Quality Assessment (NR-IQA) aims to develop methods to measure image quality in alignment with human perception without the need for a high-quality reference image. 
     Most of them are based on two steps: feature extraction and quality prediction using a regression module. 
     They rely on the assumption that natural images share certain statistical information and that any distorsion may alter these statistics \cite{niqe}.
-    The results from any image an arbitrary image is compared to a default model trained on a large dataset of natural scenes. 
-    The difference  between them is used to predict the quality of the image.
-    In the last years, researchers relied on deep learning to perform the two steps in a single model. 
-    The workflow of these models is shown in Fig. \ref{fig:4-nr-iqa-workflow}.
+    The results from an arbitrary image are compared to a default model trained on a large dataset of natural scenes and the difference  between them is used to predict the quality of the image.
+    % In the last years, researchers relied on deep learning to perform the two steps in a single model. 
+    % The workflow of these models is shown in Fig. \ref{fig:4-nr-iqa-workflow}.
 
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[scale=0.25]{Includes/3-NR-IQA.pdf}
-        \caption{Workflow of a NR-IQA model.}
-        \label{fig:4-nr-iqa-workflow}
-    \end{figure}
+    % \begin{figure}[h!]
+    %     \centering
+    %     \includegraphics[scale=0.25]{Includes/3-NR-IQA.pdf}
+    %     \caption{Workflow of a NR-IQA model.}
+    %     \label{fig:4-nr-iqa-workflow}
+    % \end{figure}
 
 
         
@@ -375,12 +376,10 @@
         
             The Naturalness Image Quality Evaluator (NIQE) \cite{niqe} is a no-reference image quality assessment metric that quantifies the perceptual quality of images based on their naturalness.
             NIQE operates on the principle that pristine natural images exhibit specific statistical properties that can be quantified to establish a benchmark for quality assessment. 
-            NIQE employs a model based on a multivariate Gaussian distribution, characterized by a mean vector and covariance matrix, to represent the statistical attributes of a natural image's visual patterns.
+            NIQE employs a model based on a multivariate Gaussian distribution, characterized by a mean vector and covariance matrix to represent the statistical attributes of a natural image's visual patterns.
             To assess the quality of an image, NIQE extracts a corresponding set of features and evaluates their deviation from this statistical model using the Mahalanobis distance.
             This distance measures the divergence of the image's features from those typical of high-quality natural images.
-            A lower value suggests that the image closely resembles the statistical properties of natural images, indicating higher perceived quality.
-            
-            However, NIQE provides a measure of image quality that aligns with the naturalness of human visual perception, and is not able to quantify the physical consistency of a generated image.
+            A lower value suggests that the image closely resembles the statistical properties of natural images, indicating higher perceived quality. This provides a measure of image quality that aligns with the naturalness of human visual perception. 
 
         \subsubsection{Blind/Referenceless Image Spatial Quality Evaluator (BRISQUE)}
 
@@ -399,21 +398,22 @@
         \subsubsection{Frequency Domain Analysis} \label{subsubsec:frequency_domain_analysis}
         
         The Fourier transform is widely used to analyze the frequency content in signals.
-        It can be applied to multidimensional signals such as images, where the spatial variations of pixel-intensities have a unique representation in the frequency domain. 
-        Super-resolutions objective is to reconstruct missing high frequency components from a downscaled image.
+        It can also be applied to multidimensional signals such as images, where the spatial variations of pixel-intensities have a unique representation in the frequency domain. 
+        Super-resolution's objective is to reconstruct missing high frequency components from an LR image.
         The expectation of a good SR algorithm is to amplify the high frequency components compared to a baseline like bicubic interpolation, while keeping noise at bay.
         The Fourier components provide global information about the image, as opposed to local information represented by pixel values in the spatial domain \cite{fuoli2021fourier}. 
-        Using the Fast Fourier Transform (FFT), we convert the pixel intensity values of super-resolved images into a spectrum where each point represents a specific frequency contained in the spatial domain.
-        The FFT is shifted so that the zero-frequency component is at the center of the spectrum. 
+        
+        Using the Fast Fourier Transform (FFT), the pixel intensity values of super-resolved images are converted into a spectrum where each point represents a specific frequency contained in the spatial domain.
+        The FFT is then shifted so that the zero-frequency component is at the center of the spectrum. 
         The resulting magnitude, after applying a logarithmic transformation, reveals the energy distribution across various frequencies.
         This is visualized in grayscale, where the intensity corresponds to the amplitude of the frequency components.
         
         A radial profile of the FFT magnitude provides insights into how different spatial frequencies contribute to the image content in the vertical and horizontal direction.
         The radial profile is a function of the average intensity of frequencies at a given radius from the center of the Fourier transform.
-        The average of the FFT magnitude is calculated for concentric circles of increasing radii, capturing a statistic of the frequency components in every direction.
+        The average of the FFT magnitude is calculated for concentric circles of increasing radii, capturing a summary of the frequency components in every direction.
         This metric serves as a benchmark for evaluating the performance of SR techniques against traditional interpolation methods such as bicubic interpolation.
         
-        Spatial frequency within an image context refers to the periodicity of the intensity variation over spatial dimensions, typically quantified in cycles per pixel. The central region of the frequency domain, after the shift operation, denotes the zero frequency. In contrast, the extremities of the domain delineate the highest frequencies, constrained by the image's discrete sampling rate.
+        Spatial frequency within an image context refers to the periodicity of the intensity variation over spatial dimensions, typically quantified in cycles per pixel. The central region of the frequency domain, after the shift operation, denotes the zero frequency. In contrast, the edges of the FFT image represent the highest frequencies, constrained by the image's discrete sampling rate.
         To quantitatively interpret these spatial frequencies, a radial-to-frequency mapping is necessary. This mapping accounts for the Nyquist frequency, which is delineated as half the sampling rate of the discrete imaging grid and acts as a threshold to prevent frequency aliasing.
         The conversion from a given radius in the FFT output to the corresponding spatial frequency is formalized as:
 
@@ -426,7 +426,7 @@
         \begin{figure}[H]
             \centering
             \includegraphics[width=\linewidth]{Includes/4-frequency-analysis.pdf}
-            \caption{Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency.  }
+            \caption{Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST-2 scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency.  }
             \label{fig:4-frequency-analysis}
         \end{figure}
 

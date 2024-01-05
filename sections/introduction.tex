@@ -2,14 +2,15 @@
 
 
 Remote sensing technology is an important source of Earth observation from different platforms
-and sensors, and it offers to work on a large scale with cheap, fairly accurate, and faster results compared to the ground-based methods.
+and sensors, and it offers to work on a large scale with cheap, fairly accurate, and faster results compared to ground-based methods.
 
 Land Surface Temperature (LST) images at a high temporal resolution are of prime importance to efficiently monitor physical processes related to climate change such as water stress, evapotranspiration, risk of wildfires or urban heat islands \cite{lst2005}.
 Additionally, LST has been approved as one of the high-priority parameters for the International Geosphere and Biosphere Program (IGBP) \cite{townshend94}.
 
 LST is retrieved from remote sensing images in the Thermal infra-red (TIR) spectral domain.  
 Some of the applications mentioned before have very exigent requirements for the TIR data products, needing as many detailed images as possible (spatial resolution), but also having as many images available per day to monitor such dynamic processes (temporal resolution).
-Unfortunately these requirements are not met by the currently available products and research may be hindered by the lack of data. 
+Unfortunately, these requirements are not met by the currently available products and research may be hindered by the lack of data.
+
 Upcoming missions such as SBG, Trishna and LSTM will join forces to provide a 50m GSD product at daily revisit \cite{author2023thermal}. However, their full joint system will not be available until end of the current decade assuming there are no further delays. Additionally, applications like urban heat require more than one image per day.
 Private satellite providers such as OroraTech are deploying constellations of smaller satellites that provide very high temporal resolution, but their smaller payload generally result in lower spatial resolution that is not enough for local scale applications and fine scale analysis, especially for highly heterogeneous environments like urban areas, diverse agricultural plots or sparse forests.
 
@@ -89,7 +90,7 @@ Data from remote-sensing instruments can be recorded as images or, in other case
     Like in the visual spectrum, TIR information is obtained in a purely passive way.
     Thermal infra-red detectors called bolometers are mostly used on drones or ground stations due to their small volume, weight, and energy consumption. 
     They offer a low accuracy in relative and absolute temperature measurement and are relatively inert, leading to a low ground resolution for moving systems (drones) but worthwhile for aircrafts with small payloads.     
-    More complex systems are generally cooled and offer the possibility of highly accurate relative and absolute temperature measurements .
+    More complex systems are cooled to cryogenic temperatures to reduce thermal noise, a random electronic fluctuation which power depends linearly with the temperature and can interfere with the infrared signals. The noise reduction allows the sensor to have higher sensitivity and accuracy.
     In contrast to bolometers, they are significantly larger and require more energy, making them unsuitable for use on drones.
     These types of detectors are used on all common TIR satellite systems.
 
@@ -98,7 +99,6 @@ Data from remote-sensing instruments can be recorded as images or, in other case
 
         Land Surface Temperature (LST) is the radiative temperature of the land, derived from the previously mentioned thermal infra-red radiation that the Earth’s surface emits.
 
-        LST is essentially a measure of how hot Earth's surface would feel to the touch in a particular location.
         It is one of the key parameters that affect surface energy balance, regional climates, heat fluxes, and energy exchanges.
         When taking Earth’s temperature, the interest relies in thermal infra-red (TIR) specifically, which has a wavelength of 3 to 14 µm (both MWIR and LWIR), corresponding to black body temperatures of between -60°C and 700 °C, according to Planck’s law.
 
@@ -184,7 +184,7 @@ The trade-off between spatial and temporal resolution that the current available
 
     OroraTech's looks to circumvent the overpass wait interval by launching a swarm of small satellites that have  been especially helpful for detecting newly born fires that started as a result of a bigger fire spreading, burning the material around its vicinity. The team develops its own sensors capable of providing up-to-date thermal data of the entire Earth every 30 minutes, starting from 2026.
     
-    However, another parameter vital to measure fire risk, detect burn areas, and monitor vegetation recovery is the spatial resolution. The coarse spatial resolution that the smaller payloads these satellites provide does not enable the reliable detection of smaller fires. Additionally, higher spatial resolution is needed to detect better estimate the fire front, which is vital for the emergency response teams to plan their actions.
+    However, another parameter vital to measure fire risk, detect burn areas, and monitor vegetation recovery is the spatial resolution. The coarse spatial resolution that the smaller payloads these satellites provide does not enable the reliable detection of smaller fires. Additionally, higher spatial resolution is needed to better estimate the fire front, which is vital for the emergency response teams to plan their actions.
     Moreover, High resolution data has been used to validate characteristics of false positives in fire detection algorithms applied to low resolution scenes\cite{ijgi11120601}. 
 
 
@@ -216,12 +216,12 @@ The trade-off between spatial and temporal resolution that the current available
         \centering
         \begin{minipage}{0.5\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{includes/1-skopje-NDVI.png}
+            \includegraphics[width=\textwidth]{Includes/1-skopje-NDVI.png}
             \label{fig:1-skopje-NDVI}
         \end{minipage}\hfill
         \begin{minipage}{0.5\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{includes/1-skopje-LST.png}
+            \includegraphics[width=\textwidth]{Includes/1-skopje-LST.png}
             \label{fig:1-skopje-LST}
         \end{minipage}
         \caption{Normalized Difference Vegetation Index \cite{Rouse1973MonitoringVS} and LST measurements for the zone of Skopje, North Macedonia. Urban areas with a lower vegetation index tend to have a higher temperature than their rural counterparts. Source : \cite{skopje2018}.} 
@@ -244,7 +244,7 @@ The trade-off between spatial and temporal resolution that the current available
             \item High spatial resolution ( $<$ 100 m) but low temporal resolution (several days up to weeks).
         \end{itemize}
 
-        Unfortunately, the applications mentioned before have requirements in both spatial and temporal resolution. 
+        The applications mentioned before have requirements in both spatial and temporal resolution. 
         The zone of interest, composed of sub-daily frequency and a GSD smaller than 100m, is not covered by any of the existing systems.
         Private missions, using smaller satellites, can leverage on constellations  to provide a higher temporal resolution.
         However, the spatial resolution is still limited by the payload mass and energy consumption constraints.

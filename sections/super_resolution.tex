@@ -19,7 +19,7 @@
     The latter is the most common baseline to quantify the improvement of any super resolution algorithm. 
 
     Machine learning was used for the first time in the 2000s. 
-    Deep learning appears as a branch of machine learning, emphasizing the use of multi-layer neural network cascade for feature exctraction and representation. 
+    Deep learning appears as a branch of machine learning, emphasizing the use of multi-layer neural network cascade for feature extraction and representation. 
     The rise of this technology wave started around 2010 and changed the way of solving problems in many different fields.
     Instead of piecing together individual feature extraction or functional modules to form a system, the focus is now to optimize parameters by global training after the whole system is designed, in what is called an end-to-end training fashion.
 
@@ -32,11 +32,11 @@
 
     Super resolution using machine or deep learning is a supervised problem, meaning that the super resolved output must be compared to a HR ground truth image. 
     The difference between the two images is used to calculate the objective loss function that the model seeks to minimize.
-    Unfortunately, paired LR-HR images are available in very few occassions.
-    For that reason, the most common approach is to generate the LR images from the HR ground truth using a known degradation model, such as bicubic downsampling + additive white noise. An example of this method is depicted in Fig. \ref{fig:3-super-resolution-data}. 
+    In general, paired LR-HR images are available in very few occasions.
+    For that reason, a common approach is to generate the LR images from the HR ground truth using a known degradation model, such as bicubic downsampling and additive white noise. An example of this method is depicted in Fig. \ref{fig:3-super-resolution-data}. 
     
-    The real degradation process is unknown, and is affected by numerous factors such as sensor-induces noise, lossy compresion, speckle noise, motion blur and optical limitations, between others.
-    The disadvantages of using such a simplified degradation process to generate a dataset will be further discussed throughout this work.
+    In practise the real degradation process is often unknown, and it is affected by numerous factors such as sensor-induces noise, lossy compresion, speckle noise, motion blur and optical limitations, among others.
+    The disadvantages of using a simplified degradation process to generate a dataset will be further discussed throughout this work.
 
     \begin{figure}[H]
         \centering
@@ -83,9 +83,9 @@
         Deconvolution layers do the inverse of the convolution operation. 
         That means predicting the probable HR image based on the feature maps from the LR image. The process consists on inserting zeros between the pixels of the LR image, and then applying a convolution operation. The amount of zeros is determined by the scaling factor. This method is widely used in SR methods due to its compatibility with the normal convolution, but may cause uneven overlapping in the generated HR image, resulting in a non-realistic image and decreased performance.
 
-        The location of the upsampling layer plays an important role in the architecture. Pre-upsampling SR methods first upsample the LR image and then apply the convolutional layers, so that the convolutional network task is to refine the already upsampled image. The biggest drawback is that the dimensions of the image is increzed at the beggining, resulting in higher computational and memory cost than other methods.
-        Post-upsampling SR methods first apply the convolutional layers and then upsample the image. The convolutional network task is then to exctract features in a low-dimensional space so that it can be upsampled afterwards. The computational cost is lower than pre-upsampling methods, but the extraction of the high-level features for a good reconstruction may be more difficult than refining an already upsampled image. 
-        The frameworks can be combined by iteratively up and downsampling the image \cite{timofte2015seven}, or by performing progressive upsampling until the desired dimensions are reached \cite{lai2017deep}.
+        The location of the upsampling layer plays an important role in the architecture. Pre-upsampling SR methods first upsample the LR image and then apply the convolutional layers, so that the convolutional network task is to refine the already upsampled image. The biggest drawback is that the dimensions of the image is increased at the beginning, resulting in higher computational and memory cost than other methods.
+        Post-upsampling SR methods first apply the convolutional layers and then upsample the image. The convolutional network task is then to extract features in a low-dimensional space so that it can be upsampled afterwards. The computational cost is lower than pre-upsampling methods, but the extraction of the high-level features for a good reconstruction may be more difficult than refining an already upsampled image. 
+        The frameworks can be combined by iteratively up- and downsampling the image \cite{timofte2015seven}, or by performing progressive upsampling until the desired dimensions are reached \cite{lai2017deep}.
 
         \subsubsection{Network design}
 
@@ -127,10 +127,10 @@
 
         Where $r^{l}$ is the output of the $l$-th layer of the pre-trained classification network $N$ for a given input. $H_r$, $W_r$ and $C_r$ are the dimensions of the layer output (height, width and channels). 
         Commonly used classification networks are VGG \cite{simonyan2015deep} or ResNet \cite{he2015deep}.
-        The purpose of the content loss is to compare the information about image features from the network. This ensures the visual similarity between the original and generated image by comparing content and not individual pixels. Thus, content loss functions helps producing visually perceptible and more realistic loooking images and are widely used in SR \cite{ledig2017photorealistic,wang2018recovering}. On the other hand, this type of loss may not focus on the physical consistency of the image, resulting in possible artifacts that may look realistic but are non-existant. This is one of the main reasons why the content loss is not usually used in remote sensing applications.
+        The purpose of the content loss is to compare the information about image features from the network. This ensures the visual similarity between the original and generated image by comparing content and not individual pixels. Thus, content loss functions helps producing visually perceptible and more realistic loooking images and are widely used in SR \cite{ledig2017photorealistic,wang2018recovering}. On the other hand, this type of loss may not focus on the physical consistency of the image, resulting in possible artifacts that may look realistic but are non-existent. This is one of the main reasons why the content loss is not usually used in remote sensing applications.
 
         The adversarial loss is based on generative adversarial networks (GANs) \cite{goodfellow2014generative}. The GAN is composed of two networks, a generator and a discriminator. The generator is trained to generate SR images that are indistinguishable from the real HR images, while the discriminator is trained to distinguish between the generated and real images. 
-        Training is performed in sequencial steps, where the generator is adjusted for better results that may fool the discriminator, and then the discriminator is adjusted to better distinguish between the generated and real images.
+        Training is performed in sequential steps, where the generator is adjusted for better results that may fool the discriminator, and then the discriminator is adjusted to better distinguish between the generated and real images.
         When the generator is able to create outputs that conform to the distribution of the actual data, the discriminator is no longer able to distinguish between the generated and real images. In many cases, the mean squared error is used due to improved results: 
 
         \begin{equation}
@@ -142,8 +142,8 @@
 
         Where $D$ is the discriminator network. 
         Results show that although the adversarial loss yields lower physical consistency metrics, content and perceptual metrics were improved. 
-        The use of the discriminator was able to regenerate intrincate patterns that were very difficult to learn using ordinary deep learning methods. 
-        This is because the pixel-loss based solutions perform a pixel-wise aggregation of the posible solutions in the pixel space, while adversarial loss drives the reconstruction towards the natural image manifold, producing more perceptually convincing solutions. 
+        The use of the discriminator was able to regenerate intricate patterns that were very difficult to learn using ordinary deep learning methods. 
+        This is because the pixel-loss based solutions perform a pixel-wise aggregation of the possible solutions in the pixel space, while adversarial loss drives the reconstruction towards the natural image manifold, producing more perceptually convincing solutions. 
         The main drawbacks of the adversarial loss are the inherent instability in the training of GANs and the probable degradation in physical consistency metrics.
         The latter is the main reason why this type of loss will not be used throughout this work.
 
@@ -178,7 +178,7 @@
     \subsection{Multi-Image Super Resolution}
 
         Multi-Image Super-Resolution (MISR) is the task of producing HR images by fusing multiple LR observations of the same scene, which allows the achievement of higher reconstruction accuracy than relying on only one image.
-        The development of this approach progressed at a slower pace due to the extesive pre-processing requirements imposed on the input, as this algorithms have a high sensibility to the input variability and their proper co-registration.  
+        The development of this approach progressed at a slower pace due to the extensive pre-processing requirements imposed on the input, as this algorithms have a high sensibility to the input variability and their proper co-registration.  
 
         When the input images are of the same nature, but taken at different points in time, the problem is often called multi-image super resolution.
         On the other hand, when the images are taken at the same time but they come from different sensors and show different spectral bands, it is called multi-spectral super resolution, which will be further discussed. 
@@ -186,7 +186,7 @@
         The main problem in MISR is the difficulty to generate a dataset with multiple images of the same scene, and it is the main reason why SISR is more popular.
         In 2019, the European Space Agency (ESA) organized an SR challenge  \cite{martens2019superresolution} based on real-world scenes acquired by the PROBA-V satellite, each of which contains an HR image (100m GSD) coupled with at least nine LR images that are not perfectly co-registered and they may be taken months apart. 
         This challenge, with a non-synthetically generated HR-LR image pairs, fostered a new generation of model architectures that are able to fuse the multiple LR images to create better reconstructions \cite{Salvetti_2020,Bordone_Molini_2020}.
-         Both of the cited networks were tested in synthetically generated datasets throuhout this work and showed better performance than SISR networks, but they were discarded because of the impossibility to have a multi-image dataset using real FOREST-2 images.
+         Both of the cited networks were tested in synthetically generated datasets throughout this work and showed better performance than SISR networks, but they were discarded because of the impossibility to have a multi-image dataset using real FOREST-2 images.
 
         \begin{figure}[H]
             \centering
@@ -199,15 +199,15 @@
 
         Also Referred to as "hyper-spectral super resolution" in the literature, The term "Multi-Spectral" emphasizes the use of multiple spectral bands, in contrast with the multi-image approach detailed previously. While the concept bears similarities to MISR, the key distinction lies in MSSR's use of a single scene captured with different spectral bands, as opposed to multiple images, to reconstruct a superior, super-resolved image.
 
-        In the context of MSSR, each spectral band, corresponding to a specific wavelenght range, provides unique information about the observed scene. Some of the spectral bands yield better resolution because of their physical properties and the costs related to their sensors. Using this higher resolution bands to increase the detail in the lower bands seems like a resaonable approach.
+        In the context of MSSR, each spectral band, corresponding to a specific wavelength range, provides unique information about the observed scene. Some of the spectral bands yield better resolution because of their physical properties and the costs related to their sensors. Using this higher resolution bands to increase the detail in the lower bands seems like a reasonable approach.
 
         Traditional pan-sharpening algorithms could be considered as deterministic MSSR  algorithms. They are usually used to increase the resolution of a multi-spectral RGB image using the panchromatic band. The overlap between the wavelengths of the bands makes this algorithm straightforward and useful. However, it is ill-suited for Thermal infra-red (TIR) data due to the disjointed spectral domains of the visible and TIR bands.
-        The result of pansharpening TIR data is shown in Fig. \ref{fig:2-pansharpening}  While the general resolution of the image is improved, several TIR hotspots are darkened and highlights from the visible bands are translated to the super-resolved image. This is particularly problematic for clouds, which have an inverse spectral response in the TIR and RGB bands. 
+        The result of pan-sharpening TIR data is shown in Fig. \ref{fig:2-pansharpening}  While the general resolution of the image is improved, several TIR hotspots are darkened and highlights from the visible bands are translated to the super-resolved image. This is particularly problematic for clouds, which have an inverse spectral response in the TIR and RGB bands. 
         
         \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{Includes/2-pansharpen.png}
-            \caption{Example of Pan-sharpening on TIR data using a panchromatic band. (a) Panchromatic band, (b) HR TIR image, (c) Downsampled version of the TIR image , (d) Pansharpened image. 
+            \caption{Example of Pan-sharpening on TIR data using a panchromatic band. (a) Panchromatic band, (b) HR TIR image, (c) Downsampled version of the TIR image , (d) Pan-sharpened image. 
             The pan-sharpened image is less blurry than the LR, but a lot of artifacts are produced, specially in clouds. Source: \cite{myself2023}}
             \label{fig:2-pansharpening}
         \end{figure}
@@ -244,8 +244,8 @@
         Growing attention has been paid to blind SR in recent years, towards filling the domain gap presented in \ref{subsec:domaingap}.
         A schematic diagram of the problem is shown in Fig. \ref{fig:2-DomainGap}. 
         Non-blind SR methods assume that the degradation process is known, and maps the bicubic downsampled LR image to the natural HR image space.
-        However, an arbitrary LR input image, as a scene captured by a satellite, is usually degraded by an unknown process, which is difficult to be modelled explicitly.
-        The arbitrary LR input is not in the same domain as the bicubic downsamopled LR image, and thus the non-blind SR methods are not successful in the super resolution process.
+        However, an arbitrary LR input image, as a scene captured by a satellite, is usually degraded by an unknown process, which is difficult to model explicitly.
+        The arbitrary LR input is not in the same domain as the bicubic downsampled LR image, and thus the non-blind SR methods are not successful in the super resolution process.
         There will be a large domain gap between the SR output and the desired image samples from the target natural HR domain, leading to a poor quality result.
         Blind SR methods, on the other hand, aim to learn the degradation process from the training data, and map the arbitrary LR input image to the natural HR image space.
         
@@ -293,7 +293,7 @@
         However, the iterative nature of this method leads to higher inference time. Additionally, the optimal number of iterations is not known and must be determined empirically.
 
         Other approaches propose to learn a bling SR model by merely covering more degradations with more realistic kernels in the training dataset, creating a large pool.
-        Kernels from this pool are used to synthetize the training pairs in a non-blind setting. 
+        Kernels from this pool are used to synthesize the training pairs in a non-blind setting. 
         The more general training dataset enables the SR model to adapt to real input images. 
         However, it is very hard to cover all the possible degradation types in the real world, and the model will fail when facing a new degradation type.
 
@@ -362,59 +362,9 @@
         \end{figure}
         
     
-        While very flexible, limitations of implicit modelling are the dependency on huge dataset that is just not possible in some applications and the poor generalization capabicity of the resulting SR model to arbitrary inputs that are not on the LR domain. 
+        While very flexible, limitations of implicit modelling include the need for extensive datasets, which is often unfeasible in some applications, and the poor generalization capacity of the resulting SR model to arbitrary inputs that are beyond the LR domain. 
         Additionally, several artifacts may be produced in the SR results due to the difficulty and instability of GANs training.
-        The choice of the generator in the case of degradation learning GAN is also very important, if it is not well constrained enough, it will produce unrealistic results that will misguide the SR network and lead to poor results even after long training sessions.
+        The choice of the generator and discriminator in the case of degradation learning GANs is also very important, if they are not properly balanced, the generator will produce unrealistic results that will misguide the SR network and lead to poor results even after long training sessions.
+
          
-         
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-        
-
-        
-
-        
-
-        
-
-
-
-
-
-
-
-
-
-
-        
-
 \clearpage
