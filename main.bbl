@@ -154,6 +154,28 @@ Gordana Kaplan, Ugur Avdan, and Zehra~Yigit Avdan.
   study in skopje, macedonia.
 \newblock {\em Proceedings}, 2(7), 2018.
 
+\bibitem{rs11050573}
+Pierre~C. Guillevic, Albert Olioso, Simon~J. Hook, Joshua~B. Fisher,
+  Jean-Pierre Lagouarde, and Eric~F. Vermote.
+\newblock Impact of the revisit of thermal infrared remote sensing observations
+  on evapotranspiration uncertainty—a sensitivity study using ameriflux data.
+\newblock {\em Remote Sensing}, 11(5), 2019.
+
+\bibitem{rs13081524}
+Xuliang Li, Xuefeng Xu, Xuejin Wang, Shaoyuan Xu, Wei Tian, Jie Tian, and
+  Chansheng He.
+\newblock Assessing the effects of spatial scales on regional
+  evapotranspiration estimation by the sebal model and multiple satellite
+  datasets: A case study in the agro-pastoral ecotone, northwestern china.
+\newblock {\em Remote Sensing}, 13(8), 2021.
+
+\bibitem{rs12182949}
+Megan Blatchford, Chris M.~Mannaerts, Yijian Zeng, Hamideh Nouri, and Poolad
+  Karimi.
+\newblock Influence of spatial resolution on remote sensing-based irrigation
+  performance assessment using wapor data.
+\newblock {\em Remote Sensing}, 12(18), 2020.
+
 \bibitem{zeyde2010single}
 Roman Zeyde, Michael Elad, and Matan Protter.
 \newblock On single image scale-up using sparse-representations, 2010.
@@ -190,6 +212,12 @@ Wei-Sheng Lai, Jia-Bin Huang, Narendra Ahuja, and Ming-Hsuan Yang.
 \newblock Deep laplacian pyramid networks for fast and accurate
   super-resolution, 2017.
 
+\bibitem{Dai2019}
+Tao Dai, Jianrui Cai, Yongbing Zhang, Shu-Tao Xia, and Lei Zhang.
+\newblock Second-order attention network for single image super-resolution.
+\newblock In {\em 2019 IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, pages 11057--11066, 2019.
+
 \bibitem{zhang2018image}
 Yulun Zhang, Kunpeng Li, Kai Li, Lichen Wang, Bineng Zhong, and Yun Fu.
 \newblock Image super-resolution using very deep residual channel attention
@@ -220,6 +248,11 @@ Xintao Wang, Ke~Yu, Chao Dong, and Chen~Change Loy.
 Ian~J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David
   Warde-Farley, Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
 \newblock Generative adversarial networks, 2014.
+
+\bibitem{mao2017squares}
+Xudong Mao, Qing Li, Haoran Xie, Raymond Y.~K. Lau, Zhen Wang, and Stephen~Paul
+  Smolley.
+\newblock Least squares generative adversarial networks, 2017.
 
 \bibitem{martens2019superresolution}
 Marcus martens, Dario Izzo, Andrej Krzic, and Daniël Cox.
@@ -264,6 +297,13 @@ Andreas Lugmayr, Martin Danelljan, Radu Timofte, Namhyuk Ahn, Dongwoon Bai, Jie
 Anran Liu, Yihao Liu, Jinjin Gu, Yu~Qiao, and Chao Dong.
 \newblock Blind image super-resolution: A survey and beyond, 2021.
 
+\bibitem{accurateblurs2013}
+Netalee Efrat, Daniel Glasner, Alexander Apartsin, Boaz Nadler, and Anat Levin.
+\newblock Accurate blur models vs. image priors in single image
+  super-resolution.
+\newblock In {\em 2013 IEEE International Conference on Computer Vision}, pages
+  2832--2839, 2013.
+
 \bibitem{zhang2018residual}
 Yulun Zhang, Yapeng Tian, Yu~Kong, Bineng Zhong, and Yun Fu.
 \newblock Residual dense network for image super-resolution, 2018.
@@ -276,6 +316,12 @@ Jinjin Gu, Hannan Lu, Wangmeng Zuo, and Chao Dong.
 Zhengxiong Luo, Yan Huang, Shang Li, Liang Wang, and Tieniu Tan.
 \newblock Unfolding the alternating optimization for blind super resolution,
   2020.
+
+\bibitem{zhou19}
+Ruofan Zhou and Sabine Süsstrunk.
+\newblock Kernel modeling super-resolution on real low-resolution images.
+\newblock In {\em 2019 IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, pages 2433--2443, 2019.
 
 \bibitem{zontak2011}
 Maria Zontak and Michal Irani.
@@ -352,6 +398,11 @@ Simon Hook and Gerardo Rivera.
 Karen Simonyan and Andrew Zisserman.
 \newblock Very deep convolutional networks for large-scale image recognition.
 \newblock {\em CoRR}, abs/1409.1556, 2014.
+
+\bibitem{zhang2018unreasonable}
+Richard Zhang, Phillip Isola, Alexei~A. Efros, Eli Shechtman, and Oliver Wang.
+\newblock The unreasonable effectiveness of deep features as a perceptual
+  metric, 2018.
 
 \bibitem{niqe}
 Anish Mittal, Rajiv Soundararajan, and Alan~C. Bovik.

@@ -1,6 +1,6 @@
 \section{Experiment Setup}
 
-The experiments were conducted for all the datasets described in the previous section, using a single NVidia RTX 4080 GPU with 24GB of RAM.
+The experiments were conducted for all the datasets described in the previous section, using a single RTX 4080 GPU with 24GB of RAM.   A condensed overview of the experiment setup is available in Table \ref{tab:experiment-setup}.
 
 For the degradation model, the dimensions of $z_k$ and $z_n$ were set to $64$, using 8 residual blocks as the core of both generative networks, and a kernel size of $21$ for the kernel generator. Each pixel of the noise generator is correlated with it's neighbors, because the convolutional weights of the residual blocks have a size of 3x3. The discriminator is composed of 3 residual blocks, with 64 feature maps and a stride of 2 to create the patches.
 
@@ -8,13 +8,8 @@ The SR model is composed of 7 residual blocks, with 128 feature maps and an upsa
 
 The adversarial loss used was the LSGAN loss, and the pixel wise loss was the L1 loss. The noise regularization loss was the L2 norm of the noise output. The weights of the losses were set to 1 for the adversarial loss, 1 for the pixel wise loss and 100 for the noise regularization loss.
 
-The models are trained sequentially during an epoch, first the generator, then the discriminator and finally the SR model. Each model has it's own ADAM, with a learning rate of $2 \cdot 10^{-4}$,
- $\beta_1 = 0.9$ and $\beta_2 = 0.99$.
-
-The batch size was set to 16, and the number of epochs to 100. An instance normalization is performed to the dataset samples before going into the model. 
-The discriminator is trained the same amount of times as the generator. Several combinations were tested, but this configuration produced the best results.
-
-A condensed overview of the experiment setup is available in Table \ref{tab:experiment-setup}.
+The models are trained sequentially during an epoch. First the generator, then the discriminator and finally the SR model. Each network has it's own ADAM optimizer, with a learning rate of $2 \cdot 10^{-4}$,
+ $\beta_1 = 0.9$ and $\beta_2 = 0.99$. The discriminator is trained the same amount of times as the generator, as this was the ratio that produced the best results. The batch size was set to 16, and the number of epochs to 100. An instance normalization is performed to the dataset samples before going into the model.
 
 The criteria to select the best model for each training session was the PSNR on the source domain of the validation set. 
 In other words, the selected model is the one that the model that achieved the highest PSNR after taking an HR image from the source domain (black arrow flow in Fig. \ref{fig:3-GAN-degradation-model}), applying the probabilistic degradation model, then the SR model, and finally comparing the result with the original HR image.

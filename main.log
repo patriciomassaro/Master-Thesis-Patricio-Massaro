@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.6.26)  3 JAN 2024 20:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.6.26)  9 JAN 2024 11:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -402,7 +402,11 @@ File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count314
 \l__pdf_internal_box=\box59
-) (./main.aux)
+) (./main.aux
+
+LaTeX Warning: Label `eq:4-sobel-operators' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
@@ -490,7 +494,7 @@ Package epstopdf Info: Source file: <Includes/0-siegel.eps>
 (epstopdf)             Command: <repstopdf --outfile=Includes/0-siegel-eps-converted-to.pdf Includes/0-siegel.eps>
 (epstopdf)             \includegraphics on input line 71.
 Package epstopdf Info: Output file is already uptodate.
-<Includes/0-siegel-eps-converted-to.pdf, id=249, 286.06876pt x 286.06876pt>
+<Includes/0-siegel-eps-converted-to.pdf, id=261, 286.06876pt x 286.06876pt>
 File: Includes/0-siegel-eps-converted-to.pdf Graphic file (type pdf)
 <use Includes/0-siegel-eps-converted-to.pdf>
 Package pdftex.def Info: Includes/0-siegel-eps-converted-to.pdf  used on input line 71.
@@ -517,201 +521,207 @@ l.3 \newpage
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.31 
-      [1]
+l.29 \end{itemize}
+                   [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.40 \newpage
+l.48 \newpage
               [2]
-<Includes/1-electromagnetic-spectrum.png, id=351, 789.95125pt x 422.57875pt>
+<Includes/1-electromagnetic-spectrum.png, id=367, 789.95125pt x 422.57875pt>
 File: Includes/1-electromagnetic-spectrum.png Graphic file (type png)
 <use Includes/1-electromagnetic-spectrum.png>
-Package pdftex.def Info: Includes/1-electromagnetic-spectrum.png  used on input line 67.
+Package pdftex.def Info: Includes/1-electromagnetic-spectrum.png  used on input line 90.
 (pdftex.def)             Requested size: 418.25368pt x 223.73999pt.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.71 
+l.94 
       [3] [4 <./Includes/1-electromagnetic-spectrum.png>] [5] [6] [7]
-<includes/1-skopje-NDVI.png, id=418, 477.785pt x 291.0875pt>
-File: includes/1-skopje-NDVI.png Graphic file (type png)
-<use includes/1-skopje-NDVI.png>
-Package pdftex.def Info: includes/1-skopje-NDVI.png  used on input line 212.
-(pdftex.def)             Requested size: 209.12683pt x 127.4082pt.
-<includes/1-skopje-LST.png, id=419, 485.815pt x 290.08376pt>
-File: includes/1-skopje-LST.png Graphic file (type png)
-<use includes/1-skopje-LST.png>
-Package pdftex.def Info: includes/1-skopje-LST.png  used on input line 217.
-(pdftex.def)             Requested size: 209.12683pt x 124.87079pt.
- [8]
-<Includes/2-scatterplot-res-revisit.pdf, id=442, 643.87941pt x 386.49959pt>
+<Includes/1-skopje-NDVI.png, id=433, 477.785pt x 291.0875pt>
+File: Includes/1-skopje-NDVI.png Graphic file (type png)
+<use Includes/1-skopje-NDVI.png>
+Package pdftex.def Info: Includes/1-skopje-NDVI.png  used on input line 223.
+(pdftex.def)             Requested size: 313.69025pt x 191.11452pt.
+<Includes/1-skopje-LST.png, id=434, 485.815pt x 290.08376pt>
+File: Includes/1-skopje-LST.png Graphic file (type png)
+<use Includes/1-skopje-LST.png>
+Package pdftex.def Info: Includes/1-skopje-LST.png  used on input line 228.
+(pdftex.def)             Requested size: 313.69025pt x 187.30397pt.
+ [8] [9 <./Includes/1-skopje-NDVI.png> <./Includes/1-skopje-LST.png>]
+<Includes/2-scatterplot-res-revisit.pdf, id=469, 643.87941pt x 386.49959pt>
 File: Includes/2-scatterplot-res-revisit.pdf Graphic file (type pdf)
 <use Includes/2-scatterplot-res-revisit.pdf>
-Package pdftex.def Info: Includes/2-scatterplot-res-revisit.pdf  used on input line 248.
+Package pdftex.def Info: Includes/2-scatterplot-res-revisit.pdf  used on input line 269.
 (pdftex.def)             Requested size: 418.25368pt x 251.06252pt.
- [9 <./includes/1-skopje-NDVI.png> <./includes/1-skopje-LST.png>] [10 <./Includes/2-scatterplot-res-revisit.pdf>]) (./sections/super_resolution.tex
-<Includes/2-SR-ill-posed.jpg, id=507, 1405.25pt x 790.955pt>
+ [10] [11 <./Includes/2-scatterplot-res-revisit.pdf>]) (./sections/super_resolution.tex
+<Includes/2-SR-ill-posed.jpg, id=532, 1405.25pt x 790.955pt>
 File: Includes/2-SR-ill-posed.jpg Graphic file (type jpg)
 <use Includes/2-SR-ill-posed.jpg>
 Package pdftex.def Info: Includes/2-SR-ill-posed.jpg  used on input line 7.
 (pdftex.def)             Requested size: 418.25368pt x 235.41763pt.
-<Includes/2-end-to-end-training.pdf, id=508, 1219.55624pt x 825.0825pt>
+<Includes/2-end-to-end-training.pdf, id=533, 1219.55624pt x 825.0825pt>
 File: Includes/2-end-to-end-training.pdf Graphic file (type pdf)
 <use Includes/2-end-to-end-training.pdf>
 Package pdftex.def Info: Includes/2-end-to-end-training.pdf  used on input line 28.
 (pdftex.def)             Requested size: 418.25368pt x 282.96675pt.
- [11 <./Includes/2-SR-ill-posed.jpg>]
-<Includes/3-super-resolution-data.png, id=519, 1120.185pt x 447.6725pt>
+ [12 <./Includes/2-SR-ill-posed.jpg>]
+<Includes/3-super-resolution-data.png, id=544, 1120.185pt x 447.6725pt>
 File: Includes/3-super-resolution-data.png Graphic file (type png)
 <use Includes/3-super-resolution-data.png>
 Package pdftex.def Info: Includes/3-super-resolution-data.png  used on input line 43.
 (pdftex.def)             Requested size: 418.25368pt x 167.1527pt.
- [12 <./Includes/2-end-to-end-training.pdf>]
-<Includes/2-sub-pixel-convolution.png, id=534, 651.43375pt x 233.87375pt>
+ [13 <./Includes/2-end-to-end-training.pdf>]
+<Includes/2-sub-pixel-convolution.png, id=560, 651.43375pt x 233.87375pt>
 File: Includes/2-sub-pixel-convolution.png Graphic file (type png)
 <use Includes/2-sub-pixel-convolution.png>
 Package pdftex.def Info: Includes/2-sub-pixel-convolution.png  used on input line 75.
 (pdftex.def)             Requested size: 418.25368pt x 150.164pt.
- [13 <./Includes/3-super-resolution-data.png>] [14 <./Includes/2-sub-pixel-convolution.png>]
-<Includes/2-feature-attention.png, id=556, 1089.06876pt x 283.0575pt>
+ [14 <./Includes/3-super-resolution-data.png>] [15 <./Includes/2-sub-pixel-convolution.png>]
+<Includes/2-feature-attention.png, id=583, 1089.06876pt x 283.0575pt>
 File: Includes/2-feature-attention.png Graphic file (type png)
 <use Includes/2-feature-attention.png>
 Package pdftex.def Info: Includes/2-feature-attention.png  used on input line 106.
 (pdftex.def)             Requested size: 418.25368pt x 108.70752pt.
- [15 <./Includes/2-feature-attention.png>]
-<Includes/2-gans-natural-manifold.png, id=572, 601.24625pt x 393.47pt>
+ [16 <./Includes/2-feature-attention.png>]
+<Includes/2-gans-natural-manifold.png, id=601, 601.24625pt x 393.47pt>
 File: Includes/2-gans-natural-manifold.png Graphic file (type png)
 <use Includes/2-gans-natural-manifold.png>
-Package pdftex.def Info: Includes/2-gans-natural-manifold.png  used on input line 152.
+Package pdftex.def Info: Includes/2-gans-natural-manifold.png  used on input line 151.
 (pdftex.def)             Requested size: 418.25368pt x 273.72202pt.
- [16]
-<Includes/2-MISR.jpeg, id=589, 200.67531pt x 72.94228pt>
+ [17]
+<Includes/2-MISR.jpeg, id=618, 200.67531pt x 72.94228pt>
 File: Includes/2-MISR.jpeg Graphic file (type jpg)
 <use Includes/2-MISR.jpeg>
-Package pdftex.def Info: Includes/2-MISR.jpeg  used on input line 193.
+Package pdftex.def Info: Includes/2-MISR.jpeg  used on input line 171.
 (pdftex.def)             Requested size: 418.25368pt x 152.04245pt.
- [17 <./Includes/2-gans-natural-manifold.png>]
-<Includes/2-pansharpen.png, id=602, 361.35pt x 361.35pt>
+ [18 <./Includes/2-gans-natural-manifold.png>]
+<Includes/2-pansharpen.png, id=631, 361.35pt x 361.35pt>
 File: Includes/2-pansharpen.png Graphic file (type png)
 <use Includes/2-pansharpen.png>
-Package pdftex.def Info: Includes/2-pansharpen.png  used on input line 209.
+Package pdftex.def Info: Includes/2-pansharpen.png  used on input line 187.
 (pdftex.def)             Requested size: 418.25368pt x 418.25653pt.
- [18 <./Includes/2-MISR.jpeg>] [19 <./Includes/2-pansharpen.png>]
-<Includes/2-domain-gap.pdf, id=622, 876.27374pt x 529.98pt>
+ [19 <./Includes/2-MISR.jpeg>] [20 <./Includes/2-pansharpen.png>]
+<Includes/2-domain-gap.pdf, id=651, 876.27374pt x 529.98pt>
 File: Includes/2-domain-gap.pdf Graphic file (type pdf)
 <use Includes/2-domain-gap.pdf>
-Package pdftex.def Info: Includes/2-domain-gap.pdf  used on input line 236.
+Package pdftex.def Info: Includes/2-domain-gap.pdf  used on input line 213.
 (pdftex.def)             Requested size: 350.50328pt x 211.98824pt.
- [20 <./Includes/2-domain-gap.pdf>]
-<Includes/2-DomainGap.png, id=640, 840.13875pt x 361.35pt>
+ [21 <./Includes/2-domain-gap.pdf>]
+<Includes/2-DomainGap.png, id=670, 840.13875pt x 361.35pt>
 File: Includes/2-DomainGap.png Graphic file (type png)
 <use Includes/2-DomainGap.png>
-Package pdftex.def Info: Includes/2-DomainGap.png  used on input line 254.
+Package pdftex.def Info: Includes/2-DomainGap.png  used on input line 231.
 (pdftex.def)             Requested size: 418.25368pt x 179.8916pt.
-<Includes/2-external-dataset-stretching.png, id=645, 505.89pt x 290.08376pt>
+<Includes/2-external-dataset-stretching.png, id=675, 505.89pt x 290.08376pt>
 File: Includes/2-external-dataset-stretching.png Graphic file (type png)
 <use Includes/2-external-dataset-stretching.png>
-Package pdftex.def Info: Includes/2-external-dataset-stretching.png  used on input line 278.
+Package pdftex.def Info: Includes/2-external-dataset-stretching.png  used on input line 255.
 (pdftex.def)             Requested size: 418.25368pt x 239.8355pt.
- [21 <./Includes/2-DomainGap.png>] [22 <./Includes/2-external-dataset-stretching.png>]
-<Includes/2-kernelGAN.png, id=668, 959.585pt x 288.07625pt>
+ [22 <./Includes/2-DomainGap.png>] [23 <./Includes/2-external-dataset-stretching.png>]
+<Includes/2-kernelGAN.png, id=700, 959.585pt x 288.07625pt>
 File: Includes/2-kernelGAN.png Graphic file (type png)
 <use Includes/2-kernelGAN.png>
-Package pdftex.def Info: Includes/2-kernelGAN.png  used on input line 311.
+Package pdftex.def Info: Includes/2-kernelGAN.png  used on input line 288.
 (pdftex.def)             Requested size: 418.25368pt x 125.5627pt.
- [23 <./Includes/2-kernelGAN.png>]
-<Includes/4-ccingan.png, id=684, 1311.90125pt x 493.845pt>
+ [24 <./Includes/2-kernelGAN.png>]
+<Includes/4-ccingan.png, id=717, 1311.90125pt x 493.845pt>
 File: Includes/4-ccingan.png Graphic file (type png)
 <use Includes/4-ccingan.png>
-Package pdftex.def Info: Includes/4-ccingan.png  used on input line 344.
+Package pdftex.def Info: Includes/4-ccingan.png  used on input line 321.
 (pdftex.def)             Requested size: 418.25368pt x 157.44585pt.
-<Includes/2-degradation-gan.png, id=692, 1068.99374pt x 659.46375pt>
+<Includes/2-degradation-gan.png, id=725, 1068.99374pt x 659.46375pt>
 File: Includes/2-degradation-gan.png Graphic file (type png)
 <use Includes/2-degradation-gan.png>
-Package pdftex.def Info: Includes/2-degradation-gan.png  used on input line 359.
+Package pdftex.def Info: Includes/2-degradation-gan.png  used on input line 336.
 (pdftex.def)             Requested size: 418.25368pt x 258.02501pt.
- [24 <./Includes/4-ccingan.png>] [25 <./Includes/2-degradation-gan.png>]) (./sections/methodology.tex [26
+ [25 <./Includes/4-ccingan.png>] [26 <./Includes/2-degradation-gan.png>]) (./sections/methodology.tex
+Overfull \hbox (6.87773pt too wide) in paragraph at lines 14--16
+[]\OT1/cmr/m/n/10.95 Contrary to pre-vi-ous mod-els that use deep learn-ing di-rectly trans-form a high-resolution
+ []
+
+[27
 
 ]
-<Includes/3-probabilistic-degradation-model.png, id=727, 1062.97125pt x 281.05pt>
+<Includes/3-probabilistic-degradation-model.png, id=758, 1062.97125pt x 281.05pt>
 File: Includes/3-probabilistic-degradation-model.png Graphic file (type png)
 <use Includes/3-probabilistic-degradation-model.png>
-Package pdftex.def Info: Includes/3-probabilistic-degradation-model.png  used on input line 88.
+Package pdftex.def Info: Includes/3-probabilistic-degradation-model.png  used on input line 91.
 (pdftex.def)             Requested size: 418.25368pt x 110.58682pt.
- [27 <./Includes/3-probabilistic-degradation-model.png>]
-<Includes/3-slim-gen-module.pdf, id=743, 657.41606pt x 237.7683pt>
-File: Includes/3-slim-gen-module.pdf Graphic file (type pdf)
-<use Includes/3-slim-gen-module.pdf>
-Package pdftex.def Info: Includes/3-slim-gen-module.pdf  used on input line 109.
-(pdftex.def)             Requested size: 418.25368pt x 151.27142pt.
-<Includes/3-slim_patchGAN_architecture.pdf, id=746, 679.57887pt x 118.5228pt>
-File: Includes/3-slim_patchGAN_architecture.pdf Graphic file (type pdf)
-<use Includes/3-slim_patchGAN_architecture.pdf>
-Package pdftex.def Info: Includes/3-slim_patchGAN_architecture.pdf  used on input line 122.
-(pdftex.def)             Requested size: 418.25368pt x 72.94623pt.
- [28 <./Includes/3-slim-gen-module.pdf>]
-<Includes/3-GAN-degradation-model.png, id=772, 652.4375pt x 234.8775pt>
-File: Includes/3-GAN-degradation-model.png Graphic file (type png)
-<use Includes/3-GAN-degradation-model.png>
-Package pdftex.def Info: Includes/3-GAN-degradation-model.png  used on input line 136.
-(pdftex.def)             Requested size: 418.25368pt x 150.57555pt.
- [29 <./Includes/3-slim_patchGAN_architecture.pdf> <./Includes/3-GAN-degradation-model.png>]
-<includes/3-srresnet-architecture.pdf, id=795, 651.39355pt x 233.9139pt>
-File: includes/3-srresnet-architecture.pdf Graphic file (type pdf)
-<use includes/3-srresnet-architecture.pdf>
-Package pdftex.def Info: includes/3-srresnet-architecture.pdf  used on input line 163.
-(pdftex.def)             Requested size: 418.25368pt x 150.19693pt.
- [30 <./includes/3-srresnet-architecture.pdf>]
-<Includes/4-degradation_kernels.pdf, id=819, 1084.05pt x 722.7pt>
-File: Includes/4-degradation_kernels.pdf Graphic file (type pdf)
-<use Includes/4-degradation_kernels.pdf>
-Package pdftex.def Info: Includes/4-degradation_kernels.pdf  used on input line 189.
-(pdftex.def)             Requested size: 418.25368pt x 278.83032pt.
-<Includes/4-degradation-kernel-examples.pdf, id=820, 1505.625pt x 1003.75pt>
-File: Includes/4-degradation-kernel-examples.pdf Graphic file (type pdf)
-<use Includes/4-degradation-kernel-examples.pdf>
-Package pdftex.def Info: Includes/4-degradation-kernel-examples.pdf  used on input line 196.
-(pdftex.def)             Requested size: 418.25368pt x 278.82727pt.
- [31 <./Includes/4-degradation_kernels.pdf>] [32 <./Includes/4-degradation-kernel-examples.pdf>]
-<Includes/4-radiometric_noise_example.pdf, id=875, 722.7pt x 722.7pt>
-File: Includes/4-radiometric_noise_example.pdf Graphic file (type pdf)
-<use Includes/4-radiometric_noise_example.pdf>
-Package pdftex.def Info: Includes/4-radiometric_noise_example.pdf  used on input line 237.
-(pdftex.def)             Requested size: 418.25368pt x 418.251pt.
- [33 <./Includes/4-radiometric_noise_example.pdf>] [34] [35]
-<Includes/3-NR-IQA.pdf, id=939, 1525.7pt x 659.46375pt>
-File: Includes/3-NR-IQA.pdf Graphic file (type pdf)
-<use Includes/3-NR-IQA.pdf>
-Package pdftex.def Info: Includes/3-NR-IQA.pdf  used on input line 365.
-(pdftex.def)             Requested size: 381.42407pt x 164.86552pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[36] [37 <./Includes/3-NR-IQA.pdf>]
-<Includes/4-frequency-analysis.pdf, id=961, 1084.05pt x 361.35pt>
+[28]
+<Includes/3-slim-gen-module.pdf, id=777, 657.41606pt x 237.7683pt>
+File: Includes/3-slim-gen-module.pdf Graphic file (type pdf)
+<use Includes/3-slim-gen-module.pdf>
+Package pdftex.def Info: Includes/3-slim-gen-module.pdf  used on input line 111.
+(pdftex.def)             Requested size: 418.25368pt x 151.27142pt.
+<Includes/3-slim_patchGAN_architecture.pdf, id=780, 679.57887pt x 118.5228pt>
+File: Includes/3-slim_patchGAN_architecture.pdf Graphic file (type pdf)
+<use Includes/3-slim_patchGAN_architecture.pdf>
+Package pdftex.def Info: Includes/3-slim_patchGAN_architecture.pdf  used on input line 124.
+(pdftex.def)             Requested size: 418.25368pt x 72.94623pt.
+ [29 <./Includes/3-probabilistic-degradation-model.png> <./Includes/3-slim-gen-module.pdf>]
+<Includes/3-GAN-degradation-model.png, id=807, 652.4375pt x 234.8775pt>
+File: Includes/3-GAN-degradation-model.png Graphic file (type png)
+<use Includes/3-GAN-degradation-model.png>
+Package pdftex.def Info: Includes/3-GAN-degradation-model.png  used on input line 138.
+(pdftex.def)             Requested size: 418.25368pt x 150.57555pt.
+ [30 <./Includes/3-slim_patchGAN_architecture.pdf> <./Includes/3-GAN-degradation-model.png>]
+<Includes/3-srresnet-architecture.pdf, id=830, 651.39355pt x 233.9139pt>
+File: Includes/3-srresnet-architecture.pdf Graphic file (type pdf)
+<use Includes/3-srresnet-architecture.pdf>
+Package pdftex.def Info: Includes/3-srresnet-architecture.pdf  used on input line 166.
+(pdftex.def)             Requested size: 418.25368pt x 150.19693pt.
+ [31 <./Includes/3-srresnet-architecture.pdf>]
+<Includes/4-degradation_kernels.pdf, id=855, 1084.05pt x 722.7pt>
+File: Includes/4-degradation_kernels.pdf Graphic file (type pdf)
+<use Includes/4-degradation_kernels.pdf>
+Package pdftex.def Info: Includes/4-degradation_kernels.pdf  used on input line 190.
+(pdftex.def)             Requested size: 418.25368pt x 278.83032pt.
+ [32]
+<Includes/4-degradation-kernel-examples.pdf, id=862, 1505.625pt x 1003.75pt>
+File: Includes/4-degradation-kernel-examples.pdf Graphic file (type pdf)
+<use Includes/4-degradation-kernel-examples.pdf>
+Package pdftex.def Info: Includes/4-degradation-kernel-examples.pdf  used on input line 197.
+(pdftex.def)             Requested size: 418.25368pt x 278.82727pt.
+ [33 <./Includes/4-degradation_kernels.pdf>] [34 <./Includes/4-degradation-kernel-examples.pdf>]
+<Includes/4-radiometric_noise_example.pdf, id=915, 722.7pt x 722.7pt>
+File: Includes/4-radiometric_noise_example.pdf Graphic file (type pdf)
+<use Includes/4-radiometric_noise_example.pdf>
+Package pdftex.def Info: Includes/4-radiometric_noise_example.pdf  used on input line 238.
+(pdftex.def)             Requested size: 418.25368pt x 418.251pt.
+ [35 <./Includes/4-radiometric_noise_example.pdf>] [36] [37] [38] [39]
+<Includes/5-square_vs_radial.pdf, id=997, 597.53867pt x 277.16815pt>
+File: Includes/5-square_vs_radial.pdf Graphic file (type pdf)
+<use Includes/5-square_vs_radial.pdf>
+Package pdftex.def Info: Includes/5-square_vs_radial.pdf  used on input line 436.
+(pdftex.def)             Requested size: 418.25368pt x 194.00792pt.
+ [40]
+<Includes/4-frequency-analysis.pdf, id=1005, 1058.70262pt x 352.94048pt>
 File: Includes/4-frequency-analysis.pdf Graphic file (type pdf)
 <use Includes/4-frequency-analysis.pdf>
-Package pdftex.def Info: Includes/4-frequency-analysis.pdf  used on input line 428.
-(pdftex.def)             Requested size: 418.25368pt x 139.41516pt.
- [38] [39 <./Includes/4-frequency-analysis.pdf>]
-<Includes/4-gradient-analysis.pdf, id=1032, 858.62057pt x 568.28786pt>
+Package pdftex.def Info: Includes/4-frequency-analysis.pdf  used on input line 453.
+(pdftex.def)             Requested size: 418.25368pt x 139.43419pt.
+ [41 <./Includes/5-square_vs_radial.pdf> <./Includes/4-frequency-analysis.pdf>]
+<Includes/4-gradient-analysis.pdf, id=1083, 858.62057pt x 568.28786pt>
 File: Includes/4-gradient-analysis.pdf Graphic file (type pdf)
 <use Includes/4-gradient-analysis.pdf>
-Package pdftex.def Info: Includes/4-gradient-analysis.pdf  used on input line 478.
+Package pdftex.def Info: Includes/4-gradient-analysis.pdf  used on input line 504.
 (pdftex.def)             Requested size: 418.25368pt x 276.83327pt.
- [40 <./Includes/4-gradient-analysis.pdf>]) (./sections/datasets.tex
-<Includes/5-wavelength-comparison.png, id=1092, 863.225pt x 385.44pt>
+ [42] [43 <./Includes/4-gradient-analysis.pdf>]) (./sections/datasets.tex
+<Includes/5-wavelength-comparison.png, id=1150, 863.225pt x 385.44pt>
 File: Includes/5-wavelength-comparison.png Graphic file (type png)
 <use Includes/5-wavelength-comparison.png>
 Package pdftex.def Info: Includes/5-wavelength-comparison.png  used on input line 33.
 (pdftex.def)             Requested size: 418.25368pt x 186.75584pt.
- [41
+ [44
 
 ]
-<Includes/5-ecostress-map-location.png, id=1107, 947.54pt x 483.8075pt>
+<Includes/5-ecostress-map-location.png, id=1165, 947.54pt x 483.8075pt>
 File: Includes/5-ecostress-map-location.png Graphic file (type png)
 <use Includes/5-ecostress-map-location.png>
 Package pdftex.def Info: Includes/5-ecostress-map-location.png  used on input line 55.
@@ -720,161 +730,181 @@ Package pdftex.def Info: Includes/5-ecostress-map-location.png  used on input li
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[42 <./Includes/5-wavelength-comparison.png>]
+[45 <./Includes/5-wavelength-comparison.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 79.
- [43 <./Includes/5-ecostress-map-location.png>]
-<Includes/5-data_processing_flow_chart.pdf, id=1130, 1375.1375pt x 731.73375pt>
+ [46 <./Includes/5-ecostress-map-location.png>]
+<Includes/5-data_processing_flow_chart.pdf, id=1189, 1375.1375pt x 731.73375pt>
 File: Includes/5-data_processing_flow_chart.pdf Graphic file (type pdf)
 <use Includes/5-data_processing_flow_chart.pdf>
 Package pdftex.def Info: Includes/5-data_processing_flow_chart.pdf  used on input line 144.
 (pdftex.def)             Requested size: 418.25368pt x 222.55879pt.
- [44]
-<Includes/5-random_crop_processor.pdf, id=1138, 1701.35625pt x 591.20876pt>
+ [47]
+<Includes/5-random_crop_processor.pdf, id=1197, 1701.35625pt x 591.20876pt>
 File: Includes/5-random_crop_processor.pdf Graphic file (type pdf)
 <use Includes/5-random_crop_processor.pdf>
 Package pdftex.def Info: Includes/5-random_crop_processor.pdf  used on input line 151.
 (pdftex.def)             Requested size: 418.25368pt x 145.33905pt.
-<Includes/4-forest-locations.png, id=1140, 682.2288pt x 348.3414pt>
+<Includes/4-forest-locations.png, id=1199, 682.2288pt x 348.3414pt>
 File: Includes/4-forest-locations.png Graphic file (type png)
 <use Includes/4-forest-locations.png>
 Package pdftex.def Info: Includes/4-forest-locations.png  used on input line 165.
 (pdftex.def)             Requested size: 418.25368pt x 213.5563pt.
- [45 <./Includes/5-data_processing_flow_chart.pdf> <./Includes/5-random_crop_processor.pdf>]
-<Includes/4-forest2-unprocessed-bands.pdf, id=1158, 1265.6953pt x 579.42393pt>
+ [48 <./Includes/5-data_processing_flow_chart.pdf> <./Includes/5-random_crop_processor.pdf>]
+<Includes/4-forest2-unprocessed-bands.pdf, id=1216, 1265.6953pt x 579.42393pt>
 File: Includes/4-forest2-unprocessed-bands.pdf Graphic file (type pdf)
 <use Includes/4-forest2-unprocessed-bands.pdf>
 Package pdftex.def Info: Includes/4-forest2-unprocessed-bands.pdf  used on input line 176.
 (pdftex.def)             Requested size: 418.25368pt x 191.46689pt.
-<Includes/4-forest2-cropped-bands.pdf, id=1160, 859.65857pt x 312.68997pt>
+<Includes/4-forest2-cropped-bands.pdf, id=1218, 859.65857pt x 312.68997pt>
 File: Includes/4-forest2-cropped-bands.pdf Graphic file (type pdf)
 <use Includes/4-forest2-cropped-bands.pdf>
 Package pdftex.def Info: Includes/4-forest2-cropped-bands.pdf  used on input line 187.
 (pdftex.def)             Requested size: 418.25368pt x 152.13156pt.
- [46 <./Includes/4-forest-locations.png> <./Includes/4-forest2-unprocessed-bands.pdf>] [47 <./Includes/4-forest2-cropped-bands.pdf>] [48]) (./sections/experiment_setup.tex [49] [50]) (./sections/results.tex [51]
-<Includes/5-source-prediction-sample.pdf, id=1252, 1409.0235pt x 2146.78918pt>
+ [49 <./Includes/4-forest-locations.png> <./Includes/4-forest2-unprocessed-bands.pdf>] [50 <./Includes/4-forest2-cropped-bands.pdf>] [51]) (./sections/experiment_setup.tex [52] [53]) (./sections/results.tex
+<Includes/5-source-prediction-sample.pdf, id=1305, 1409.0235pt x 2146.78918pt>
 File: Includes/5-source-prediction-sample.pdf Graphic file (type pdf)
 <use Includes/5-source-prediction-sample.pdf>
-Package pdftex.def Info: Includes/5-source-prediction-sample.pdf  used on input line 46.
-(pdftex.def)             Requested size: 418.25368pt x 637.22821pt.
- [52]
-Overfull \vbox (90.8688pt too high) has occurred while \output is active []
+Package pdftex.def Info: Includes/5-source-prediction-sample.pdf  used on input line 41.
+(pdftex.def)             Requested size: 408.60635pt x 622.55293pt.
+ [54]
+Overfull \vbox (23.74522pt too high) has occurred while \output is active []
 
- [53 <./Includes/5-source-prediction-sample.pdf>]
-<Includes/5-lr-images-fft.pdf, id=1356, 1076.82304pt x 714.35706pt>
+ [55 <./Includes/5-source-prediction-sample.pdf>]
+<Includes/5-lr-images-fft.pdf, id=1408, 1076.82304pt x 714.35706pt>
 File: Includes/5-lr-images-fft.pdf Graphic file (type pdf)
 <use Includes/5-lr-images-fft.pdf>
-Package pdftex.def Info: Includes/5-lr-images-fft.pdf  used on input line 64.
+Package pdftex.def Info: Includes/5-lr-images-fft.pdf  used on input line 55.
 (pdftex.def)             Requested size: 323.04941pt x 214.30876pt.
-<Includes/5-lr-images-fft-comparison.pdf, id=1358, 715.37325pt x 714.29047pt>
+<Includes/5-lr-images-fft-comparison.pdf, id=1410, 715.47047pt x 714.29047pt>
 File: Includes/5-lr-images-fft-comparison.pdf Graphic file (type pdf)
 <use Includes/5-lr-images-fft-comparison.pdf>
-Package pdftex.def Info: Includes/5-lr-images-fft-comparison.pdf  used on input line 78.
-(pdftex.def)             Requested size: 321.91498pt x 321.42773pt.
- [54 <./Includes/5-lr-images-fft.pdf>]
-<Includes/5-source-sr-fft-comparison.pdf, id=1399, 715.47047pt x 714.29047pt>
+Package pdftex.def Info: Includes/5-lr-images-fft-comparison.pdf  used on input line 69.
+(pdftex.def)             Requested size: 321.95874pt x 321.42773pt.
+ [56 <./Includes/5-lr-images-fft.pdf>]
+<Includes/5-source-sr-fft-comparison.pdf, id=1452, 715.37325pt x 714.29047pt>
 File: Includes/5-source-sr-fft-comparison.pdf Graphic file (type pdf)
 <use Includes/5-source-sr-fft-comparison.pdf>
-Package pdftex.def Info: Includes/5-source-sr-fft-comparison.pdf  used on input line 94.
-(pdftex.def)             Requested size: 357.73436pt x 357.14435pt.
- [55 <./Includes/5-lr-images-fft-comparison.pdf>] [56 <./Includes/5-source-sr-fft-comparison.pdf>]
-<Includes/5-source-kernel-mean-std.pdf, id=1510, 710.81625pt x 641.63806pt>
+Package pdftex.def Info: Includes/5-source-sr-fft-comparison.pdf  used on input line 84.
+(pdftex.def)             Requested size: 357.68575pt x 357.14435pt.
+ [57 <./Includes/5-lr-images-fft-comparison.pdf>] [58 <./Includes/5-source-sr-fft-comparison.pdf>]
+<Includes/5-source-kernel-mean-std.pdf, id=1560, 710.81625pt x 641.63806pt>
 File: Includes/5-source-kernel-mean-std.pdf Graphic file (type pdf)
 <use Includes/5-source-kernel-mean-std.pdf>
-Package pdftex.def Info: Includes/5-source-kernel-mean-std.pdf  used on input line 119.
+Package pdftex.def Info: Includes/5-source-kernel-mean-std.pdf  used on input line 111.
 (pdftex.def)             Requested size: 418.25368pt x 377.54495pt.
-<Includes/5-source-noise-1-sample.pdf, id=1511, 716.59032pt x 715.5125pt>
+<Includes/5-source-noise-1-sample.pdf, id=1561, 716.59032pt x 715.5125pt>
 File: Includes/5-source-noise-1-sample.pdf Graphic file (type pdf)
 <use Includes/5-source-noise-1-sample.pdf>
-Package pdftex.def Info: Includes/5-source-noise-1-sample.pdf  used on input line 134.
+Package pdftex.def Info: Includes/5-source-noise-1-sample.pdf  used on input line 125.
 (pdftex.def)             Requested size: 418.25368pt x 417.63965pt.
- [57 <./Includes/5-source-kernel-mean-std.pdf>]
-<Includes/5-source-noise-SNR.pdf, id=1575, 617.64503pt x 378.79895pt>
+ [59 <./Includes/5-source-kernel-mean-std.pdf>]
+<Includes/5-source-noise-SNR.pdf, id=1622, 617.64503pt x 378.79895pt>
 File: Includes/5-source-noise-SNR.pdf Graphic file (type pdf)
 <use Includes/5-source-noise-SNR.pdf>
-Package pdftex.def Info: Includes/5-source-noise-SNR.pdf  used on input line 150.
+Package pdftex.def Info: Includes/5-source-noise-SNR.pdf  used on input line 140.
 (pdftex.def)             Requested size: 418.25368pt x 256.51636pt.
- [58 <./Includes/5-source-noise-1-sample.pdf>]
-<Includes/5-source-domain-lr-performance-scatterplot.pdf, id=1626, 1077.94026pt x 343.96127pt>
+ [60 <./Includes/5-source-noise-1-sample.pdf>]
+<Includes/5-source-noise-correlation.pdf, id=1669, 617.09612pt x 384.63324pt>
+File: Includes/5-source-noise-correlation.pdf Graphic file (type pdf)
+<use Includes/5-source-noise-correlation.pdf>
+Package pdftex.def Info: Includes/5-source-noise-correlation.pdf  used on input line 151.
+(pdftex.def)             Requested size: 418.25368pt x 260.69026pt.
+ [61 <./Includes/5-source-noise-SNR.pdf> <./Includes/5-source-noise-correlation.pdf>]
+<Includes/5-source-domain-lr-performance-scatterplot.pdf, id=1751, 1077.94026pt x 343.96127pt>
 File: Includes/5-source-domain-lr-performance-scatterplot.pdf Graphic file (type pdf)
 <use Includes/5-source-domain-lr-performance-scatterplot.pdf>
-Package pdftex.def Info: Includes/5-source-domain-lr-performance-scatterplot.pdf  used on input line 171.
+Package pdftex.def Info: Includes/5-source-domain-lr-performance-scatterplot.pdf  used on input line 174.
 (pdftex.def)             Requested size: 418.25368pt x 133.4568pt.
- [59 <./Includes/5-source-noise-SNR.pdf>]
-<Includes/5-source-lr-amplification-statistics.pdf, id=1670, 715.37325pt x 714.29047pt>
+<Includes/5-source-lr-amplification-statistics.pdf, id=1754, 715.37325pt x 714.29047pt>
 File: Includes/5-source-lr-amplification-statistics.pdf Graphic file (type pdf)
 <use Includes/5-source-lr-amplification-statistics.pdf>
-Package pdftex.def Info: Includes/5-source-lr-amplification-statistics.pdf  used on input line 190.
+Package pdftex.def Info: Includes/5-source-lr-amplification-statistics.pdf  used on input line 193.
 (pdftex.def)             Requested size: 357.68575pt x 357.14435pt.
- [60 <./Includes/5-source-domain-lr-performance-scatterplot.pdf>]
-<Includes/5-source-domain-comparison.png, id=1725, 4492.785pt x 2993.1825pt>
+ [62 <./Includes/5-source-domain-lr-performance-scatterplot.pdf>]
+<Includes/5-source-domain-comparison.png, id=1812, 4492.785pt x 2993.1825pt>
 File: Includes/5-source-domain-comparison.png Graphic file (type png)
 <use Includes/5-source-domain-comparison.png>
-Package pdftex.def Info: Includes/5-source-domain-comparison.png  used on input line 214.
+Package pdftex.def Info: Includes/5-source-domain-comparison.png  used on input line 217.
 (pdftex.def)             Requested size: 418.25368pt x 278.64627pt.
- [61 <./Includes/5-source-lr-amplification-statistics.pdf>] [62 <./Includes/5-source-domain-comparison.png (PNG copy)>]
-<Includes/5-target_prediction_sample.pdf, id=1787, 1427.83401pt x 1076.82304pt>
+ [63 <./Includes/5-source-lr-amplification-statistics.pdf>]
+<Includes/5-target_prediction_sample.pdf, id=1868, 1427.83401pt x 713.98512pt>
 File: Includes/5-target_prediction_sample.pdf Graphic file (type pdf)
 <use Includes/5-target_prediction_sample.pdf>
-Package pdftex.def Info: Includes/5-target_prediction_sample.pdf  used on input line 245.
-(pdftex.def)             Requested size: 399.7908pt x 301.50839pt.
- [63 <./Includes/5-target_prediction_sample.pdf>]
-<Includes/5-target-amplification-statistics.pdf, id=1848, 715.404pt x 714.29047pt>
+Package pdftex.def Info: Includes/5-target_prediction_sample.pdf  used on input line 247.
+(pdftex.def)             Requested size: 399.7908pt x 199.91447pt.
+ [64 <./Includes/5-source-domain-comparison.png (PNG copy)>]
+<Includes/5-target-amplification-statistics.pdf, id=1877, 715.404pt x 714.29047pt>
 File: Includes/5-target-amplification-statistics.pdf Graphic file (type pdf)
 <use Includes/5-target-amplification-statistics.pdf>
-Package pdftex.def Info: Includes/5-target-amplification-statistics.pdf  used on input line 271.
+Package pdftex.def Info: Includes/5-target-amplification-statistics.pdf  used on input line 267.
 (pdftex.def)             Requested size: 357.70113pt x 357.14435pt.
-<Includes/6-target-gradient-analysis-image.pdf, id=1850, 1436.99469pt x 1438.17305pt>
+ [65 <./Includes/5-target_prediction_sample.pdf>]
+<Includes/6-target-gradient-analysis-image.pdf, id=1945, 1437.87837pt x 1438.17305pt>
 File: Includes/6-target-gradient-analysis-image.pdf Graphic file (type pdf)
 <use Includes/6-target-gradient-analysis-image.pdf>
-Package pdftex.def Info: Includes/6-target-gradient-analysis-image.pdf  used on input line 285.
-(pdftex.def)             Requested size: 402.35577pt x 402.68571pt.
- [64 <./Includes/5-target-amplification-statistics.pdf>]
-<Includes/5-gradient-histogram-validation-dataset.pdf, id=1907, 970.41924pt x 558.99525pt>
+Package pdftex.def Info: Includes/6-target-gradient-analysis-image.pdf  used on input line 281.
+(pdftex.def)             Requested size: 402.6032pt x 402.68571pt.
+ [66 <./Includes/5-target-amplification-statistics.pdf>]
+<Includes/5-gradient-histogram-validation-dataset.pdf, id=2000, 979.35889pt x 558.99525pt>
 File: Includes/5-gradient-histogram-validation-dataset.pdf Graphic file (type pdf)
 <use Includes/5-gradient-histogram-validation-dataset.pdf>
-Package pdftex.def Info: Includes/5-gradient-histogram-validation-dataset.pdf  used on input line 302.
-(pdftex.def)             Requested size: 388.16081pt x 223.59415pt.
- [65 <./Includes/6-target-gradient-analysis-image.pdf>]
-<Includes/5-target-prediction-with-domain-gap.pdf, id=1984, 1438.17305pt x 713.46983pt>
-File: Includes/5-target-prediction-with-domain-gap.pdf Graphic file (type pdf)
-<use Includes/5-target-prediction-with-domain-gap.pdf>
-Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap.pdf  used on input line 327.
+Package pdftex.def Info: Includes/5-gradient-histogram-validation-dataset.pdf  used on input line 297.
+(pdftex.def)             Requested size: 391.73662pt x 223.59415pt.
+ [67 <./Includes/6-target-gradient-analysis-image.pdf>]
+<Includes/5-correlation-histogram-validation-dataset.pdf, id=2078, 972.25423pt x 559.08336pt>
+File: Includes/5-correlation-histogram-validation-dataset.pdf Graphic file (type pdf)
+<use Includes/5-correlation-histogram-validation-dataset.pdf>
+Package pdftex.def Info: Includes/5-correlation-histogram-validation-dataset.pdf  used on input line 309.
+(pdftex.def)             Requested size: 340.29407pt x 195.6821pt.
+ [68 <./Includes/5-gradient-histogram-validation-dataset.pdf> <./Includes/5-correlation-histogram-validation-dataset.pdf>]
+<Includes/5-target_prediction_sample-with-domain-gap.pdf, id=2175, 1438.17305pt x 713.46983pt>
+File: Includes/5-target_prediction_sample-with-domain-gap.pdf Graphic file (type pdf)
+<use Includes/5-target_prediction_sample-with-domain-gap.pdf>
+Package pdftex.def Info: Includes/5-target_prediction_sample-with-domain-gap.pdf  used on input line 333.
 (pdftex.def)             Requested size: 402.68571pt x 199.77019pt.
- [66 <./Includes/5-gradient-histogram-validation-dataset.pdf>]
-<Includes/5-target-prediction-with-domain-gap-fft.pdf, id=2039, 715.404pt x 714.29047pt>
+<Includes/5-target-prediction-with-domain-gap-fft.pdf, id=2177, 715.37325pt x 714.29047pt>
 File: Includes/5-target-prediction-with-domain-gap-fft.pdf Graphic file (type pdf)
 <use Includes/5-target-prediction-with-domain-gap-fft.pdf>
-Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-fft.pdf  used on input line 341.
-(pdftex.def)             Requested size: 286.15654pt x 285.71112pt.
- [67 <./Includes/5-target-prediction-with-domain-gap.pdf>]
-<Includes/5-target-prediction-with-domain-gap-dataset.pdf, id=2101, 1077.94026pt x 354.80179pt>
+Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-fft.pdf  used on input line 346.
+(pdftex.def)             Requested size: 286.14423pt x 285.71112pt.
+ [69 <./Includes/5-target_prediction_sample-with-domain-gap.pdf>]
+<Includes/5-target-amplification-statistics-with-domain-gap.pdf, id=2243, 715.37325pt x 714.29047pt>
+File: Includes/5-target-amplification-statistics-with-domain-gap.pdf Graphic file (type pdf)
+<use Includes/5-target-amplification-statistics-with-domain-gap.pdf>
+Package pdftex.def Info: Includes/5-target-amplification-statistics-with-domain-gap.pdf  used on input line 361.
+(pdftex.def)             Requested size: 286.14423pt x 285.71112pt.
+ [70 <./Includes/5-target-prediction-with-domain-gap-fft.pdf>]
+<Includes/5-target-prediction-with-domain-gap-dataset.pdf, id=2301, 1077.94026pt x 354.80179pt>
 File: Includes/5-target-prediction-with-domain-gap-dataset.pdf Graphic file (type pdf)
 <use Includes/5-target-prediction-with-domain-gap-dataset.pdf>
-Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-dataset.pdf  used on input line 356.
+Package pdftex.def Info: Includes/5-target-prediction-with-domain-gap-dataset.pdf  used on input line 376.
 (pdftex.def)             Requested size: 409.62155pt x 134.82608pt.
- [68 <./Includes/5-target-prediction-with-domain-gap-fft.pdf> <./Includes/5-target-prediction-with-domain-gap-dataset.pdf>]
-<Includes/5-target-iqa-results.pdf, id=2203, 1438.27144pt x 714.682pt>
+ [71 <./Includes/5-target-amplification-statistics-with-domain-gap.pdf> <./Includes/5-target-prediction-with-domain-gap-dataset.pdf>]
+<Includes/5-target-iqa-results.pdf, id=2404, 1438.27144pt x 714.682pt>
 File: Includes/5-target-iqa-results.pdf Graphic file (type pdf)
 <use Includes/5-target-iqa-results.pdf>
-Package pdftex.def Info: Includes/5-target-iqa-results.pdf  used on input line 379.
-(pdftex.def)             Requested size: 402.71326pt x 200.10959pt.
- [69 <./Includes/5-target-iqa-results.pdf>] [70]) (./sections/conclusions.tex [71] [72] [73]) [74] (./main.bbl [75] [76] [77] [78] [79]) [80] (./main.aux)
+Package pdftex.def Info: Includes/5-target-iqa-results.pdf  used on input line 399.
+(pdftex.def)             Requested size: 359.56699pt x 178.67006pt.
+ [72 <./Includes/5-target-iqa-results.pdf>]) (./sections/conclusions.tex [73] [74]) [75] (./main.bbl [76] [77] [78] [79] [80]) [81] (./main.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FF65D08EC18FF37A0136747D25C4E09D;12479.
+(rerunfilecheck)             Checksum: 6C5E5570F336A03154780955B32831F3;12952.
  ) 
 Here is how much of TeX's memory you used:
- 14331 strings out of 476029
- 245703 string characters out of 5786180
- 1877346 words of memory out of 5000000
- 34167 multiletter control sequences out of 15000+600000
+ 14383 strings out of 476029
+ 247665 string characters out of 5786180
+ 1874346 words of memory out of 5000000
+ 34201 multiletter control sequences out of 15000+600000
  522721 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,1104b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,1043b,588s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></Users/pmassaro/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on main.pdf (84 pages, 27197565 bytes).
+Output written on main.pdf (85 pages, 27277094 bytes).
 PDF statistics:
- 2486 PDF objects out of 2487 (max. 8388607)
- 1326 compressed objects within 14 object streams
- 312 named destinations out of 1000 (max. 500000)
- 764 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2689 PDF objects out of 2984 (max. 8388607)
+ 1419 compressed objects within 15 object streams
+ 328 named destinations out of 1000 (max. 500000)
+ 803 words of extra memory for PDF output out of 10000 (max. 10000000)
 
