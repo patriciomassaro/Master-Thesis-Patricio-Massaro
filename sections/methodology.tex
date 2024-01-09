@@ -1,6 +1,7 @@
 \section{Methodology} \label{sec:methodology}
 
-Throughout this section, the selected architectures for the blind super resolution task will be explained in depth Additionally, 
+Throughout this section, the selected architectures for the blind super resolution task will be explained in depth along the rationale behind their choice. Additionally, all the metrics and losses used during training and experimentation will be introduced. 
+Moreover, a process to create a baseline dataset to help assessing the performance of the selected architecture is explained in detail. 
 
 
 \subsection{Models Architecture}
@@ -8,11 +9,9 @@ Throughout this section, the selected architectures for the blind super resoluti
 \subsubsection{Probabilistic degradation model}
 
     This architecture, introduced in \cite{luo2022learning}, is classified among implicit modeling methods for blind super-resolution.
-    Typically, models in this category aim to adaptively learn the degradation process through deterministic models, bridging the domain gap between synthetic HR-LR pairs and real-world images.
-    Nevertheless, certain degradations in practical scenarios show stochastic behavior and do not strictly correlate with the image's content. Such methods may struggle to capture these unpredictable elements and the content-independent aspects of degradation, potentially constraining the performance of the subsequent SR model. In this particular architecture, degradation \(D\) is assumed as a random variable and networks seek to learn its distribution by establishing a mapping from random variable \(z\) to \(D\). 
+    Typically, models in this category aim to adaptively learn the degradation process through deterministic models. Nevertheless, certain degradations in practical scenarios show stochastic behavior and do not strictly correlate with the image's content. Such methods may struggle to capture these unpredictable elements and the content-independent aspects of degradation, potentially constraining the performance of the subsequent SR model. In this particular architecture, degradation \(D\) is assumed as a random variable and networks seek to learn its distribution by establishing a mapping from random variable \(z\) to \(D\). 
 
-    Contrary to previous models that use deep learning directly transform a high-resolution (HR) image into a low-resolution (LR) one, this strategy employs two networks to generate a blurring kernel and additive noise, following eq. \ref{eq:2-degradation-equation}. This constraint makes the integration of this degradation model with an SR model easier, helping to perform an efficient end-to-end training. 
-    
+    Contrary to previous models that use deep learning directly transform a high-resolution (HR) image into a low-resolution (LR) one, this strategy employs two networks to generate a blurring kernel and additive noise, following eq. \ref{eq:2-degradation-equation}. This constraint imposes limitations on how the degradation affects the images, thus making its integration with an SR model easier and allowing efficient end-to-end training. Additionally, it provides actionable insight in understanding the unknown degradation process.
     The stochastic nature of the model allows to produce a wider array of degradations, thereby allowing the creation of diverse HR-LR pairs. This diversity may better cover the possible degradations in test LR images and prevents the SR model from overfitting to specific scenarios.
 
 
@@ -203,8 +202,8 @@ Throughout this section, the selected architectures for the blind super resoluti
         \subsubsection{Radiometric error correction}
 
         FOREST-2 radiometric accuracy is 1K at 300K.
-        Other missions report lower nominal radiometric accuracies, such as the case of ECOSTRESS instrument sheet \cite{ECOSTRESS2023INSTRUMENT} which is 0.5K at 300K.
-        This difference in accuracy should be taken into account. To align these accuracies, the additional error required has to be calculated using the following equation:
+        Other missions report higher nominal radiometric accuracy, such as the case of ECOSTRESS instrument sheet \cite{ECOSTRESS2023INSTRUMENT} which is 0.5K at 300K.
+        This difference in accuracy should be taken into account. To align the accuracy, the additional error required has to be calculated using the following equation:
 
         \begin{equation}
             e_{\text{forest}} = \sqrt{e_{\text{eco}}^2 + e_{\text{extra}}^2} 
@@ -222,7 +221,7 @@ Throughout this section, the selected architectures for the blind super resoluti
         
         By multiplying the results of equations \ref{eq:4-radiometric-error-correction} and \ref{eq:4-planck-derivative}, we can obtain the radiance error for both FOREST LWIR bands. The additional radiance errors for LWIR1 and LWIR2 bands are found to be \(1.5472 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\) and \(1.1444 \times 10^{-1}\) W/sr/m\(^2\)/\(\mu m\), respectively.
 
-        The difference in radiances will be split into two components. On one side, the cold bias represents a systematic error in the measurement, this error acknowledges discrepancies that can be attributed to sensor calibration and atmospheric conditions. On the other side, the random noise accounts for unpredictable fluctuations in the measurement process. It could be due to a variety of sources like electronic noise in the sensor, random atmospheric disturbances, or other stochastic factors. As the extent of each component is not known and to give more variability to this basic degradation model, a random factor $\phi \in [0,1] $ is introduced so that:
+        The difference in radiance will be split into two components. On one side, the cold bias represents a systematic error in the measurement, this error acknowledges discrepancies that can be attributed to sensor calibration and atmospheric conditions. On the other side, the random noise accounts for unpredictable fluctuations in the measurement process. It could be due to a variety of sources like electronic noise in the sensor, random atmospheric disturbances, or other stochastic factors. As the extent of each component is not known and to give more variability to this basic degradation model, a random factor $\phi \in [0,1] $ is introduced so that:
 
         \begin{equation}
         \begin{aligned}
@@ -249,7 +248,7 @@ Throughout this section, the selected architectures for the blind super resoluti
 
         \[ \text{SNR} = 10 \log_{10} \left( \frac{P_{signal}}{P_{noise}} \right) \]
 
-        Where $P_signal$ and $P_noise$ represent the power of the signal and the noise tensors, calculated as the sum of their squared elements.
+        Where $P_{signal}$ and $P_{noise}$ represent the power of the signal and the noise tensors, calculated as the sum of their squared elements.
         A higher SNR indicates a clearer and more distinguishable signal in comparison to the noise. In the context of this work, it will be used to assess the power of the noise introduced by the probabilistic degradation model, compared to the clean image.
 
     \subsection{Referenced image quality metrics}
@@ -261,7 +260,7 @@ Throughout this section, the selected architectures for the blind super resoluti
         These metrics are build using a pre-trained deep neural network, which is usually trained on a large dataset of images.
         The following sections will describe the most commonly used metrics in the literature.
 
-        \subsubsection{pixel-wise losses}
+        \subsubsection{Pixel-wise Losses}
 
             The $L_1$ and $L_2$ losses are the most commonly used pixel-based metrics in the literature. 
             Additionally, they are usually used as the loss function that drives the super resolution network gradients during training. 
@@ -275,6 +274,16 @@ Throughout this section, the selected architectures for the blind super resoluti
             The $L_2$ loss weights high-value differences higher than low-value differences due to the exponent of 2. 
             This generates overly smooth for low values and a lot of variability in high values. 
             For that reason, it is more common to see the $L_1$ loss being used in the SR literature and it will be employed in the experiment.
+
+        \subsubsection{Adversarial loss}
+
+        In order to train the probabilistic degradation model GAN, an adversarial loss must be used. 
+
+        Viewing the discriminator as a classifier, the original GAN implementation uses the cross-entropy loss. This will cause the problem of vanishing gradients in the generator when the samples are on the correct side of the decision boundary, but still far from the real data. For that reason, the LSGAN is proposed in \cite{mao2017squares}. 
+        
+        Benefits of LSGANs include the penalization of samples that are on the correct side of the decision boundary but far from it. This will generate bigger gradients in the generator update, relieving the vanishing gradients problem. As a result, the learning process is more stable and will generate higher quality images from the generator.
+
+        
 
         \subsubsection{Peak Signal-to-Noise Ratio (PSNR)}
 
@@ -306,7 +315,7 @@ Throughout this section, the selected architectures for the blind super resoluti
         where $\mu_x$ and $\mu_y$ are the average pixel values, $\sigma_x^2$ and $\sigma_y^2$ are the variances, $\sigma_{xy}$ is the covariance of $x$ and $y$, and $c_1, c_2$ are small constants to avoid division by zero.
         The final SSIM score for the images is calculated by averaging the SSIM indices of all windows. An SSIM score of 1 indicates a perfect structural match between the two images, whereas a score of 0 indicates no structural similarities.
 
-        \subsubsection{Learned perceptual image patch similarity (LPIPS)}
+        \subsubsection{Learned Perceptual Image Patch Similarity (LPIPS)}
 
         LPIPS is a perceptual metric that leverages deep learning to compute perceptual differences between images. Specifically, it uses the activations of a pre-trained convolutional neural network (in this case, VGG \cite{VGGnet} ) to extract perceptual features from the images. 
         Then, it calculates the Euclidean distance between these feature vectors to measure the perceptual difference.
@@ -325,7 +334,7 @@ Throughout this section, the selected architectures for the blind super resoluti
         this metric will be shown but will not drive any decision during the training process.
         
 
-        \subsubsection{Adjusting measures to bias and translations in the SR process.}
+        \subsubsection{Adjusting measures to bias and translations during the SR process.}\label{subsec:adjustedmetrics}
     
             In order to calculate the losses and performance metrics, the generated test images (SR) are compared against the ground truth high resolution images (HR).
             Additional changes should be considered, particularly in a MISR environment \cite{martens2019superresolution}.
@@ -409,28 +418,45 @@ Throughout this section, the selected architectures for the blind super resoluti
         This is visualized in grayscale, where the intensity corresponds to the amplitude of the frequency components.
         
         A radial profile of the FFT magnitude provides insights into how different spatial frequencies contribute to the image content in the vertical and horizontal direction.
-        The radial profile is a function of the average intensity of frequencies at a given radius from the center of the Fourier transform.
-        The average of the FFT magnitude is calculated for concentric circles of increasing radii, capturing a summary of the frequency components in every direction.
+        The radial profile is a function of the average intensity of frequencies at a given radius from the center of the Fourier transform. It depicts the average magnitude of a given frequency in all possible directions. 
+        The average of the FFT magnitude is calculated for concentric circles of increasing radii, capturing a summary of the .
         This metric serves as a benchmark for evaluating the performance of SR techniques against traditional interpolation methods such as bicubic interpolation.
         
         Spatial frequency within an image context refers to the periodicity of the intensity variation over spatial dimensions, typically quantified in cycles per pixel. The central region of the frequency domain, after the shift operation, denotes the zero frequency. In contrast, the edges of the FFT image represent the highest frequencies, constrained by the image's discrete sampling rate.
-        To quantitatively interpret these spatial frequencies, a radial-to-frequency mapping is necessary. This mapping accounts for the Nyquist frequency, which is delineated as half the sampling rate of the discrete imaging grid and acts as a threshold to prevent frequency aliasing.
-        The conversion from a given radius in the FFT output to the corresponding spatial frequency is formalized as:
+        To quantitatively interpret these spatial frequencies, a radial-to-frequency mapping is necessary. This mapping accounts for the Nyquist frequency, which is delineated as half the sampling rate of the discrete imaging grid, composed of squared pixels.
+
+        It is important to note that given the 2D nature of an image, the Nyquist limit is not the same in all directions. 
+        Along each axis, the Nyquist limit is 0.5 cycles per pixel, but in a diagonal direction, the limit is reached by combining the spatial frequency of the $x$ and $y$ axis, which is at $\frac{\sqrt{2}}{2} \approx 0.707$ cycles per pixel. 
+        This means that frequencies above 0.5 cycles per pixel can be detected, only if their direction is not along any of the axes.
+        The effect of the Nyquist limit can be seen in Fig. \ref{fig:5-square_vs_radial}. The maximum possible frequency in an FFT plot of a squared image is on the corners.
+        However, when normalized by the direction-dependent Nyquist limit, the maximum is reached in the borders of the FFT.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\linewidth]{Includes/5-square_vs_radial.pdf}
+            \caption{Comparison between (a) the radial representation of frequencies in cycles per pixel and (b) the frequency normalized by the direction-dependent Nyquist limit. The frequency limit is always on the borders of the FFT plot, but they represent different frequency values depending on the direction.
+            }
+            \label{fig:5-square_vs_radial}
+        \end{figure}
+        
+        
+        To convert a given radius in the FFT output to the corresponding spatial frequency is formalized as:
 
         \begin{equation}
             f(r) = \frac{r}{\frac{N}{2}} \cdot f_{\text{Nyquist}},
         \end{equation}
 
-        where \( f(r) \) signifies the spatial frequency associated with radius \( r \), \( N \) represents the FFT image dimension, assuming a square configuration, and \( f_{\text{Nyquist}} \) the Nyquist frequency, which is 0.5 cycles per pixel in this case.
+        where \( f(r) \) signifies the spatial frequency associated with radius \( r \), \( N \) represents the FFT image dimension, assuming a square configuration, and \( f_{\text{Nyquist}} \) the Nyquist frequency, which is 0.5 cycles per pixel along the $x$ and $y$. An example of the procedure is shown in \ref{fig:4-frequency-analysis}. Usually, the frequencies higher than 0.5 cycles per pixel have a very low log magnitude and can be disregarded in the analysis.
 
         \begin{figure}[H]
             \centering
             \includegraphics[width=\linewidth]{Includes/4-frequency-analysis.pdf}
-            \caption{Steps of the frequency domain analysis. The Center image shows the log magnitude of the shifted FFT of a bicubic upsampled FOREST-2 scene and an example of a radial profile, the average of all the points that have the same $r$ is calculated. The right image displays the log magnitude obtained for every radial profile, translated into spatial frequency.  }
+            \caption{Steps of the frequency domain analysis. (b) shows the log magnitude of the shifted FFT of the scene depicted in (a). The radial profile is calculating by averaging all the points that have the same $r$. In (c), the log magnitude obtained for every radial profile is plotted, translating the axis from radius into spatial frequency.}
             \label{fig:4-frequency-analysis}
         \end{figure}
+        
 
-        Through FFT a depiction of the amplification or attenuation of frequencies attributable to the SR techniques. 
+        Through FFT a depiction of the amplification or attenuation of frequencies attributable to the SR techniques can be calculated. 
         Analyzing these profiles displays the ability of SR models for detail enhancement. 
         However, it is important to note that this method does not account artifacts generated by the SR, and should be used in combination to other supervised metrics.
 
@@ -480,6 +506,32 @@ Throughout this section, the selected architectures for the blind super resoluti
              \label{fig:4-gradient-analysis}
          \end{figure}
 
+
+      \subsubsection{Correlation between pixel and neighbors }
+
+
+        In a similar fashion to the gradient analysis, kernels can be used to estimate the correlation between the pixels of an image and their neighbors. The Pearson correlation coefficient between the results of the convolutions of the image and the following kernels will be calculated.
+        
+        \begin{equation}
+            \begin{array}{ccc}
+            \hat{G}_{center} = \begin{bmatrix}
+            0 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 0
+            \end{bmatrix}
+            &
+            \quad
+            &
+            \hat{G}_{neighbors} = \begin{bmatrix}
+             1/8 &  1/8 & 1/8 \\
+             1/8 &  0 & 1/8 \\
+            1/8 & 1/8 & 1/8
+            \end{bmatrix}
+            \end{array}
+            \label{eq:4-sobel-operators}
+        \end{equation}
+    
+         In an image, a high correlation coefficient is expected, as the content of a pixel is highly dependent on its neighbors. However, images with higher definition have sharper edges and thus their correlation coefficient should be lower in comparison. It is important to note that this analysis does not take into account the noise present in the image, as it will reduce the correlation coefficient without improving the image quality. Despite this, it is helpful to understand the super resolution process.
          
 
 \clearpage

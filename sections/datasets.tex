@@ -17,7 +17,7 @@ The NASA's ECOsystem Spaceborne Thermal Radiometer Experiment on Space Station (
 
 ECOSTRESS employs thermal infra-red radiometers, specifically Prototype HyspIRI Thermal infra-red Radiometer \cite{PhyTIR2023} to measure the radiation emitted from the Earth's surface. It provides a spatial resolution of 69 meters with a temperature sensitivity of a few tenths of a degree \cite{ECOSTRESS2023}.  The swath size is 400x400 km. The detector separates the energy from five different wavelengths using filters attached to the detector, producing five separate image layers for each scene. The pixels represent the intensity of thermal infra-red radiation emitted by the Earth's surface at each wavelength. The mission has a 4-day diurnal repeat cycle.
 
-In the spatial domain, ECOSTRESS constitutes an excellent candidate for generating synthetic HR images, as it's resolution constitutes approximately a x3 increase compared to FOREST-2. 
+In the spatial domain, ECOSTRESS constitutes an excellent candidate for generating synthetic HR images, as it's resolution constitutes approximately a threefold increase compared to FOREST-2. 
 
 In the spectral domain, it is important to confirm overlap between the missions bands. Given the narrower ECOSTRESS bands, the strategy will be averaging the radiances to align the spectral properties.
 Fig. \ref{fig:5-wavelength-comparison} shows this spectral band comparison.
@@ -31,7 +31,7 @@ While FOREST's temporal resolution exceeds that of ECOSTRESS, allowing for the m
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Includes/5-wavelength-comparison.png}
-    \caption{Wavelengths of the sensors in Ecostress and Forest satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.}
+    \caption{Wavelengths of the sensors in ECOSTRESS and FOREST satellites. The radiation spectrum of black-bodies at different temperatures are included for comparison.}
     \label{fig:5-wavelength-comparison}
 \end{figure}
 
@@ -232,7 +232,7 @@ In case any of the domains has less samples than the other, the class will boots
 
 \subsubsection{Synthetic FOREST - Degraded Synthetic FOREST}
     The dataset $\mathcal{D}_{\text{SF}-\text{SF}}$ is built by taking the HR synthetic FOREST crops and applying the baseline degradation model proposed in \ref{subsec:baseline_degradation_model}. 
-    The 264x264 crops are reduced to 88x88. The training set is used to train the SR Resnet model, while the validation set is used to monitor the training process and avoid overfitting. 
+    The 264x264 crops are reduced to 88x88. The training set is used to train the SR model, while the validation set is used to monitor the training process and avoid overfitting. 
     Even though in this case the HR and LR version of the same scene is available, the training dataset is unpaired by shuffling the samples.
     The validation set is not shuffled, and thus metrics like PSNR and SSIM can be calculated in the target domain (red arrows flow in Fig. \ref{fig:3-GAN-degradation-model}). 
 
@@ -255,15 +255,16 @@ In case any of the domains has less samples than the other, the class will boots
     \end{table}
 
 \subsubsection{Synthetic FOREST - real FOREST (Unpaired)}
-    The dataset $\mathcal{D}_{\text{SF}-\text{RF}}$ is composed of the 264x264 HR synthetic FOREST-2 crops as the source domain and  88x88 real FOREST-2 crops as the target domain. 
+    The dataset $\mathcal{D}_{\text{SF}-\text{RF}}$ is composed of the 264x264 synthetic HR FOREST-2 crops as the source domain and  88x88 real FOREST-2 crops as the target domain. 
     Unfortunately, the validation dataset is not paired, as the HR and LR images are completely different scenes.
     Thus, supervised metrics are not available for the super resolved target domain images is not available. 
     The metric used to determine the best model is the PSNR from the super resolution of the output of the GAN's generator.
 
 \subsubsection{Synthetic FOREST- real FOREST ( Paired)}
-    While the training dataset is the same as in the previous case, the validation dataset is composed of a limited amount paired scenes between ECOSTRESS and FOREST are available.
-    This samples allow the calculation of supervised metrics like PSNR and SSIM. 
-    As supervised metrics to compare the real FOREST-2 SR with the ground truth is now available, the PSNR is used to determine the best model.
+    Satellite overpasses are of significant value to create a validation dataset composed of a limited amount of paired scenes between ECOSTRESS and FOREST are available.  In order to do that, the trajectory of both missions is closely monitored in order to detect when they are close enough for data aquisition. As the intersection of the trajectories is not a perfect match, some processing must be done to co-register the images taken from both satellites.  
+    
+    While the training dataset is the same as in the previous case, 
+    This samples allow the calculation of supervised metrics like PSNR and SSIM to compare the real FOREST-2 SR with the ground truth, as it is now available. To avoid errors on the PSNR due to wrong co-registration of the images, the adjusted metrics explained in \ref{subsec:adjustedmetrics} will be used.
 
 
 
