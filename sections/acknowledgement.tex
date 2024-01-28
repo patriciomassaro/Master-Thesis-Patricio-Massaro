@@ -1,3 +1,26 @@
 \section*{Acknowledgments}
 
-\newpage
+ \thispagestyle{empty}
+I would like to express my deepest gratitude to Prof. Dr. Matthias Schubert, whose guidance and support as my supervisor throughout the thesis project were truly invaluable. I particularly appreciate the trust to allow me to work independently.
+
+
+This project would not have been possible without the contributions of each member of Ororatech’s Data Science team, particularly Christian Mollière and Julia Gottfriesen. I am extremely grateful to them for their support and for letting me in their work group. The time spent working alongside such talented and dedicated professionals has been not only helpful but also amazing!
+
+
+Last but not least, I want to express gratitude to my family and friends, whose help, whether from a distance or close by, was essential to me. Particularly, I want to say thank you to Nati, whose companionship has been always my anchor.
+
+
+
+\pagebreak
+
+\section*{Abstract}
+ \thispagestyle{empty}
+Thermal Remote Sensing is integral to Earth observation, enabling the retrieval of land surface temperature. However, current satellite systems are constrained by a trade-off between spatial and temporal resolution, limiting the effectiveness of temperature monitoring in various applications including wildfire monitoring, urban heat analysis, and irrigation management.
+Super Resolution emerges as a promising post-processing technique to mitigate these limitations, aiming to increase the spatial resolution of satellite imagery while maintaining the physical consistency of the scene. Despite its potential, the technique faces significant challenges, including the lack of paired high- and low-resolution data and the domain gap problem. The latter refers to the discrepancies between the controlled conditions under which models are usually trained and the more complex real-world scenarios where models are deployed. 
+
+This study focuses on a deep learning framework that estimates the characteristics of the remote sensing devices from OroraTech's mission FOREST-2 and their effect on image quality; and integrates them seamlessly into a super resolution model. The framework operates effectively even in the absence of paired data, leveraging the data distribution learning capability of generative adversarial networks. Additionally, a set of methodologies that facilitate the evaluation of the super-resolved image's quality without relying on high-resolution ground truth is implemented.
+
+The findings of the study highlight the FOREST-2 sensor's complexity compared to standard controlled conditions, emphasizing the importance of domain gap awareness in creating datasets that ensure robust model performance in real-world settings. The super resolution model trained using the proposed framework demonstrated superior detail recovery and edge sharpness in FOREST-2 images compared to baseline models. This enhancement in quality was analyzed in the frequency domain and by quantifying the gradients and pixel-correlations of the model outputs. Moreover, a controlled evaluation involving a paired scene showed a 1dB enhancement in PSNR and a notable detail enhancement in distinct features of the image such as islands.
+
+
+\pagebreak

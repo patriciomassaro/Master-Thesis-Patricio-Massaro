@@ -48,6 +48,53 @@
 \graphicspath{{\imgdir/}}
 \renewcommand{\baselinestretch}{1.1}   %Interlineado
 
+
+\newcommand{\declarationhead}{Declaration of Authorship}
+\newcommand{\declaration}{I hereby declare that the thesis submitted is my own unaided work. All direct or indirect
+sources used are acknowledged as references. \newline
+This paper was not previously presented to another examination board and has not
+been published.
+
+\vspace{1cm}
+Munich, January 25th 2024
+
+\vspace{1.5cm}
+\makebox[9.8cm]{\dotfill}\\
+Patricio Nicolas Massaro Rocca
+}
+
+
+\newcommand{\erklaerung}{
+  \begin{titlepage}
+    \vspace*{\fill}
+    \parindent 0cm
+    \begin{center}
+      \textbf{\declarationhead}
+
+      \vspace{1cm}
+  
+      \begin{minipage}{9.8cm}
+			\declaration
+				
+        
+
+      \end{minipage}
+  
+    \end{center}
+  
+    \vspace*{\fill}
+  \end{titlepage}
+}
+
+\newcommand{\emptypage}{
+\begin{titlepage}
+\vspace*{\fill}
+\end{titlepage}
+}
+
+
+
+
 %------------------------- Inicio del documento ---------------------------
 \begin{document}
 
@@ -81,15 +128,20 @@
 
 \begin{center}
 \Large{\textsc{Domain Adaptation Techniques for blind super resolution applied to Thermal Data Products}} \\
-January 20, 2023
+January 25, 2024
 \end{center}
 
 \vspace{2cm}
 
+% \begin{center}
+% \Large{Patricio Nicolas Massaro Rocca}
+% \end{center}
+
 \begin{tabbing}
 	Student:\hspace{-1cm}\=\+\hspace{1cm}\=\hspace{6cm}\=\\
-		Massaro, Patricio	\>\> \\
+		Massaro Rocca, Patricio Nicolas	\>\> \\
 			\>\footnotesize{$<$p.massaro@campus.lmu.de$>$}\\
+            \>\footnotesize{Registration number: 12474040}\\
 		\\
 \end{tabbing}
 
@@ -100,9 +152,13 @@ January 20, 2023
 \noindent\small{Master Thesis\hfill }
 \end{titlepage}
 
+\erklaerung
+
 \input{sections/Acknowledgement.tex}
 
+ \thispagestyle{empty}
 \tableofcontents
+ \thispagestyle{empty}
 \newpage
 
 %
